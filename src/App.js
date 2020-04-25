@@ -1,25 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import "./App.css";
+import Questioner from "./components/Questioner";
+import ApplyForFMLA from "./components/ApplyForFMLA";
+import ApplyForPua from "./components/ApplyForPua";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="">
+          <Questioner></Questioner>
+        </Route>
+        <Route path="apply-for-pua">
+          <ApplyForPua />
+        </Route>
+        <Route path="apply-for-fmla">
+          <ApplyForFMLA />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
