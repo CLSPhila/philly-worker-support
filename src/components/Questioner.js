@@ -1,41 +1,58 @@
 import React, { useReducer } from "react";
-import AreYouCurrentlyWorking from "./Welcome";
+import AreYouCurrentlyWorking from "./AreYouCurrentlyWorking";
 import NotCurrentlyWorking from "./NotCurrentlyWorking";
 import CurrentlyWorking from "./CurrentlyWorking";
+import ApplyForPua from "./ApplyForPua";
 
-function pickQuestion(state) {
-  if (state.areYouCurrentlyWorking.answer == "Yes") {
-    return <CurrentlyWorking />;
+/**
+ * Given the current answers to the questions, return the component that should get rendered.
+ * @param {*} state
+ */
+function pickQuestion(state, dispatch) {
+  if (state.areYouCurrentlyWorking.answer === "Yes") {
+    if (state.currentlyWorkingReasonForSeekingHelp.answer === null) {
+      return <CurrentlyWorking dispatch={dispatch} />;
+    }
+    return <ApplyForPua dispatch={dispatch} />;
   }
 
-  return <AreYouCurrentlyWorking />;
+  if (
+    state.areYouCurrentlyWorking.answer === "No" &&
+    state.notCurrentlyWorkingReasonForSeekingHelp === null
+  ) {
+    return <NotCurrentlyWorking dispatch={dispatch} />;
+  }
+
+  // Default
+  return <AreYouCurrentlyWorking dispatch={dispatch} />;
 }
 
-const questions = [
-  {
+const questions = {
+  areYouCurrentlyWorking: {
     id: "AreYouCurrentlyWorking",
     answer: null,
   },
-  {
-    id: "CurrentlyWorking",
+  currentlyWorkingReasonForSeekingHelp: {
+    id: "CurrentlyWorkingReasonForSeekingHelp",
     answer: null,
   },
-  {
-    id: "NotCurrentlyWorking",
+  notCurrentlyWorkingReasonForSeekingHelp: {
+    id: "NotCurrentlyWorkingReasonForSeekingHelp",
     answer: null,
   },
-];
+};
 
 const questionReducer = (state, action) => {
   switch (action.type) {
-    case "ANSWER_QUESTION":
-      return state.map((q) => {
-        if (q.id === action.id) {
-          q.answer = action.answer;
-        } else {
-          return q;
-        }
-      });
+    case "UPDATE_ANSWER":
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          answer: action.payload.answer,
+        },
+      };
+
     default:
       return state;
   }
@@ -43,5 +60,5 @@ const questionReducer = (state, action) => {
 
 export default function () {
   const [state, dispatch] = useReducer(questionReducer, questions);
-  return <div>{pickComponent(state)}</div>;
+  return <div>{pickQuestion(state, dispatch)}</div>;
 }
