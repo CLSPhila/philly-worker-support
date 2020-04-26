@@ -16,11 +16,15 @@ function pickQuestion(state, dispatch) {
     return <ApplyForPua dispatch={dispatch} />;
   }
 
-  if (
-    state.areYouCurrentlyWorking.answer === "No" &&
-    state.notCurrentlyWorkingReasonForSeekingHelp === null
-  ) {
-    return <NotCurrentlyWorking dispatch={dispatch} />;
+  if (state.areYouCurrentlyWorking.answer === "No") {
+    if (state.notCurrentlyWorkingReasonForSeekingHelp.answer === null) {
+      return (
+        <NotCurrentlyWorking
+          dispatch={dispatch}
+          questionId="notCurrentlyWorkingReasonForSeekingHelp"
+        />
+      );
+    }
   }
 
   // Default
