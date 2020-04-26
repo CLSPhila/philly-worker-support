@@ -33,15 +33,12 @@ function pickQuestion(state, dispatch) {
 
 const questions = {
   areYouCurrentlyWorking: {
-    id: "AreYouCurrentlyWorking",
     answer: null,
   },
   currentlyWorkingReasonForSeekingHelp: {
-    id: "CurrentlyWorkingReasonForSeekingHelp",
     answer: null,
   },
   notCurrentlyWorkingReasonForSeekingHelp: {
-    id: "NotCurrentlyWorkingReasonForSeekingHelp",
     answer: null,
   },
 };
