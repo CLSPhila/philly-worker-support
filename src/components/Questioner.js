@@ -4,6 +4,8 @@ import NotCurrentlyWorking from "./NotCurrentlyWorking";
 import CurrentlyWorking from "./CurrentlyWorking";
 import ApplyForPua from "./ApplyForPua";
 
+import { questions } from "./Questions";
+
 /**
  * Given the current answers to the questions, return the component that should get rendered.
  * @param {*} state
@@ -31,16 +33,15 @@ function pickQuestion(state, dispatch) {
   return <AreYouCurrentlyWorking dispatch={dispatch} />;
 }
 
-const questions = {
-  areYouCurrentlyWorking: {
-    answer: null,
-  },
-  currentlyWorkingReasonForSeekingHelp: {
-    answer: null,
-  },
-  notCurrentlyWorkingReasonForSeekingHelp: {
-    answer: null,
-  },
+const createQuestions = (questions) => {
+  const initialState = questions.reduce(
+    (qs, thisQ) => ({
+      ...qs,
+      [thisQ.id]: { answer: null },
+    }),
+    {}
+  );
+  return initialState;
 };
 
 const questionReducer = (state, action) => {
@@ -60,6 +61,12 @@ const questionReducer = (state, action) => {
 };
 
 export default function () {
-  const [state, dispatch] = useReducer(questionReducer, questions);
+  const [state, dispatch] = useReducer(
+    questionReducer,
+    questions,
+    createQuestions
+  );
+  console.log("state:");
+  console.log(state);
   return <div>{pickQuestion(state, dispatch)}</div>;
 }
