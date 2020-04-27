@@ -41,9 +41,9 @@ export const IsFullTimeEmployee = (props) => {
       <option value="no">No, it is not.</option>
     </MultipleChoice>
   );
-}
+};
 
-export const EmployerHasTenEmployees = (props) {
+export const EmployerHasTenEmployees = (props) => {
   return (
     <MultipleChoice
       {...props}
@@ -54,4 +54,4 @@ export const EmployerHasTenEmployees = (props) {
       <option value="no">No, it is does not.</option>
     </MultipleChoice>
   );
-}
+};
