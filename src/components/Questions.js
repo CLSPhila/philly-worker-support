@@ -18,8 +18,15 @@ export function pickQuestion(state, dispatch) {
   if (state.areYouCurrentlyWorking.answer === "Yes") {
     if (state.currentlyWorkingReasonForSeekingHelp.answer === null) {
       return <CurrentlyWorking dispatch={dispatch} />;
+    } else {
+      // If we know why the working person is looking to take time off,
+      // we need to ask fmla and sick leave questions.
+      if (needAnswersToSickLeaveAndFMLAQuestions(state)) {
+        return pickNextSickLeaveAndFMLAQuestion(state, dispatch);
+      } else {
+        return pickSickLeaveAndFMLAInformation(state, dispatch);
+      }
     }
-    return <div> Default </div>;
   }
 
   if (state.areYouCurrentlyWorking.answer === "No") {
