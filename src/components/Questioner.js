@@ -1,37 +1,10 @@
 import React, { useReducer } from "react";
-import AreYouCurrentlyWorking from "./AreYouCurrentlyWorking";
-import NotCurrentlyWorking from "./NotCurrentlyWorking";
-import CurrentlyWorking from "./CurrentlyWorking";
-import ApplyForPua from "./ApplyForPua";
 
-import { questions } from "./Questions";
+import { questions, pickQuestion } from "./Questions";
 
 /**
- * Given the current answers to the questions, return the component that should get rendered.
- * @param {*} state
+ * Machinery for running a guided interview.
  */
-function pickQuestion(state, dispatch) {
-  if (state.areYouCurrentlyWorking.answer === "Yes") {
-    if (state.currentlyWorkingReasonForSeekingHelp.answer === null) {
-      return <CurrentlyWorking dispatch={dispatch} />;
-    }
-    return <ApplyForPua dispatch={dispatch} />;
-  }
-
-  if (state.areYouCurrentlyWorking.answer === "No") {
-    if (state.notCurrentlyWorkingReasonForSeekingHelp.answer === null) {
-      return (
-        <NotCurrentlyWorking
-          dispatch={dispatch}
-          questionId="notCurrentlyWorkingReasonForSeekingHelp"
-        />
-      );
-    }
-  }
-
-  // Default
-  return <AreYouCurrentlyWorking dispatch={dispatch} />;
-}
 
 const createQuestions = (questions) => {
   const initialState = questions.reduce(
@@ -66,7 +39,5 @@ export default function () {
     questions,
     createQuestions
   );
-  console.log("state:");
-  console.log(state);
   return <div>{pickQuestion(state, dispatch)}</div>;
 }

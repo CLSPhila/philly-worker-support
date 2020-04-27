@@ -1,5 +1,5 @@
 import React from "react";
-import MultipleChoice from "./MultipleChoice";
+import MultipleChoice from "../MultipleChoice";
 
 /**
  * Questions relating to whether a person is an employee or independent contractor.

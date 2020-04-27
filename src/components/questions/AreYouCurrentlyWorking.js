@@ -1,5 +1,5 @@
 import React from "react";
-import { updateAnswer } from "../actions";
+import { updateAnswer } from "../../actions";
 
 export default function (props) {
   const { dispatch } = props;

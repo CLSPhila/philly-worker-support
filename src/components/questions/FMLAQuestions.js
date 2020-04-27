@@ -1,5 +1,5 @@
 import React from "react";
-import MultipleChoice from "./MultipleChoice";
+import MultipleChoice from "../MultipleChoice";
 /**
  * Questions relating to a person's eligibility for FMLA.
  */

@@ -2,7 +2,7 @@
  * Federal sick leave, Philly sick leave, regular FMLA qualification questions & UC qualification questions
  */
 import React from "react";
-import MultipleChoice from "./MultipleChoice";
+import MultipleChoice from "../MultipleChoice";
 
 export const HasPublicEmployer = (props) => {
   return (
