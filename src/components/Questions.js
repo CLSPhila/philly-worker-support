@@ -370,6 +370,17 @@ function pickNextChildCareAndFMLAQuestion(state, dispatch) {
       />
     );
   }
+
+  if (state.healthcareWorker.answer === null) {
+    return (
+      <FedSickLeaveQuestions.HeathcareWorker
+        {...props}
+        questionId={state.healthcareWorker.id}
+      />
+    );
+  }
+
+  return null;
 }
 
 /**
