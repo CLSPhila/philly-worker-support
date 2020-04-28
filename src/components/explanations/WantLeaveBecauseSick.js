@@ -1,6 +1,9 @@
 import React from "react";
 /**
  * Benefits that are most applicable when I want time off because I'm sick.
+ *
+ * TODO make components for each type of leave. Pass {...props} down to them.
+ * TODO Philly leave needs a prop explaining whether leave is paid or not.
  */
 
 /**
@@ -8,10 +11,12 @@ import React from "react";
  * @param {*} props
  */
 export const FedSickPhillySickandFMLA = (props) => {
-  <div>
-    You appear to be qualified for federal sick leave/ Philly paid sick
-    leave/FMLA
-  </div>;
+  return (
+    <div>
+      You appear to be qualified for federal sick leave/ Philly paid sick
+      leave/FMLA
+    </div>
+  );
 };
 
 /**
@@ -19,10 +24,12 @@ export const FedSickPhillySickandFMLA = (props) => {
  * @param {*} props
  */
 export const FedSickOnly = (props) => {
-  <div>
-    You appear to be qualified for federal sick leave, but not Philly sick leave
-    or FMLA.
-  </div>;
+  return (
+    <div>
+      You appear to be qualified for federal sick leave, but not Philly sick
+      leave or FMLA.
+    </div>
+  );
 };
 
 /**
@@ -30,10 +37,12 @@ export const FedSickOnly = (props) => {
  * @param {*} props
  */
 export const PhillySickandFMLA = (props) => {
-  <div>
-    You appear to be qualified for Philly sick leave and FMLA, but not Federal
-    Sick leave
-  </div>;
+  return (
+    <div>
+      You appear to be qualified for Philly sick leave and FMLA, but not Federal
+      Sick leave
+    </div>
+  );
 };
 
 /**
@@ -41,10 +50,12 @@ export const PhillySickandFMLA = (props) => {
  * @param {*} props
  */
 export const PhillySickOnly = (props) => {
-  <div>
-    You appear to be qualified for Philly sick leave, but not FMLA or Federal
-    Sick Leave
-  </div>;
+  return (
+    <div>
+      You appear to be qualified for Philly sick leave, but not FMLA or Federal
+      Sick Leave
+    </div>
+  );
 };
 
 /**
@@ -52,10 +63,12 @@ export const PhillySickOnly = (props) => {
  * @param {*} props
  */
 export const NotFedSickPhillySickOrFMLA = (props) => {
-  <div>
-    You appear NOT to be qualified for federal sick leave, Philly paid sick
-    leave, or FMLA.
-  </div>;
+  return (
+    <div>
+      You appear NOT to be qualified for federal sick leave, Philly paid sick
+      leave, or FMLA.
+    </div>
+  );
 };
 
 /**
@@ -63,8 +76,10 @@ export const NotFedSickPhillySickOrFMLA = (props) => {
  * @param {*} props
  */
 export const FMLAOnly = (props) => {
-  <div>
-    You appear to be qualified for FMLA, but not federal sick leave or Philly
-    paid sick leave.
-  </div>;
+  return (
+    <div>
+      You appear to be qualified for FMLA, but not federal sick leave or Philly
+      paid sick leave.
+    </div>
+  );
 };

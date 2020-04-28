@@ -7,6 +7,8 @@ import * as FedSickLeaveQuestions from "./questions/FedSickLeaveQuestions";
 import * as PhillySickLeaveQuestions from "./questions/PhillySickLeaveQuestions";
 import * as FMLAQuestions from "./questions/FMLAQuestions";
 
+import * as WantLeaveBecauseSickInfo from "./explanations/WantLeaveBecauseSick";
+
 /**
  * In this module, define a list of the questions to be asked
  * by creating an array. Each elementof the array identifies
@@ -37,7 +39,7 @@ export function pickQuestion(state, dispatch) {
         return (
           pickNextSickLeaveAndFMLAQuestion(state, dispatch) ||
           // Pick the information to provide the user about
-          pickSickLeaveAndFMLAInformation(state, dispatch)
+          pickSickLeaveAndFMLAInformation(state)
         );
       }
     }
@@ -241,10 +243,118 @@ function pickNextSickLeaveAndFMLAQuestion(state, dispatch) {
     );
   }
 
-  console.log("Error - no more fed sick leave questions to ask.");
+  console.log("No more fed sick leave questions to ask.");
   return null;
 }
 
-function pickSickLeaveAndFMLAInformation(props) {
-  return <div>Here's the final paid sick leave info.</div>;
+/**
+ * Pick the Information to show to the user, explaining programs they might
+ * be eligible for.
+ *
+ * TODO there could be 9 combinations, not the 6 we've written out here.
+ *
+ * @param {} state
+ */
+function pickSickLeaveAndFMLAInformation(state) {
+  const isEligibleForFedSick = checkIfEligibleForFedSick(state);
+  const isEligibleForPhillySick = checkIfEligibleForPhillySick(state);
+  const isEligibleForFMLA = checkIfEligibleForFMLA(state);
+
+  const phillyLeaveIsPaid = state.employerHasTenEmployees.answer === "yes";
+
+  if (isEligibleForFedSick && isEligibleForPhillySick && isEligibleForFMLA) {
+    return (
+      <WantLeaveBecauseSickInfo.FedSickPhillySickandFMLA
+        phillyLeaveIsPaid={phillyLeaveIsPaid}
+      />
+    );
+  }
+
+  if (isEligibleForFedSick && !isEligibleForPhillySick && !isEligibleForFMLA) {
+    return <WantLeaveBecauseSickInfo.FedSickOnly />;
+  }
+
+  if (!isEligibleForFedSick && isEligibleForPhillySick && isEligibleForFMLA) {
+    return (
+      <WantLeaveBecauseSickInfo.PhillySickandFMLA
+        phillyLeaveIsPaid={phillyLeaveIsPaid}
+      />
+    );
+  }
+  if (!isEligibleForFedSick && isEligibleForPhillySick && !isEligibleForFMLA) {
+    return (
+      <WantLeaveBecauseSickInfo.PhillySickOnly
+        phillyLeaveIsPaid={phillyLeaveIsPaid}
+      />
+    );
+  }
+  if (!isEligibleForFedSick && !isEligibleForPhillySick && !isEligibleForFMLA) {
+    return <WantLeaveBecauseSickInfo.NotFedSickPhillySickOrFMLA />;
+  }
+  if (!isEligibleForFedSick && !isEligibleForPhillySick && isEligibleForFMLA) {
+    return <WantLeaveBecauseSickInfo.FedSickPhillySickandFMLA />;
+  }
+
+  return <div>Sorry, you're not eligible for anything.</div>;
+}
+
+/**
+ * Determine if the user is eligible for federal sick leave.
+ * @param {} state
+ */
+function checkIfEligibleForFedSick(state) {
+  const {
+    hasPublicEmployer,
+    fedSickLeaveEmployerSize,
+    haveCovid,
+    healthcareWorker,
+  } = state;
+  if (
+    (hasPublicEmployer.answer === "yes" ||
+      (hasPublicEmployer.answer === "no" &&
+        fedSickLeaveEmployerSize.answer === "ltFiveHundred")) &&
+    haveCovid.answer === "yes" &&
+    healthcareWorker.answer === "yes"
+  ) {
+    return true;
+  }
+  return false;
+}
+
+function checkIfEligibleForFMLA(state) {
+  const {
+    twelveMonthsEmployed,
+    workedEnoughHoursForFMLA,
+    fiftyNearbyEmployees,
+    sickPersonIsCloseRelative,
+  } = state;
+
+  if (
+    twelveMonthsEmployed.answer === "yes" &&
+    workedEnoughHoursForFMLA.answer === "yes" &&
+    fiftyNearbyEmployees.answer === "yes" &&
+    sickPersonIsCloseRelative === "yes"
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function checkIfEligibleForPhillySick(state) {
+  const {
+    workInPhilly,
+    workingNinetyDays,
+    isFulltimeEmployee,
+    employerHasTenEmployees,
+  } = state;
+
+  if (
+    workInPhilly.answer === "yes" &&
+    workingNinetyDays.answer === "yes" &&
+    isFulltimeEmployee.answer === "yes"
+  ) {
+    return true;
+  }
+  return false;
 }
