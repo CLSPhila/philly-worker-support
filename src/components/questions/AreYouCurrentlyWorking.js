@@ -16,12 +16,12 @@ export default function (props) {
         <input
           type="button"
           value="Yes, I am currently working."
-          onClick={handleClick("Yes")}
+          onClick={handleClick("yes")}
         />
         <input
           type="button"
           value="No, I am not currently working."
-          onClick={handleClick("No")}
+          onClick={handleClick("no")}
         />
       </form>
     </div>

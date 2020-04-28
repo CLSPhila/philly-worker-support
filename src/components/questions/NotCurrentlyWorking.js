@@ -3,7 +3,7 @@ import MultipleChoice from "../MultipleChoice";
 
 export default function (props) {
   return (
-    <multiplechoice
+    <MultipleChoice
       {...props}
       question="i am not currently working, and i'm looking for help because:"
       label=""
@@ -22,6 +22,6 @@ export default function (props) {
         under bad conditions
       </option>
       <option value="other">not working for any other reason</option>
-    </multiplechoice>
+    </MultipleChoice>
   );
 }
