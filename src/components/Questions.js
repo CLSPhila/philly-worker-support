@@ -10,6 +10,8 @@ import * as FMLAQuestions from "./questions/FMLAQuestions";
 import * as ChildCareFMLAQuestions from "./questions/ChildCareFMLAAndUC";
 
 import * as WantLeaveBecauseSickInfo from "./explanations/WantLeaveBecauseSick";
+import { ReducedHoursExplanation } from "./explanations/WantLeaveBecauseReducedHours";
+import * as WantLeaveForDaycareInfo from "./explanations/WantLeaveForDaycare";
 
 /**
  * In this module, define a list of the questions to be asked
@@ -38,6 +40,7 @@ export function pickQuestion(state, dispatch) {
           pickChildCareAndFMLAInformation(state)
         );
       case "reducedHours":
+        return <ReducedHoursExplanation />;
       case "unsafeWorkingConditions":
         return <NotImplementedYet />;
       default:
@@ -366,7 +369,7 @@ function pickNextChildCareAndFMLAQuestion(state, dispatch) {
     return (
       <ChildCareFMLAQuestions.EmployedThirtyDays
         {...props}
-        questionId={state.EmployedThirtyDays.id}
+        questionId={state.employedThirtyDays.id}
       />
     );
   }
@@ -388,7 +391,28 @@ function pickNextChildCareAndFMLAQuestion(state, dispatch) {
  * user needs.
  * @param {} state
  */
-function pickChildCareAndFMLAInformation(state) {}
+function pickChildCareAndFMLAInformation(state) {
+  const {
+    hasPublicEmployer,
+    fedSickLeaveEmployerSize,
+    daycareClosed,
+    noSuitableOtherChildcare,
+    employedThirtyDays,
+    healthcareWorker,
+  } = state;
+  if (
+    (hasPublicEmployer.answer === "yes" ||
+      (hasPublicEmployer.answer === "no" &&
+        fedSickLeaveEmployerSize.answer === "ltFiveHundred")) &&
+    daycareClosed.answer === "yes" &&
+    noSuitableOtherChildcare.answer === "yes" &&
+    employedThirtyDays.answer === "yes" &&
+    healthcareWorker.answer === "no"
+  ) {
+    return <WantLeaveForDaycareInfo.QualifyForFMLA />;
+  }
+  return <WantLeaveForDaycareInfo.NotQualifiedForFMLA />;
+}
 
 /**
  * Determine if the user is eligible for federal sick leave.
@@ -434,12 +458,7 @@ function checkIfEligibleForFMLA(state) {
 }
 
 function checkIfEligibleForPhillySick(state) {
-  const {
-    workInPhilly,
-    workingNinetyDays,
-    isFulltimeEmployee,
-    employerHasTenEmployees,
-  } = state;
+  const { workInPhilly, workingNinetyDays, isFulltimeEmployee } = state;
 
   if (
     workInPhilly.answer === "yes" &&
