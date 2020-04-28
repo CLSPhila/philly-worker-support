@@ -34,11 +34,11 @@ export function pickQuestion(state, dispatch) {
       ) {
         // If we know why the working person is looking to take time off,
         // we need to ask fmla and sick leave questions.
-        if (needAnswersToSickLeaveAndFMLAQuestions(state)) {
-          return pickNextSickLeaveAndFMLAQuestion(state, dispatch);
-        }
-        // Pick the information to provide the user about
-        return pickSickLeaveAndFMLAInformation(state, dispatch);
+        return (
+          pickNextSickLeaveAndFMLAQuestion(state, dispatch) ||
+          // Pick the information to provide the user about
+          pickSickLeaveAndFMLAInformation(state, dispatch)
+        );
       }
     }
   }
@@ -122,32 +122,9 @@ export const questions = [
 ];
 
 /**
- * Determine whether the user has answered the Sick Leave and FMLA questions
- * @param {*} state
- */
-function needAnswersToSickLeaveAndFMLAQuestions(state) {
-  if (
-    state.hasPublicEmployer.answer === null ||
-    state.fedSickLeaveEmployerSize.answer === null ||
-    state.haveCovid.answer === null ||
-    state.healthcareWorker.answer === null ||
-    state.workInPhilly.answer === null ||
-    state.workingNinetyDays.answer === null ||
-    state.isFulltimeEmployee.answer === null ||
-    state.employerHasTenEmployees.answer === null ||
-    state.twelveMonthsEmployed.answer === null ||
-    state.workedEnoughHoursForFMLA.answer === null ||
-    state.fiftyNearbyEmployees.answer === null ||
-    state.sickPersonIsCloseRelative.answer === null
-  ) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-/**
  * Determine the next Sick Leave / FMLA question to ask.
+ *
+ * If we don't need any of those questions, return null.
  * @param {*} state
  */
 function pickNextSickLeaveAndFMLAQuestion(state, dispatch) {
