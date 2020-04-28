@@ -7,6 +7,7 @@ import CurrentlyWorking from "./questions/CurrentlyWorking";
 import * as FedSickLeaveQuestions from "./questions/FedSickLeaveQuestions";
 import * as PhillySickLeaveQuestions from "./questions/PhillySickLeaveQuestions";
 import * as FMLAQuestions from "./questions/FMLAQuestions";
+import * as ChildCareFMLAQuestions from "./questions/ChildCareFMLAAndUC";
 
 import * as WantLeaveBecauseSickInfo from "./explanations/WantLeaveBecauseSick";
 
@@ -32,6 +33,10 @@ export function pickQuestion(state, dispatch) {
           pickSickLeaveAndFMLAInformation(state)
         );
       case "childCare":
+        return (
+          pickNextChildCareAndFMLAQuestion(state, dispatch) ||
+          pickChildCareAndFMLAInformation(state)
+        );
       case "reducedHours":
       case "unsafeWorkingConditions":
         return <NotImplementedYet />;
@@ -119,6 +124,18 @@ export const questions = [
   {
     id: "sickPersonIsCloseRelative",
     component: FMLAQuestions.SickPersonIsCloseRelative,
+  },
+  {
+    id: "daycareClosed",
+    component: ChildCareFMLAQuestions.ChildCareDaycareClosed,
+  },
+  {
+    id: "noSuitableOtherChildcare",
+    component: ChildCareFMLAQuestions.NoSuitableOtherChildcare,
+  },
+  {
+    id: "employedThirtyDays",
+    component: ChildCareFMLAQuestions.EmployedThirtyDays,
   },
 ];
 
@@ -296,6 +313,71 @@ function pickSickLeaveAndFMLAInformation(state) {
 
   return <div>Sorry, you're not eligible for anything.</div>;
 }
+
+/**
+ * Determine the next component the user should see, in the
+ * sequence of questions about FMLA and childcare.
+ * @param {} state
+ * @param {*} dispatch
+ */
+function pickNextChildCareAndFMLAQuestion(state, dispatch) {
+  const props = { state, dispatch };
+
+  if (state.hasPublicEmployer.answer === null) {
+    return (
+      <FedSickLeaveQuestions.HasPublicEmployer
+        {...props}
+        questionId={state.hasPublicEmployer.id}
+      />
+    );
+  }
+
+  if (
+    state.fedSickLeaveEmployerSize.answer === null &&
+    state.hasPublicEmployer.answer === "no"
+  ) {
+    return (
+      <FedSickLeaveQuestions.EmployerSize
+        {...props}
+        questionId={state.fedSickLeaveEmployerSize.id}
+      />
+    );
+  }
+
+  if (state.daycareClosed.answer === null) {
+    return (
+      <ChildCareFMLAQuestions.ChildCareDaycareClosed
+        {...props}
+        questionId={state.daycareClosed.id}
+      />
+    );
+  }
+
+  if (state.noSuitableOtherChildcare.answer === null) {
+    return (
+      <ChildCareFMLAQuestions.NoSuitableOtherChildcare
+        {...props}
+        questionId={state.noSuitableOtherChildcare.id}
+      />
+    );
+  }
+
+  if (state.employedThirtyDays.answer === null) {
+    return (
+      <ChildCareFMLAQuestions.EmployedThirtyDays
+        {...props}
+        questionId={state.EmployedThirtyDays.id}
+      />
+    );
+  }
+}
+
+/**
+ * Return the component that explains the childcare/fmla info that the
+ * user needs.
+ * @param {} state
+ */
+function pickChildCareAndFMLAInformation(state) {}
 
 /**
  * Determine if the user is eligible for federal sick leave.
