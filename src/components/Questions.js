@@ -21,9 +21,13 @@ import * as FMLAQuestions from "./questions/FMLAQuestions";
 export function pickQuestion(state, dispatch) {
   if (state.areYouCurrentlyWorking.answer === "yes") {
     if (state.currentlyWorkingReasonForSeekingHelp.answer === null) {
-      return <CurrentlyWorking dispatch={dispatch} />;
+      return (
+        <CurrentlyWorking
+          dispatch={dispatch}
+          questionId={state.currentlyWorkingReasonForSeekingHelp.id}
+        />
+      );
     } else {
-      console.log(state);
       if (
         state.currentlyWorkingReasonForSeekingHelp.answer === "IamSick" ||
         state.currentlyWorkingReasonForSeekingHelp.answer === "careForSick"
@@ -44,7 +48,7 @@ export function pickQuestion(state, dispatch) {
       return (
         <NotCurrentlyWorking
           dispatch={dispatch}
-          questionId="notCurrentlyWorkingReasonForSeekingHelp"
+          questionId={state.notCurrentlyWorkingReasonForSeekingHelp.id}
         />
       );
     }
@@ -129,7 +133,7 @@ function needAnswersToSickLeaveAndFMLAQuestions(state) {
     state.healthcareWorker.answer === null ||
     state.workInPhilly.answer === null ||
     state.workingNinetyDays.answer === null ||
-    state.isFullTimeEmployee.answer === null ||
+    state.isFulltimeEmployee.answer === null ||
     state.employerHasTenEmployees.answer === null ||
     state.twelveMonthsEmployed.answer === null ||
     state.workedEnoughHoursForFMLA.answer === null ||
@@ -146,58 +150,118 @@ function needAnswersToSickLeaveAndFMLAQuestions(state) {
  * Determine the next Sick Leave / FMLA question to ask.
  * @param {*} state
  */
-function pickNextSickLeaveAndFMLAQuestion(props) {
-  const { state } = props;
+function pickNextSickLeaveAndFMLAQuestion(state, dispatch) {
+  const props = { state, dispatch };
 
   if (state.hasPublicEmployer.answer === null) {
-    return <FedSickLeaveQuestions.HasPublicEmployer {...props} />;
+    return (
+      <FedSickLeaveQuestions.HasPublicEmployer
+        {...props}
+        questionId={state.hasPublicEmployer.id}
+      />
+    );
   }
 
   if (
     state.fedSickLeaveEmployerSize.answer === null &&
     state.hasPublicEmployer.answer === "no"
   ) {
-    return <FedSickLeaveQuestions.EmployerSize {...props} />;
+    return (
+      <FedSickLeaveQuestions.EmployerSize
+        {...props}
+        questionId={state.fedSickLeaveEmployerSize.id}
+      />
+    );
   }
 
   if (state.haveCovid.answer === null) {
-    return <FedSickLeaveQuestions.HaveCovid {...props} />;
+    return (
+      <FedSickLeaveQuestions.HaveCovid
+        {...props}
+        questionId={state.haveCovid.id}
+      />
+    );
   }
 
   if (state.healthcareWorker.answer === null) {
-    return <FedSickLeaveQuestions.HeathcareWorker {...props} />;
+    return (
+      <FedSickLeaveQuestions.HeathcareWorker
+        {...props}
+        questionId={state.healthcareWorker.id}
+      />
+    );
   }
 
   if (state.workInPhilly.answer === null) {
-    return <PhillySickLeaveQuestions.WorkInPhilly {...props} />;
+    return (
+      <PhillySickLeaveQuestions.WorkInPhilly
+        {...props}
+        questionId={state.workInPhilly.id}
+      />
+    );
   }
 
   if (state.workingNinetyDays.answer === null) {
-    return <PhillySickLeaveQuestions.WorkingNinetyDays {...props} />;
+    return (
+      <PhillySickLeaveQuestions.WorkingNinetyDays
+        {...props}
+        questionId={state.workingNinetyDays.id}
+      />
+    );
   }
 
-  if (state.isFullTimeEmployee.answer === null) {
-    return <PhillySickLeaveQuestions.IsFullTimeEmployee {...props} />;
+  if (state.isFulltimeEmployee.answer === null) {
+    return (
+      <PhillySickLeaveQuestions.IsFullTimeEmployee
+        {...props}
+        questionId={state.isFulltimeEmployee.id}
+      />
+    );
   }
 
   if (state.employerHasTenEmployees === null) {
-    return <PhillySickLeaveQuestions.EmployerHasTenEmployees {...props} />;
+    return (
+      <PhillySickLeaveQuestions.EmployerHasTenEmployees
+        {...props}
+        questionId={state.employerHasTenEmployees.id}
+      />
+    );
   }
 
   if (state.twelveMonthsEmployed.answer === null) {
-    return <FMLAQuestions.TwelveMonthsEmployed {...props} />;
+    return (
+      <FMLAQuestions.TwelveMonthsEmployed
+        {...props}
+        questionId={state.twelveMonthsEmployed.id}
+      />
+    );
   }
 
   if (state.workedEnoughHoursForFMLA.answer === null) {
-    return <FMLAQuestions.WorkedEnoughHours {...props} />;
+    return (
+      <FMLAQuestions.WorkedEnoughHours
+        {...props}
+        questionId={state.workedEnoughHoursForFMLA.id}
+      />
+    );
   }
 
   if (state.fiftyNearbyEmployees.answer === null) {
-    return <FMLAQuestions.FiftyNearbyEmployees {...props} />;
+    return (
+      <FMLAQuestions.FiftyNearbyEmployees
+        {...props}
+        questionId={state.fiftyNearbyEmployees.id}
+      />
+    );
   }
 
   if (state.sickPersonIsCloseRelative.answer === null) {
-    return <FMLAQuestions.SickPersonIsCloseRelative {...props} />;
+    return (
+      <FMLAQuestions.SickPersonIsCloseRelative
+        {...props}
+        questionId={state.sickPersonIsCloseRelative.id}
+      />
+    );
   }
 
   console.log("Error - no more fed sick leave questions to ask.");

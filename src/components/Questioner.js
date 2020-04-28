@@ -10,7 +10,7 @@ const createQuestions = (questions) => {
   const initialState = questions.reduce(
     (qs, thisQ) => ({
       ...qs,
-      [thisQ.id]: { answer: null },
+      [thisQ.id]: { id: thisQ.id, answer: null },
     }),
     {}
   );
@@ -18,6 +18,8 @@ const createQuestions = (questions) => {
 };
 
 const questionReducer = (state, action) => {
+  console.log("processing action: ");
+  console.log(action);
   switch (action.type) {
     case "UPDATE_ANSWER":
       return {
@@ -33,7 +35,7 @@ const questionReducer = (state, action) => {
   }
 };
 
-export default function () {
+function Questioner() {
   const [state, dispatch] = useReducer(
     questionReducer,
     questions,
@@ -41,3 +43,5 @@ export default function () {
   );
   return <div>{pickQuestion(state, dispatch)}</div>;
 }
+
+export default Questioner;

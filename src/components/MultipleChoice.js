@@ -14,6 +14,8 @@ export default function (props) {
   const [answer, setAnswer] = useState("");
 
   const handleChange = (e) => {
+    console.log("setting answer to: ");
+    console.log(e.target.value);
     setAnswer(e.target.value);
   };
 
@@ -28,6 +30,9 @@ export default function (props) {
       <form onSubmit={handleSubmit}>
         <label htmlFor={questionId}> {label} </label>
         <select id={questionId} onChange={handleChange} value={answer}>
+          <option disabled value="">
+            -- select an option --
+          </option>
           {children}
         </select>
         <input type="submit" value="Next" />
