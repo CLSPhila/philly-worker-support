@@ -1,4 +1,5 @@
 import React from "react";
+import NotImplementedYet from "./NotImplementedYet";
 import AreYouCurrentlyWorking from "./questions/AreYouCurrentlyWorking";
 import NotCurrentlyWorking from "./questions/NotCurrentlyWorking";
 import CurrentlyWorking from "./questions/CurrentlyWorking";
@@ -22,29 +23,27 @@ import * as WantLeaveBecauseSickInfo from "./explanations/WantLeaveBecauseSick";
  */
 export function pickQuestion(state, dispatch) {
   if (state.areYouCurrentlyWorking.answer === "yes") {
-    if (state.currentlyWorkingReasonForSeekingHelp.answer === null) {
-      return (
-        <CurrentlyWorking
-          dispatch={dispatch}
-          questionId={state.currentlyWorkingReasonForSeekingHelp.id}
-        />
-      );
-    } else {
-      if (
-        state.currentlyWorkingReasonForSeekingHelp.answer === "IamSick" ||
-        state.currentlyWorkingReasonForSeekingHelp.answer === "careForSick"
-      ) {
-        // If we know why the working person is looking to take time off,
-        // we need to ask fmla and sick leave questions.
+    switch (state.currentlyWorkingReasonForSeekingHelp.answer) {
+      case "IamSick":
+      case "careForSick":
         return (
           pickNextSickLeaveAndFMLAQuestion(state, dispatch) ||
           // Pick the information to provide the user about
           pickSickLeaveAndFMLAInformation(state)
         );
-      }
+      case "childCare":
+      case "reducedHours":
+      case "unsafeWorkingConditions":
+        return <NotImplementedYet />;
+      default:
+        return (
+          <CurrentlyWorking
+            dispatch={dispatch}
+            questionId={state.currentlyWorkingReasonForSeekingHelp.id}
+          />
+        );
     }
   }
-
   if (state.areYouCurrentlyWorking.answer === "no") {
     if (state.notCurrentlyWorkingReasonForSeekingHelp.answer === null) {
       return (
