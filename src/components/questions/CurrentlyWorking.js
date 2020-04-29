@@ -16,6 +16,9 @@ export default function (props) {
         I need time off to care for a child whose school/daycare is closed.{" "}
       </option>
       <option value="reducedHours">My job reduced my hours.</option>
+      <option value="unsafeWorkingConditions">
+        I am concerned about unsafe working conditions.
+      </option>
     </MultipleChoice>
   );
 }

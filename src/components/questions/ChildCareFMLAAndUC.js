@@ -3,6 +3,7 @@ import MultipleChoice from "../MultipleChoice";
 
 /**
  * Questions relating to eligibility for childcare-related FMLA and UC.
+ * TODO are these really related to UC at all?
  */
 
 export const ChildCareDaycareClosed = (props) => {

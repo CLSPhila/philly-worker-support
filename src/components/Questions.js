@@ -8,10 +8,12 @@ import * as FedSickLeaveQuestions from "./questions/FedSickLeaveQuestions";
 import * as PhillySickLeaveQuestions from "./questions/PhillySickLeaveQuestions";
 import * as FMLAQuestions from "./questions/FMLAQuestions";
 import * as ChildCareFMLAQuestions from "./questions/ChildCareFMLAAndUC";
+import * as EmployeeOrICQuestions from "./questions/EmployeeOrIndependent";
 
 import * as WantLeaveBecauseSickInfo from "./explanations/WantLeaveBecauseSick";
 import { ReducedHoursExplanation } from "./explanations/WantLeaveBecauseReducedHours";
 import * as WantLeaveForDaycareInfo from "./explanations/WantLeaveForDaycare";
+import * as WantLeaveBecauseUnsafe from "./explanations/WantLeaveBecauseUnsafe";
 
 /**
  * In this module, define a list of the questions to be asked
@@ -42,7 +44,10 @@ export function pickQuestion(state, dispatch) {
       case "reducedHours":
         return <ReducedHoursExplanation />;
       case "unsafeWorkingConditions":
-        return <NotImplementedYet />;
+        return (
+          pickNextEmployeeOrIndependentQuestion(state, dispatch) ||
+          pickEmployeeOrNonEmployeeInformation(state)
+        );
       default:
         return (
           <CurrentlyWorking
@@ -61,6 +66,7 @@ export function pickQuestion(state, dispatch) {
         />
       );
     }
+    return <NotImplementedYet />;
   }
 
   // Default
@@ -140,8 +146,71 @@ export const questions = [
     id: "employedThirtyDays",
     component: ChildCareFMLAQuestions.EmployedThirtyDays,
   },
+  {
+    id: "haveBoss",
+    component: EmployeeOrICQuestions.HaveBoss,
+  },
+  {
+    id: "trackHours",
+    component: EmployeeOrICQuestions.TrackHours,
+  },
+  {
+    id: "ownBusiness",
+    component: EmployeeOrICQuestions.OwnBusiness,
+  },
 ];
 
+/**
+ * Determine the next question to ask related to whether user is
+ * an Independent Contractor or Employee.
+ */
+function pickNextEmployeeOrIndependentQuestion(state, dispatch) {
+  const props = { state, dispatch };
+  if (state.haveBoss.answer === null) {
+    return (
+      <EmployeeOrICQuestions.HaveBoss
+        {...props}
+        questionId={state.haveBoss.id}
+      />
+    );
+  }
+
+  if (state.trackHours.answer === null) {
+    return (
+      <EmployeeOrICQuestions.TrackHours
+        {...props}
+        questionId={state.trackHours.id}
+      />
+    );
+  }
+
+  if (state.ownBusiness.answer === null) {
+    return (
+      <EmployeeOrICQuestions.OwnBusiness
+        {...props}
+        questionId={state.ownBusiness.id}
+      />
+    );
+  }
+
+  return null;
+}
+
+/**
+ * Determine the information to show use to explain rights of employees
+ * and independent contractors.
+ * @param {} state
+ */
+function pickEmployeeOrNonEmployeeInformation(state) {
+  if (
+    (state.haveBoss.answer === "yes" || state.trackHours.answer === "yes") &&
+    state.ownBusiness.answer === "no"
+  ) {
+    return <WantLeaveBecauseUnsafe.NLRAStateOrderOSHA />;
+  } else {
+    return <WantLeaveBecauseUnsafe.NonEmployeeAdvice />;
+  }
+}
 /**
  * Determine the next Sick Leave / FMLA question to ask.
  *
