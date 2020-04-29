@@ -58,15 +58,25 @@ export function pickQuestion(state, dispatch) {
     }
   }
   if (state.areYouCurrentlyWorking.answer === "no") {
-    if (state.notCurrentlyWorkingReasonForSeekingHelp.answer === null) {
-      return (
-        <NotCurrentlyWorking
-          dispatch={dispatch}
-          questionId={state.notCurrentlyWorkingReasonForSeekingHelp.id}
-        />
-      );
+    switch (state.notCurrentlyWorkingReasonForSeekingHelp.answer) {
+      case "sickleave":
+        return (
+          pickNextSickLeaveAndFMLAQuestion(state, dispatch) ||
+          pickProtectedLeaveInformation(state)
+        );
+      case "sickcare":
+      case "childcare":
+      case "workingconditions":
+      case "other":
+        return <NotImplementedYet />;
+      default:
+        return (
+          <NotCurrentlyWorking
+            dispatch={dispatch}
+            questionId={state.notCurrentlyWorkingReasonForSeekingHelp.id}
+          />
+        );
     }
-    return <NotImplementedYet />;
   }
 
   // Default
@@ -333,6 +343,21 @@ function pickNextSickLeaveAndFMLAQuestion(state, dispatch) {
 
   console.log("No more fed sick leave questions to ask.");
   return null;
+}
+
+/**
+ * TODO the logic tree has the FMLA/Federal Sick Leave and Philly Sick Leave questions lead into telling the user if they've got protected or unprotected leave .. how do the questions on FMLA/Federal/Philly Sick Leave determine if leave is "protected" or not? Is leave protected if any of FMLA/Federal Sick/Philly Sick apply?
+ * @param {} state
+ */
+function pickProtectedLeaveInformation(state) {
+  if (
+    checkIfEligibleForFMLA(state) ||
+    checkIfEligibleForFedSick(state) ||
+    checkIfEligibleForPhillySick(state)
+  ) {
+    return <NotImplementedYet />;
+  }
+  return <NotImplementedYet />;
 }
 
 /**
