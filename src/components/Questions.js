@@ -238,6 +238,14 @@ function pickEmployeeOrNonEmployeeInformation(state) {
  * @param {*} state
  */
 function pickNextSickLeaveAndFMLAQuestion(state, dispatch) {
+  return (
+    pickNextFedSickQuestion(state, dispatch) ||
+    pickNextPhillySickQuestion(state, dispatch) ||
+    pickNextFMLAQuestion(state, dispatch)
+  );
+}
+
+function pickNextFedSickQuestion(state, dispatch) {
   const props = { state, dispatch };
 
   if (state.hasPublicEmployer.answer === null) {
@@ -278,6 +286,11 @@ function pickNextSickLeaveAndFMLAQuestion(state, dispatch) {
       />
     );
   }
+  return null;
+}
+
+function pickNextPhillySickQuestion(state, dispatch) {
+  const props = { state, dispatch };
 
   if (state.workInPhilly.answer === null) {
     return (
@@ -286,6 +299,12 @@ function pickNextSickLeaveAndFMLAQuestion(state, dispatch) {
         questionId={state.workInPhilly.id}
       />
     );
+  }
+
+  // No need to ask any followups if the person
+  // does not work in philly.
+  if (state.workInPhilly.answer === "no") {
+    return null;
   }
 
   if (state.workingNinetyDays.answer === null) {
@@ -314,6 +333,11 @@ function pickNextSickLeaveAndFMLAQuestion(state, dispatch) {
       />
     );
   }
+  return null;
+}
+
+function pickNextFMLAQuestion(state, dispatch) {
+  const props = { state, dispatch };
 
   if (state.twelveMonthsEmployed.answer === null) {
     return (
