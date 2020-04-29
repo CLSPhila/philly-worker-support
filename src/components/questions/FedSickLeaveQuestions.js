@@ -41,9 +41,10 @@ export const HaveCovid = (props) => {
         I think I have covid-19, and I need need time off to get tested or see a
         doctor.
       </option>
-      <option value="ltFiveHundred">
+      <option value="selfQuarantine">
         A doctor told me to self quarantine.
       </option>
+      <option value="neither">Neither of these.</option>
     </MultipleChoice>
   );
 };

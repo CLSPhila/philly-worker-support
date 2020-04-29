@@ -278,7 +278,10 @@ function pickNextFedSickQuestion(state, dispatch) {
     );
   }
 
-  if (state.healthcareWorker.answer === null) {
+  if (
+    state.healthcareWorker.answer === null &&
+    state.fedSickLeaveEmployerSize.answer === "ltFiveHundred"
+  ) {
     return (
       <FedSickLeaveQuestions.HeathcareWorker
         {...props}
@@ -316,6 +319,11 @@ function pickNextPhillySickQuestion(state, dispatch) {
     );
   }
 
+  // No need to ask followups if user hasn't worked long enough.
+  if (state.workingNinetyDays.answer === "no") {
+    return null;
+  }
+
   if (state.isFulltimeEmployee.answer === null) {
     return (
       <PhillySickLeaveQuestions.IsFullTimeEmployee
@@ -339,6 +347,8 @@ function pickNextPhillySickQuestion(state, dispatch) {
 function pickNextFMLAQuestion(state, dispatch) {
   const props = { state, dispatch };
 
+  // if any of these are no, we'll skip the rest by returning null.
+
   if (state.twelveMonthsEmployed.answer === null) {
     return (
       <FMLAQuestions.TwelveMonthsEmployed
@@ -346,6 +356,10 @@ function pickNextFMLAQuestion(state, dispatch) {
         questionId={state.twelveMonthsEmployed.id}
       />
     );
+  }
+
+  if (state.twelveMonthsEmployed.answer === "no") {
+    return null;
   }
 
   if (state.workedEnoughHoursForFMLA.answer === null) {
@@ -357,6 +371,10 @@ function pickNextFMLAQuestion(state, dispatch) {
     );
   }
 
+  if (state.workedEnoughHoursForFMLA.answer === "no") {
+    return null;
+  }
+
   if (state.fiftyNearbyEmployees.answer === null) {
     return (
       <FMLAQuestions.FiftyNearbyEmployees
@@ -364,6 +382,10 @@ function pickNextFMLAQuestion(state, dispatch) {
         questionId={state.fiftyNearbyEmployees.id}
       />
     );
+  }
+
+  if (state.fiftyNearbyEmployees.answer === "no") {
+    return null;
   }
 
   if (state.sickPersonIsCloseRelative.answer === null) {
@@ -406,7 +428,6 @@ function pickSickLeaveAndFMLAInformation(state) {
   const isEligibleForFedSick = checkIfEligibleForFedSick(state);
   const isEligibleForPhillySick = checkIfEligibleForPhillySick(state);
   const isEligibleForFMLA = checkIfEligibleForFMLA(state);
-
   const phillyLeaveIsPaid = state.employerHasTenEmployees.answer === "yes";
 
   if (isEligibleForFedSick && isEligibleForPhillySick && isEligibleForFMLA) {
@@ -484,6 +505,11 @@ function pickNextChildCareAndFMLAQuestion(state, dispatch) {
     );
   }
 
+  //skip the rest if No.
+  if (state.daycareClosed.answer === "no") {
+    return null;
+  }
+
   if (state.noSuitableOtherChildcare.answer === null) {
     return (
       <ChildCareFMLAQuestions.NoSuitableOtherChildcare
@@ -493,6 +519,10 @@ function pickNextChildCareAndFMLAQuestion(state, dispatch) {
     );
   }
 
+  if (state.NoSuitableOtherChildcare.answer === "no") {
+    return null;
+  }
+
   if (state.employedThirtyDays.answer === null) {
     return (
       <ChildCareFMLAQuestions.EmployedThirtyDays
@@ -500,6 +530,10 @@ function pickNextChildCareAndFMLAQuestion(state, dispatch) {
         questionId={state.employedThirtyDays.id}
       />
     );
+  }
+
+  if (state.employedThirtyDays.answer === "no") {
+    return null;
   }
 
   if (state.healthcareWorker.answer === null) {
@@ -557,8 +591,9 @@ function checkIfEligibleForFedSick(state) {
     (hasPublicEmployer.answer === "yes" ||
       (hasPublicEmployer.answer === "no" &&
         fedSickLeaveEmployerSize.answer === "ltFiveHundred")) &&
-    haveCovid.answer === "yes" &&
-    healthcareWorker.answer === "yes"
+    (haveCovid.answer === "haveCovid" ||
+      haveCovid.answer === "selfQuarantine") &&
+    healthcareWorker.answer === "no"
   ) {
     return true;
   }
@@ -572,12 +607,11 @@ function checkIfEligibleForFMLA(state) {
     fiftyNearbyEmployees,
     sickPersonIsCloseRelative,
   } = state;
-
   if (
     twelveMonthsEmployed.answer === "yes" &&
     workedEnoughHoursForFMLA.answer === "yes" &&
     fiftyNearbyEmployees.answer === "yes" &&
-    sickPersonIsCloseRelative === "yes"
+    sickPersonIsCloseRelative.answer === "yes"
   ) {
     return true;
   } else {
@@ -591,7 +625,7 @@ function checkIfEligibleForPhillySick(state) {
   if (
     workInPhilly.answer === "yes" &&
     workingNinetyDays.answer === "yes" &&
-    isFulltimeEmployee.answer === "yes"
+    isFulltimeEmployee.answer === "no"
   ) {
     return true;
   }
