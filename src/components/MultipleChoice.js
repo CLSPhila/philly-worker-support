@@ -1,7 +1,19 @@
 import React, { useState } from "react";
 import { updateAnswer } from "../actions";
+import { makeStyles } from "@material-ui/core/styles";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import Button from "@material-ui/core/Button";
+
+const useStyles = makeStyles((theme) => ({
+  questionTitle: {
+    marginTop: 0,
+  },
+}));
 
 export default function (props) {
+  const styles = useStyles();
+
   const {
     dispatch,
     questionId,
@@ -26,16 +38,18 @@ export default function (props) {
 
   return (
     <div>
-      <h1> {question} </h1>
+      <h1 className={styles.questionTitle}> {question} </h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor={questionId}> {label} </label>
-        <select id={questionId} onChange={handleChange} value={answer}>
-          <option disabled value="">
+        <Select id={questionId} onChange={handleChange} value={answer}>
+          <MenuItem disabled value="">
             -- select an option --
-          </option>
+          </MenuItem>
           {children}
-        </select>
-        <input type="submit" value="Next" />
+        </Select>
+        <Button variant="contained" type="submit">
+          Next
+        </Button>
       </form>
     </div>
   );
