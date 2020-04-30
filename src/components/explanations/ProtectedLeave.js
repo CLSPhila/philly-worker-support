@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 /**
  * Information explaining if leave is protected or not.
  *
@@ -7,9 +8,27 @@ import React from "react";
  */
 
 export const LeaveIsProtected = () => {
-  return <div> Good news, your leave is protected.</div>;
+  return (
+    <div>
+      <div> Good news, your leave is protected.</div>;
+      <div>
+        If you haven't already, click to learn about eligibility for
+        unemployment compensation and Pandemic Unemployment Assistance (PUA):
+        <Link to="/uc-pua-benefits"> here. </Link>
+      </div>
+    </div>
+  );
 };
 
 export const LeaveIsNotProtected = () => {
-  return <div>Unfortunately, it looks like your leave is not protected.</div>;
+  return (
+    <div>
+      <div>Unfortunately, it looks like your leave is not protected.</div>;
+      <div>
+        If you haven't already, click to learn about eligibility for
+        unemployment compensation and Pandemic Unemployment Assistance (PUA):
+        <Link to="/uc-pua-benefits"> here. </Link>
+      </div>
+    </div>
+  );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import NotImplementedYet from "../NotImplementedYet";
+import NotImplementedYet from "../extras/NotImplementedYet";
 import AreYouCurrentlyWorking from "../questions/AreYouCurrentlyWorking";
 import NotCurrentlyWorking from "../questions/NotCurrentlyWorking";
 import CurrentlyWorking from "../questions/CurrentlyWorking";

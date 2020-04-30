@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { ContactCLS } from "../extras/ContactCLS";
 
 export const NoOtherHelp = () => {
@@ -13,6 +14,11 @@ export const NoOtherHelp = () => {
         private lawyer, to get advice specific to your situation.
       </div>
       <ContactCLS />
+      <div>
+        If you haven't already, click to learn about eligibility for
+        unemployment compensation and Pandemic Unemployment Assistance (PUA):
+        <Link to="/uc-pua-benefits"> here. </Link>
+      </div>
     </div>
   );
 };

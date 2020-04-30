@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 /**
  * Benefits that are most applicable when I want time off because I'm sick.
  *
@@ -13,8 +14,15 @@ import React from "react";
 export const FedSickPhillySickandFMLA = (props) => {
   return (
     <div>
-      You appear to be qualified for federal sick leave/ Philly paid sick
-      leave/FMLA
+      <div>
+        You appear to be qualified for federal sick leave/ Philly paid sick
+        leave/FMLA
+      </div>
+      <div>
+        If you haven't already, click to learn about eligibility for
+        unemployment compensation and Pandemic Unemployment Assistance (PUA):
+        <Link to="/uc-pua-benefits"> here. </Link>
+      </div>
     </div>
   );
 };
@@ -26,8 +34,15 @@ export const FedSickPhillySickandFMLA = (props) => {
 export const FedSickOnly = (props) => {
   return (
     <div>
-      You appear to be qualified for federal sick leave, but not Philly sick
-      leave or FMLA.
+      <div>
+        You appear to be qualified for federal sick leave, but not Philly sick
+        leave or FMLA.
+      </div>
+      <div>
+        If you haven't already, click to learn about eligibility for
+        unemployment compensation and Pandemic Unemployment Assistance (PUA):
+        <Link to="/uc-pua-benefits"> here. </Link>
+      </div>
     </div>
   );
 };
@@ -39,8 +54,15 @@ export const FedSickOnly = (props) => {
 export const PhillySickandFMLA = (props) => {
   return (
     <div>
-      You appear to be qualified for Philly sick leave and FMLA, but not Federal
-      Sick leave
+      <div>
+        You appear to be qualified for Philly sick leave and FMLA, but not
+        Federal Sick leave
+      </div>
+      <div>
+        If you haven't already, click to learn about eligibility for
+        unemployment compensation and Pandemic Unemployment Assistance (PUA):
+        <Link to="/uc-pua-benefits"> here. </Link>
+      </div>
     </div>
   );
 };
@@ -52,8 +74,15 @@ export const PhillySickandFMLA = (props) => {
 export const PhillySickOnly = (props) => {
   return (
     <div>
-      You appear to be qualified for Philly sick leave, but not FMLA or Federal
-      Sick Leave
+      <div>
+        You appear to be qualified for Philly sick leave, but not FMLA or
+        Federal Sick Leave
+      </div>
+      <div>
+        If you haven't already, click to learn about eligibility for
+        unemployment compensation and Pandemic Unemployment Assistance (PUA):
+        <Link to="/uc-pua-benefits"> here. </Link>
+      </div>
     </div>
   );
 };
@@ -65,8 +94,15 @@ export const PhillySickOnly = (props) => {
 export const NotFedSickPhillySickOrFMLA = (props) => {
   return (
     <div>
-      You appear NOT to be qualified for federal sick leave, Philly paid sick
-      leave, or FMLA.
+      <div>
+        You appear NOT to be qualified for federal sick leave, Philly paid sick
+        leave, or FMLA.
+      </div>
+      <div>
+        If you haven't already, click to learn about eligibility for
+        unemployment compensation and Pandemic Unemployment Assistance (PUA):
+        <Link to="/uc-pua-benefits"> here. </Link>
+      </div>
     </div>
   );
 };
@@ -78,8 +114,15 @@ export const NotFedSickPhillySickOrFMLA = (props) => {
 export const FMLAOnly = (props) => {
   return (
     <div>
-      You appear to be qualified for FMLA, but not federal sick leave or Philly
-      paid sick leave.
+      <div>
+        You appear to be qualified for FMLA, but not federal sick leave or
+        Philly paid sick leave.
+      </div>
+      <div>
+        If you haven't already, click to learn about eligibility for
+        unemployment compensation and Pandemic Unemployment Assistance (PUA):
+        <Link to="/uc-pua-benefits"> here. </Link>
+      </div>
     </div>
   );
 };
