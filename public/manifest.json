@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Philly Worker Info",
+  "name": "Information about workers' rights in Philadelhia",
   "icons": [
     {
       "src": "favicon.ico",
