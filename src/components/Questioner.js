@@ -1,7 +1,5 @@
 import React, { useReducer } from "react";
 
-import { questions, pickQuestion } from "./Questions";
-
 /**
  * Machinery for running a guided interview.
  */
@@ -35,7 +33,7 @@ const questionReducer = (state, action) => {
   }
 };
 
-function Questioner() {
+function Questioner({ questions, pickQuestion }) {
   const [state, dispatch] = useReducer(
     questionReducer,
     questions,

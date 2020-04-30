@@ -1,16 +1,21 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
-import Questioner from "./components/Questioner";
+import { LandingPage } from "./components/pages/LandingPage";
+import { LeaveBenefitsInterview } from "./components/pages/LeaveBenefitsInterview";
+import { UCandPUAInterview } from "./components/pages/UCandPUAInterview";
 function App() {
   return (
     <Router>
       <Switch>
-        <Route path="">
-          <div>
-            <h1> Experimental guided interview for CLS.</h1>
-            <Questioner></Questioner>
-          </div>
+        <Route path="/leave-benefits">
+          <LeaveBenefitsInterview />
+        </Route>
+        <Route path="/uc-pua-benefits">
+          <UCandPUAInterview />
+        </Route>
+        <Route path="/">
+          <LandingPage />
         </Route>
       </Switch>
     </Router>

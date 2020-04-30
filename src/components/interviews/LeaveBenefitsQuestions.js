@@ -1,24 +1,24 @@
 import React from "react";
-import NotImplementedYet from "./NotImplementedYet";
-import AreYouCurrentlyWorking from "./questions/AreYouCurrentlyWorking";
-import NotCurrentlyWorking from "./questions/NotCurrentlyWorking";
-import CurrentlyWorking from "./questions/CurrentlyWorking";
+import NotImplementedYet from "../NotImplementedYet";
+import AreYouCurrentlyWorking from "../questions/AreYouCurrentlyWorking";
+import NotCurrentlyWorking from "../questions/NotCurrentlyWorking";
+import CurrentlyWorking from "../questions/CurrentlyWorking";
 
 // Questions
-import * as FedSickLeaveQuestions from "./questions/FedSickLeaveQuestions";
-import * as PhillySickLeaveQuestions from "./questions/PhillySickLeaveQuestions";
-import * as FMLAQuestions from "./questions/FMLAQuestions";
-import * as ChildCareFMLAQuestions from "./questions/ChildCareFMLAAndUC";
-import * as EmployeeOrICQuestions from "./questions/EmployeeOrIndependent";
+import * as FedSickLeaveQuestions from "../questions/FedSickLeaveQuestions";
+import * as PhillySickLeaveQuestions from "../questions/PhillySickLeaveQuestions";
+import * as FMLAQuestions from "../questions/FMLAQuestions";
+import * as ChildCareFMLAQuestions from "../questions/ChildCareFMLAAndUC";
+import * as EmployeeOrICQuestions from "../questions/EmployeeOrIndependent";
 
 // Information at endpoints of interview.
-import * as WantLeaveBecauseSickInfo from "./explanations/WantLeaveBecauseSick";
-import { ReducedHoursExplanation } from "./explanations/WantLeaveBecauseReducedHours";
-import * as WantLeaveForDaycareInfo from "./explanations/WantLeaveForDaycare";
-import * as WantLeaveBecauseUnsafe from "./explanations/WantLeaveBecauseUnsafe";
-import * as ProtectedLeaveInfo from "./explanations/ProtectedLeave";
-import { WorkersRightToComplain } from "./explanations/WorkersCanComplain";
-import { NoOtherHelp } from "./explanations/NoOtherHelp";
+import * as WantLeaveBecauseSickInfo from "../explanations/WantLeaveBecauseSick";
+import { ReducedHoursExplanation } from "../explanations/WantLeaveBecauseReducedHours";
+import * as WantLeaveForDaycareInfo from "../explanations/WantLeaveForDaycare";
+import * as WantLeaveBecauseUnsafe from "../explanations/WantLeaveBecauseUnsafe";
+import * as ProtectedLeaveInfo from "../explanations/ProtectedLeave";
+import { WorkersRightToComplain } from "../explanations/WorkersCanComplain";
+import { NoOtherHelp } from "../explanations/NoOtherHelp";
 
 /**
  * In this module, define a list of the questions to be asked
