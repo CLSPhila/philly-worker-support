@@ -37,6 +37,12 @@ export default function (props) {
 
       <FormControlLabel
         control={<Radio />}
+        value="workClosed"
+        label="I am not working because my workplace shut down due to coronavirus/the stay-at-home order"
+      />
+
+      <FormControlLabel
+        control={<Radio />}
         value="other"
         label="I am not working for any other reason"
       />

@@ -19,6 +19,7 @@ import * as WantLeaveBecauseUnsafe from "../explanations/WantLeaveBecauseUnsafe"
 import * as ProtectedLeaveInfo from "../explanations/ProtectedLeave";
 import { WorkersRightToComplain } from "../explanations/WorkersCanComplain";
 import { NoOtherHelp } from "../explanations/NoOtherHelp";
+import * as WantLeaveBecauseWorkClosed from "../explanations/WantLeaveBecauseWorkClosed";
 
 /**
  * In this module, define a list of the questions to be asked
@@ -77,6 +78,11 @@ export function pickQuestion(state, dispatch) {
         );
       case "workingconditions":
         return <WorkersRightToComplain />;
+      case "workClosed":
+        return (
+          pickNextPhillySickQuestion(state, dispatch) ||
+          pickPhillySickLeaveInformation(state)
+        );
       case "other":
         return <NoOtherHelp />;
       default:
@@ -546,6 +552,16 @@ function pickNextChildCareAndFMLAQuestion(state, dispatch) {
   }
 
   return null;
+}
+
+/** Return information about philly sick leave, if person is eligible.  */
+function pickPhillySickLeaveInformation(state) {
+  const isEligibleForPhillySick = checkIfEligibleForPhillySick(state);
+
+  if (isEligibleForPhillySick) {
+    return <WantLeaveBecauseWorkClosed.EligibleForPhillyLeave />;
+  }
+  return <WantLeaveBecauseWorkClosed.NotEligibleForPhillyLeave />;
 }
 
 /**
