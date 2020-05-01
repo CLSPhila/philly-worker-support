@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { updateAnswer } from "../actions";
 import { makeStyles } from "@material-ui/core/styles";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
+//import Select from "@material-ui/core/Select";
+//import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import FormLabel from "@material-ui/core/FormLabel";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import Radio from "@material-ui/core/Radio";
 import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
@@ -32,6 +36,7 @@ export default function (props) {
   };
 
   const handleSubmit = (e) => {
+    console.log("form submitting");
     e.preventDefault();
     dispatch(updateAnswer(questionId, answer));
   };
@@ -39,17 +44,23 @@ export default function (props) {
   return (
     <div>
       <h1 className={styles.questionTitle}> {question} </h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor={questionId}> {label} </label>
-        <Select id={questionId} onChange={handleChange} value={answer}>
-          <MenuItem disabled value="">
-            -- select an option --
-          </MenuItem>
-          {children}
-        </Select>
-        <Button variant="contained" type="submit">
-          Next
-        </Button>
+      <form id={questionId} onSubmit={handleSubmit}>
+        <FormControl component="fieldset">
+          <FormLabel component="legend" htmlFor={questionId}>
+            {label}
+          </FormLabel>
+          <RadioGroup
+            aria-label="questionId"
+            name={questionId}
+            onChange={handleChange}
+            value={answer}
+          >
+            {children}
+          </RadioGroup>
+          <Button variant="contained" type="submit">
+            Next
+          </Button>
+        </FormControl>
       </form>
     </div>
   );

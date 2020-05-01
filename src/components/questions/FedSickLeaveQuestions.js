@@ -3,6 +3,8 @@
  */
 import React from "react";
 import MultipleChoice from "../MultipleChoice";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Radio from "@material-ui/core/Radio";
 
 export const HasPublicEmployer = (props) => {
   return (
@@ -11,8 +13,9 @@ export const HasPublicEmployer = (props) => {
       question="Do you work for a public employer?"
       label="Do you work for a public employer?"
     >
-      <option value="yes">Yes, I do.</option>
-      <option value="no">No, I do not.</option>
+      <FormControlLabel control={<Radio />} value="yes" label="Yes, I do." />
+
+      <FormControlLabel control={<Radio />} value="no" label="No, I do not." />
     </MultipleChoice>
   );
 };
@@ -24,8 +27,17 @@ export const EmployerSize = (props) => {
       question="How large is your employer?"
       label="How many employees work for your employer?"
     >
-      <option value="gteFiveHundred">Five hundred (500) or more?</option>
-      <option value="ltFiveHundred">Fewer than five hundred (500)?</option>
+      <FormControlLabel
+        control={<Radio />}
+        value="gteFiveHundred"
+        label="Five hundred (500) or more?"
+      />
+
+      <FormControlLabel
+        control={<Radio />}
+        value="ltFiveHundred"
+        label="Fewer than five hundred (500)?"
+      />
     </MultipleChoice>
   );
 };
@@ -37,14 +49,22 @@ export const HaveCovid = (props) => {
       question="Do you meet one of these criteria?"
       label="Do you either,"
     >
-      <option value="haveCovid">
-        I think I have covid-19, and I need need time off to get tested or see a
-        doctor.
-      </option>
-      <option value="selfQuarantine">
-        A doctor told me to self quarantine.
-      </option>
-      <option value="neither">Neither of these.</option>
+      <FormControlLabel
+        control={<Radio />}
+        value="haveCovid"
+        label="I think I have covid-19, and I need need time off to get tested or see a
+        doctor."
+      />
+      <FormControlLabel
+        control={<Radio />}
+        value="selfQuarantine"
+        label="A doctor told me to self quarantine."
+      />
+      <FormControlLabel
+        control={<Radio />}
+        value="neither"
+        label="Neither of these."
+      />
     </MultipleChoice>
   );
 };
@@ -57,8 +77,13 @@ export const HeathcareWorker = (props) => {
         question="Do you work as a health care provider, or as an emergency responder?"
         label="Do you work as a health care provider, or as an emergency responder?"
       >
-        <option value="yes">Yes, I do.</option>
-        <option value="no">No, I do not.</option>
+        <FormControlLabel control={<Radio />} value="yes" label="I do." />
+
+        <FormControlLabel
+          control={<Radio />}
+          value="no"
+          label="No, I do not."
+        />
       </MultipleChoice>
       <div>
         A healthcare worker is anyone employed at any doctor’s office, hospital,

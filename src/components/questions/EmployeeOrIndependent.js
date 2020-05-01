@@ -1,5 +1,7 @@
 import React from "react";
 import MultipleChoice from "../MultipleChoice";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Radio from "@material-ui/core/Radio";
 
 /**
  * Questions relating to whether a person is an employee or independent contractor.
@@ -12,8 +14,8 @@ export const HaveBoss = (props) => {
       question="Do you have a boss or supervisor who oversees your work?"
       label="Do you have a boss or supervisor who oversees your work?"
     >
-      <option value="yes">Yes, I do.</option>
-      <option value="no">No, I do not.</option>
+      <FormControlLabel control={<Radio />} value="yes" label="Yes, I do." />
+      <FormControlLabel control={<Radio />} value="no" label="No, I do not." />
     </MultipleChoice>
   );
 };
@@ -25,8 +27,9 @@ export const TrackHours = (props) => {
       question="Do you clock in or report your hours?"
       label="Do you clock in or report your hours? "
     >
-      <option value="yes">Yes, I do.</option>
-      <option value="no">No, I do not.</option>
+      <FormControlLabel control={<Radio />} value="yes" label="Yes, I do." />
+
+      <FormControlLabel control={<Radio />} value="no" label="No, I do not." />
     </MultipleChoice>
   );
 };
@@ -38,8 +41,9 @@ export const OwnBusiness = (props) => {
       question="Do you have your own independent business?"
       label="Do you have your own independent business? "
     >
-      <option value="yes">Yes, I do.</option>
-      <option value="no">No, I do not.</option>
+      <FormControlLabel control={<Radio />} value="yes" label="Yes, I do." />
+
+      <FormControlLabel control={<Radio />} value="no" label="No, I do not." />
     </MultipleChoice>
   );
 };
