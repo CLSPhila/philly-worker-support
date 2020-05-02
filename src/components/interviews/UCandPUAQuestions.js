@@ -7,9 +7,10 @@
  * that should be asked, given that state.
  */
 import React from "react";
-import NotImplementedYet from "../extras/NotImplementedYet";
 import * as UCQuestions from "../questions/UCQuestions";
 import * as PUAEligibilityInfo from "../explanations/ApplyForPUA";
+import { Redirect } from "react-router-dom";
+export const INTERVIEW_SLUG = "uc-benefits";
 
 export const questions = [
   {
@@ -20,6 +21,21 @@ export const questions = [
   },
   {
     id: "alreadyUsedBenefits",
+  },
+];
+
+function redirectToSlug(slug) {
+  return <Redirect to={"/" + INTERVIEW_SLUG + "/" + slug} />;
+}
+
+export const explanations = [
+  {
+    slug: "apply-for-pua",
+    component: <PUAEligibilityInfo.ApplyForPUA />,
+  },
+  {
+    slug: "pua-ineligible",
+    component: <PUAEligibilityInfo.NotEligibleForPUA />,
   },
 ];
 
@@ -69,7 +85,7 @@ function pickUCInformation(state) {
     earnedEnough.answer === "no" ||
     alreadyUsedBenefits.answer === "yes"
   ) {
-    return <PUAEligibilityInfo.ApplyForPUA />;
+    return redirectToSlug("apply-for-pua");
   }
-  return <PUAEligibilityInfo.NotEligibleForPUA />;
+  return redirectToSlug("pua-ineligible");
 }

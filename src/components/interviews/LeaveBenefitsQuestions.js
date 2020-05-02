@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import NotImplementedYet from "../extras/NotImplementedYet";
 import AreYouCurrentlyWorking from "../questions/AreYouCurrentlyWorking";
 import NotCurrentlyWorking from "../questions/NotCurrentlyWorking";
@@ -28,6 +29,8 @@ import * as WantLeaveBecauseWorkClosed from "../explanations/WantLeaveBecauseWor
  * question.
  */
 
+export const INTERVIEW_SLUG = "leave-benefits";
+
 /**
  * Given the current answers to the questions, return the component that should get rendered.
  * @param {*} state
@@ -48,7 +51,7 @@ export function pickQuestion(state, dispatch) {
           pickChildCareAndFMLAInformation(state)
         );
       case "reducedHours":
-        return <ReducedHoursExplanation />;
+        return redirectToSlug("reduced-hours");
       case "unsafeWorkingConditions":
         return (
           pickNextEmployeeOrIndependentQuestion(state, dispatch) ||
@@ -77,14 +80,14 @@ export function pickQuestion(state, dispatch) {
           pickChildCareAndFMLAInformation(state)
         );
       case "workingconditions":
-        return <WorkersRightToComplain />;
+        return redirectToSlug("workers-right-to-complain");
       case "workClosed":
         return (
           pickNextPhillySickQuestion(state, dispatch) ||
           pickPhillySickLeaveInformation(state)
         );
       case "other":
-        return <NoOtherHelp />;
+        return redirectToSlug("other");
       default:
         return (
           <NotCurrentlyWorking
@@ -98,7 +101,7 @@ export function pickQuestion(state, dispatch) {
   // Default
   return <AreYouCurrentlyWorking dispatch={dispatch} />;
 }
-
+// TODO Don't need to identify the components in the questions list.
 export const questions = [
   {
     id: "areYouCurrentlyWorking",
@@ -186,6 +189,105 @@ export const questions = [
   },
 ];
 
+export const explanations = [
+  {
+    slug: "reduced-hours",
+    component: <ReducedHoursExplanation />,
+  },
+  {
+    slug: "workers-right-to-complain",
+    component: <WorkersRightToComplain />,
+  },
+  {
+    slug: "other",
+    component: <NoOtherHelp />,
+  },
+  {
+    slug: "nlra-osha",
+    component: <WantLeaveBecauseUnsafe.NLRAStateOrderOSHA />,
+  },
+  {
+    slug: "unsafe-nonemployee",
+    component: <WantLeaveBecauseUnsafe.NonEmployeeAdvice />,
+  },
+  {
+    slug: "leave-is-protected",
+    component: <ProtectedLeaveInfo.LeaveIsProtected />,
+  },
+  {
+    slug: "leave-not-protected",
+    component: <ProtectedLeaveInfo.LeaveIsNotProtected />,
+  },
+  {
+    slug: "fed-sick-philly-paid-sick-and-fmla",
+    component: (
+      <WantLeaveBecauseSickInfo.FedSickPhillySickandFMLA
+        phillyLeaveIsPaid={true}
+      />
+    ),
+  },
+  {
+    slug: "fed-sick-philly-unpaid-sick-and-fmla",
+    component: (
+      <WantLeaveBecauseSickInfo.FedSickPhillySickandFMLA
+        phillyLeaveIsPaid={false}
+      />
+    ),
+  },
+  {
+    slug: "eligible-philly-leave",
+    component: <WantLeaveBecauseWorkClosed.EligibleForPhillyLeave />,
+  },
+  {
+    slug: "ineligible-philly-leave",
+    component: <WantLeaveBecauseWorkClosed.NotEligibleForPhillyLeave />,
+  },
+  {
+    slug: "fmla-for-childcare",
+    component: <WantLeaveForDaycareInfo.QualifyForFMLA />,
+  },
+  {
+    slug: "no-fmla-for-childcare",
+    component: <WantLeaveForDaycareInfo.NotQualifiedForFMLA />,
+  },
+  {
+    slug: "fed-sick-only",
+    component: <WantLeaveBecauseSickInfo.FedSickOnly />,
+  },
+  {
+    slug: "philly-paid-sick-and-fmla",
+    component: (
+      <WantLeaveBecauseSickInfo.PhillySickandFMLA phillyLeaveIsPaid={true} />
+    ),
+  },
+  {
+    slug: "philly-unpaid-sick-and-fmla",
+    component: (
+      <WantLeaveBecauseSickInfo.PhillySickandFMLA phillyLeaveIsPaid={false} />
+    ),
+  },
+  {
+    slug: "philly-paid-sick",
+    component: (
+      <WantLeaveBecauseSickInfo.PhillySickOnly phillyLeaveIsPaid={true} />
+    ),
+  },
+  {
+    slug: "philly-unpaid-sick",
+    component: (
+      <WantLeaveBecauseSickInfo.PhillySickOnly phillyLeaveIsPaid={false} />
+    ),
+  },
+  {
+    slug: "not-fed-sick-philly-sick-or-fmla",
+    component: <WantLeaveBecauseSickInfo.NotFedSickPhillySickOrFMLA />,
+  },
+  {
+    slug: "fmla",
+    component: <WantLeaveBecauseSickInfo.FMLAOnly />,
+  },
+];
+
 /**
  * Determine the next question to ask related to whether user is
  * an Independent Contractor or Employee.
@@ -232,9 +334,9 @@ function pickEmployeeOrNonEmployeeInformation(state) {
     (state.haveBoss.answer === "yes" || state.trackHours.answer === "yes") &&
     state.ownBusiness.answer === "no"
   ) {
-    return <WantLeaveBecauseUnsafe.NLRAStateOrderOSHA />;
+    return redirectToSlug("nlra-osha");
   } else {
-    return <WantLeaveBecauseUnsafe.NonEmployeeAdvice />;
+    return redirectToSlug("unsafe-nonemployee");
   }
 }
 /**
@@ -417,9 +519,9 @@ function pickProtectedLeaveInformation(state) {
     checkIfEligibleForFedSick(state) ||
     checkIfEligibleForPhillySick(state)
   ) {
-    return <ProtectedLeaveInfo.LeaveIsProtected />;
+    return redirectToSlug("leave-is-protected");
   }
-  return <ProtectedLeaveInfo.LeaveIsNotProtected />;
+  return redirectToSlug("leave-not-protected");
 }
 
 /**
@@ -437,39 +539,44 @@ function pickSickLeaveAndFMLAInformation(state) {
   const phillyLeaveIsPaid = state.employerHasTenEmployees.answer === "yes";
 
   if (isEligibleForFedSick && isEligibleForPhillySick && isEligibleForFMLA) {
-    return (
-      <WantLeaveBecauseSickInfo.FedSickPhillySickandFMLA
-        phillyLeaveIsPaid={phillyLeaveIsPaid}
-      />
-    );
+    if (phillyLeaveIsPaid) {
+      return redirectToSlug("fed-sick-philly-paid-sick-and-fmla");
+    } else {
+      return redirectToSlug("fed-sick-philly-unpaid-sick-and-fmla");
+    }
   }
 
   if (isEligibleForFedSick && !isEligibleForPhillySick && !isEligibleForFMLA) {
-    return <WantLeaveBecauseSickInfo.FedSickOnly />;
+    return redirectToSlug("fed-sick-only");
   }
 
   if (!isEligibleForFedSick && isEligibleForPhillySick && isEligibleForFMLA) {
-    return (
-      <WantLeaveBecauseSickInfo.PhillySickandFMLA
-        phillyLeaveIsPaid={phillyLeaveIsPaid}
-      />
-    );
+    if (phillyLeaveIsPaid) {
+      return redirectToSlug("philly-paid-sick-and-fmla");
+    } else {
+      redirectToSlug("philly-unpaid-sick-and-fmla");
+    }
   }
   if (!isEligibleForFedSick && isEligibleForPhillySick && !isEligibleForFMLA) {
-    return (
-      <WantLeaveBecauseSickInfo.PhillySickOnly
-        phillyLeaveIsPaid={phillyLeaveIsPaid}
-      />
-    );
+    if (phillyLeaveIsPaid) {
+      return redirectToSlug("philly-paid-sick");
+    } else {
+      return redirectToSlug("philly-unpaid-sick");
+    }
   }
   if (!isEligibleForFedSick && !isEligibleForPhillySick && !isEligibleForFMLA) {
-    return <WantLeaveBecauseSickInfo.NotFedSickPhillySickOrFMLA />;
+    return redirectToSlug("not-fed-sick-philly-sick-or-fmla");
   }
   if (!isEligibleForFedSick && !isEligibleForPhillySick && isEligibleForFMLA) {
-    return <WantLeaveBecauseSickInfo.FedSickPhillySickandFMLA />;
+    return redirectToSlug("fmla");
   }
 
-  return <div>Sorry, you're not eligible for anything.</div>;
+  return (
+    <div>
+      Sorry, we could not find any eligible programs This might be a bug with
+      our site.
+    </div>
+  );
 }
 
 /**
@@ -559,9 +666,9 @@ function pickPhillySickLeaveInformation(state) {
   const isEligibleForPhillySick = checkIfEligibleForPhillySick(state);
 
   if (isEligibleForPhillySick) {
-    return <WantLeaveBecauseWorkClosed.EligibleForPhillyLeave />;
+    return redirectToSlug("eligible-philly-leave");
   }
-  return <WantLeaveBecauseWorkClosed.NotEligibleForPhillyLeave />;
+  return redirectToSlug("ineligible-philly-leave");
 }
 
 /**
@@ -587,9 +694,9 @@ function pickChildCareAndFMLAInformation(state) {
     employedThirtyDays.answer === "yes" &&
     healthcareWorker.answer === "no"
   ) {
-    return <WantLeaveForDaycareInfo.QualifyForFMLA />;
+    return redirectToSlug("fmla-for-childcare");
   }
-  return <WantLeaveForDaycareInfo.NotQualifiedForFMLA />;
+  return redirectToSlug("no-fmla-for-childcare");
 }
 
 /**
@@ -646,4 +753,8 @@ function checkIfEligibleForPhillySick(state) {
     return true;
   }
   return false;
+}
+
+function redirectToSlug(slug) {
+  return <Redirect to={"/" + INTERVIEW_SLUG + "/" + slug} />;
 }

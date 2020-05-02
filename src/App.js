@@ -2,8 +2,11 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import { LandingPage } from "./components/pages/LandingPage";
+import { INTERVIEW_SLUG as leaveBenefitsUrl } from "./components/interviews/LeaveBenefitsQuestions";
+import { INTERVIEW_SLUG as ucBenefitsUrl } from "./components/interviews/UCandPUAQuestions";
 import { LeaveBenefitsInterview } from "./components/pages/LeaveBenefitsInterview";
 import { UCandPUAInterview } from "./components/pages/UCandPUAInterview";
+import { ExplanationPage } from "./components/pages/ExplanationPage";
 import AppBar from "@material-ui/core/AppBar";
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -40,12 +43,16 @@ function App() {
       </nav>
       <Container>
         <Switch>
-          <Route path="/leave-benefits">
+          <Route exact path={"/" + leaveBenefitsUrl}>
             <LeaveBenefitsInterview />
           </Route>
-          <Route path="/uc-pua-benefits">
+          <Route exact path={"/" + ucBenefitsUrl}>
             <UCandPUAInterview />
           </Route>
+          <Route
+            path="/:interviewSlug/:explanationSlug"
+            component={ExplanationPage}
+          ></Route>
           <Route path="/">
             <LandingPage />
           </Route>

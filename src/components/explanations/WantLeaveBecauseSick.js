@@ -12,11 +12,18 @@ import { Link } from "react-router-dom";
  * @param {*} props
  */
 export const FedSickPhillySickandFMLA = (props) => {
+  const { phillyLeaveIsPaid } = props;
+
   return (
     <div>
       <div>
-        You appear to be qualified for federal sick leave/ Philly paid sick
+        You appear to be qualified for federal sick leave/ Philly sick
         leave/FMLA
+      </div>
+      <div>
+        {phillyLeaveIsPaid
+          ? "Good news, it looks like your Philly sick leave would be <em> paid </em> sick leave."
+          : "Your Philly leave would not be paid. "}
       </div>
       <div>
         If you haven't already, click to learn about eligibility for
@@ -52,12 +59,19 @@ export const FedSickOnly = (props) => {
  * @param {*} props
  */
 export const PhillySickandFMLA = (props) => {
+  const { phillyLeaveIsPaid } = props;
   return (
     <div>
       <div>
         You appear to be qualified for Philly sick leave and FMLA, but not
         Federal Sick leave
       </div>
+      <div>
+        {phillyLeaveIsPaid
+          ? "Good news, it looks like your Philly sick leave would be <em> paid </em> sick leave."
+          : "Your Philly leave would not be paid. "}
+      </div>
+
       <div>
         If you haven't already, click to learn about eligibility for
         unemployment compensation and Pandemic Unemployment Assistance (PUA):
@@ -72,12 +86,19 @@ export const PhillySickandFMLA = (props) => {
  * @param {*} props
  */
 export const PhillySickOnly = (props) => {
+  const { phillyLeaveIsPaid } = props;
   return (
     <div>
       <div>
         You appear to be qualified for Philly sick leave, but not FMLA or
         Federal Sick Leave
       </div>
+      <div>
+        {phillyLeaveIsPaid
+          ? "Good news, it looks like your Philly sick leave would be <em> paid </em> sick leave."
+          : "Your Philly leave would not be paid. "}
+      </div>
+
       <div>
         If you haven't already, click to learn about eligibility for
         unemployment compensation and Pandemic Unemployment Assistance (PUA):

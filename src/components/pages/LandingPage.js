@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Paper from "@material-ui/core/Paper";
-import Button from "@material-ui/core/Button";
+import { INTERVIEW_SLUG as leaveBenefitsUrl } from "../interviews/LeaveBenefitsQuestions";
+import { INTERVIEW_SLUG as ucBenefitsUrl } from "../interviews/UCandPUAQuestions";
 
 export const LandingPage = () => {
   return (
@@ -17,18 +17,23 @@ export const LandingPage = () => {
         in Philadelphia.
       </p>
       <p>
-        Are you still working and looking to take leave time? Click here to
-        learn about{" "}
-        <Link to="/leave-benefits">
-          your eligibility for sick leave and family leave.
-        </Link>
+        <b>
+          Are you still working and looking to take leave time? Click here to
+          learn about{" "}
+          <Link to={"/" + leaveBenefitsUrl}>
+            your eligibility for sick leave and family leave.
+          </Link>
+        </b>
       </p>
       <p>
-        Have you lost your job or had your hours cut? Click here to learn about{" "}
-        <Link to="/uc-pua-benefits">
-          your eligibility for Unemployment Compensation and Pandemic
-          Unemployment Assistance.
-        </Link>
+        <b>
+          Have you lost your job or had your hours cut? Click here to learn
+          about{" "}
+          <Link to={"/" + ucBenefitsUrl}>
+            your eligibility for Unemployment Compensation and Pandemic
+            Unemployment Assistance.
+          </Link>
+        </b>
       </p>
       <p>
         This site is merely providing you with general information we hope is
