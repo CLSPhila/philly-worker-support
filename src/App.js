@@ -8,7 +8,11 @@ import { LeaveBenefitsInterview } from "./components/pages/LeaveBenefitsIntervie
 import { UCandPUAInterview } from "./components/pages/UCandPUAInterview";
 import { ExplanationPage } from "./components/pages/ExplanationPage";
 import AppBar from "@material-ui/core/AppBar";
-import { makeStyles } from "@material-ui/core/styles";
+import {
+  makeStyles,
+  ThemeProvider,
+  createMuiTheme,
+} from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { Link as RouterLink } from "react-router-dom";
@@ -25,40 +29,53 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#454988",
+    },
+    secondary: {
+      main: "#c6941F",
+    },
+  },
+});
+
 function App() {
   const classes = useStyles();
 
   return (
-    <Router>
-      <nav className={classes.root}>
-        <AppBar position="static">
-          <Toolbar>
-            <Link component={RouterLink} to="/">
-              <Typography variant="h6" className={classes.title}>
-                Working in Philly during a Pandemic
-              </Typography>
-            </Link>
-          </Toolbar>
-        </AppBar>
-      </nav>
-      <Container>
-        <Switch>
-          <Route exact path={"/" + leaveBenefitsUrl}>
-            <LeaveBenefitsInterview />
-          </Route>
-          <Route exact path={"/" + ucBenefitsUrl}>
-            <UCandPUAInterview />
-          </Route>
-          <Route
-            path="/:interviewSlug/:explanationSlug"
-            component={ExplanationPage}
-          ></Route>
-          <Route path="/">
-            <LandingPage />
-          </Route>
-        </Switch>
-      </Container>
-    </Router>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <nav className={classes.root}>
+          <AppBar position="static">
+            <Toolbar>
+              <Link component={RouterLink} to="/">
+                <Typography variant="h6" className={classes.title}>
+                  Working in Philly during a Pandemic
+                </Typography>
+              </Link>
+            </Toolbar>
+          </AppBar>
+        </nav>
+        <Container>
+          <Switch>
+            <Route exact path={"/" + leaveBenefitsUrl}>
+              <LeaveBenefitsInterview />
+            </Route>
+            <Route exact path={"/" + ucBenefitsUrl}>
+              <UCandPUAInterview />
+            </Route>
+            <Route
+              path="/:interviewSlug/:explanationSlug"
+              component={ExplanationPage}
+            ></Route>
+            <Route path="/">
+              <LandingPage />
+            </Route>
+          </Switch>
+        </Container>
+      </Router>
+    </ThemeProvider>
   );
 }
 
