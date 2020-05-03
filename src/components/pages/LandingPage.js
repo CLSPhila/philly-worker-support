@@ -6,7 +6,13 @@ import { INTERVIEW_SLUG as ucBenefitsUrl } from "../interviews/UCandPUAQuestions
 export const LandingPage = () => {
   return (
     <div>
-      <h2> Support for workers during the Covid-19 pandemic</h2>
+      <h2> (DEMO) Support for workers during the Covid-19 pandemic</h2>
+      <p>
+        <b>
+          This site is in development still. The information here isn't
+          complete, or even always accurate. Don't rely on it.
+        </b>
+      </p>
       <p>
         Navigating sick leave, family leave, and unemployment compensation is
         confusing, and our present crisis makes it harder.
@@ -18,8 +24,7 @@ export const LandingPage = () => {
       </p>
       <p>
         <b>
-          Are you still working and looking to take leave time? Click here to
-          learn about{" "}
+          Are you still working and looking to take leave time? Learn about{" "}
           <Link to={"/" + leaveBenefitsUrl}>
             your eligibility for sick leave and family leave.
           </Link>
@@ -27,8 +32,7 @@ export const LandingPage = () => {
       </p>
       <p>
         <b>
-          Have you lost your job or had your hours cut? Click here to learn
-          about{" "}
+          Have you lost your job or had your hours cut? Learn about{" "}
           <Link to={"/" + ucBenefitsUrl}>
             your eligibility for Unemployment Compensation and Pandemic
             Unemployment Assistance.
