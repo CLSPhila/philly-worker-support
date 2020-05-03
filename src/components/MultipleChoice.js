@@ -18,16 +18,11 @@ const useStyles = makeStyles((theme) => ({
 export default function (props) {
   const styles = useStyles();
 
-  const {
-    dispatch,
-    questionId,
-    question,
-    label,
-    children,
-    defaultAnswer,
-  } = props;
+  const { dispatch, questionId, question, label, children } = props;
 
-  const [answer, setAnswer] = useState("");
+  const initialAnswer = "";
+
+  const [answer, setAnswer] = useState(initialAnswer);
 
   const handleChange = (e) => {
     console.log("setting answer to: ");
@@ -57,7 +52,11 @@ export default function (props) {
           >
             {children}
           </RadioGroup>
-          <Button variant="contained" type="submit">
+          <Button
+            variant="contained"
+            type="submit"
+            disabled={answer === initialAnswer ? true : false}
+          >
             Next
           </Button>
         </FormControl>

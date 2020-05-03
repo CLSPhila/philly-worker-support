@@ -168,8 +168,8 @@ export const questions = [
     component: ChildCareFMLAQuestions.ChildCareDaycareClosed,
   },
   {
-    id: "noSuitableOtherChildcare",
-    component: ChildCareFMLAQuestions.NoSuitableOtherChildcare,
+    id: "anySuitableOtherChildcare",
+    component: ChildCareFMLAQuestions.AnySuitableOtherChildcare,
   },
   {
     id: "employedThirtyDays",
@@ -623,16 +623,16 @@ function pickNextChildCareAndFMLAQuestion(state, dispatch) {
     return null;
   }
 
-  if (state.noSuitableOtherChildcare.answer === null) {
+  if (state.anySuitableOtherChildcare.answer === null) {
     return (
-      <ChildCareFMLAQuestions.NoSuitableOtherChildcare
+      <ChildCareFMLAQuestions.AnySuitableOtherChildcare
         {...props}
-        questionId={state.noSuitableOtherChildcare.id}
+        questionId={state.anySuitableOtherChildcare.id}
       />
     );
   }
 
-  if (state.NoSuitableOtherChildcare.answer === "no") {
+  if (state.anySuitableOtherChildcare.answer === "yes") {
     return null;
   }
 
@@ -681,16 +681,18 @@ function pickChildCareAndFMLAInformation(state) {
     hasPublicEmployer,
     fedSickLeaveEmployerSize,
     daycareClosed,
-    noSuitableOtherChildcare,
+    anySuitableOtherChildcare,
     employedThirtyDays,
     healthcareWorker,
   } = state;
+  console.log("picking childcare fmla eligibility");
+  console.log(state);
   if (
     (hasPublicEmployer.answer === "yes" ||
       (hasPublicEmployer.answer === "no" &&
         fedSickLeaveEmployerSize.answer === "ltFiveHundred")) &&
     daycareClosed.answer === "yes" &&
-    noSuitableOtherChildcare.answer === "yes" &&
+    anySuitableOtherChildcare.answer === "no" &&
     employedThirtyDays.answer === "yes" &&
     healthcareWorker.answer === "no"
   ) {

@@ -18,14 +18,14 @@ export const ChildCareDaycareClosed = (props) => {
       <FormControlLabel
         value="yes"
         control={<Radio />}
-        value="Yes, I am. I miss daycare so much."
+        label="Yes, I am. I miss daycare so much."
       />
       <FormControlLabel value="no" control={<Radio />} label="No, I am not." />
     </MultipleChoice>
   );
 };
 
-export const NoSuitableOtherChildcare = (props) => {
+export const AnySuitableOtherChildcare = (props) => {
   return (
     <MultipleChoice
       {...props}
@@ -57,7 +57,7 @@ export const EmployedThirtyDays = (props) => {
       <FormControlLabel
         value="no"
         control={<Radio />}
-        value="No, I have not."
+        label="No, I have not."
       />
     </MultipleChoice>
   );
