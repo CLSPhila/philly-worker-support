@@ -24,8 +24,6 @@ export default function (props) {
   const [answer, setAnswer] = useState(initialAnswer);
 
   const handleChange = (e) => {
-    console.log("setting answer to: ");
-    console.log(e.target.value);
     setAnswer(e.target.value);
   };
 
