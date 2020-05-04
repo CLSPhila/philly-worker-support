@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const theme = createMuiTheme({
+  fontSize: 16,
   palette: {
     primary: {
       main: "#454988",

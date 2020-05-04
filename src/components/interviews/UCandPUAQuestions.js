@@ -14,6 +14,9 @@ export const INTERVIEW_SLUG = "uc-benefits";
 
 export const questions = [
   {
+    id: "understandsWorkAuthRequirement",
+  },
+  {
     id: "selfEmployed",
   },
   {
@@ -44,7 +47,21 @@ export const pickQuestion = (state, dispatch) => {
 };
 
 function pickNextUCQuestion(state, dispatch) {
-  const { selfEmployed, earnedEnough, alreadyUsedBenefits } = state;
+  const {
+    understandsWorkAuthRequirement,
+    selfEmployed,
+    earnedEnough,
+    alreadyUsedBenefits,
+  } = state;
+
+  if (understandsWorkAuthRequirement.answer === null) {
+    return (
+      <UCQuestions.UnderstantsWorkAuthorizationRequirement
+        dispatch={dispatch}
+        questionId="understandsWorkAuthRequirement"
+      />
+    );
+  }
 
   if (selfEmployed.answer === null) {
     return (

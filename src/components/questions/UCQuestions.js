@@ -2,10 +2,41 @@ import React from "react";
 import MultipleChoice from "../MultipleChoice";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import { updateAnswer } from "../../actions";
 
 /**
  * Questions relating to eligibility for Unemployment Compensation
  */
+
+const useStyles = makeStyles((theme) => ({
+  questionTitle: {
+    marginTop: 0,
+  },
+}));
+
+export const UnderstantsWorkAuthorizationRequirement = (props) => {
+  const { dispatch, questionId } = props;
+  const clickHandler = (e) => {
+    return dispatch(updateAnswer(questionId, "understandWorkAuthRequirement"));
+  };
+  const classes = useStyles();
+
+  return (
+    <div>
+      <p className={classes.questionTitle}>
+        Only people authorized to work in the United States can qualify for
+        unemployment compensation or Pandemic Unemployment Assistance (PUA).
+        Undocumented immigrants are not eligible. For more information about
+        immigrant workers' rights,
+      </p>
+      <Button variant="contained" color="secondary" onClick={clickHandler}>
+        I understand
+      </Button>
+    </div>
+  );
+};
 
 export const SelfEmployed = (props) => {
   return (

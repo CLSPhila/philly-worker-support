@@ -14,13 +14,34 @@ export const LandingPage = () => {
         </b>
       </p>
       <p>
+        We are living through challenging times. Many of us have lost
+        employment, or are concerned about staying employed. We worry about
+        getting sick. We have loved ones we need to care for.
+      </p>
+
+      <p>
+        For workers in Philadelphia, there are a variety of local, state, and
+        federal programs that can help provide income and other benefits during
+        this emergency.
+      </p>
+      <p>
         Navigating sick leave, family leave, and unemployment compensation is
-        confusing, and our present crisis makes it harder.
+        confusing, even for experts.
       </p>
       <p>
         The employment law experts at Community Legal Services of Philadelphia
         have prepared this site to help you understand your rights as a worker
         in Philadelphia.
+      </p>
+      <p>
+        {" "}
+        We hope the information we present helps you and your family feel{" "}
+        <b> safe and stable </b> during the crisis.{" "}
+      </p>
+      <p>
+        {" "}
+        Answer the questions we ask at the links below, and learn about how to
+        find the right services for your family.
       </p>
       <p>
         <b>

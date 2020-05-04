@@ -14,6 +14,7 @@ import * as EmployeeOrICQuestions from "../questions/EmployeeOrIndependent";
 
 // Information at endpoints of interview.
 import * as WantLeaveBecauseSickInfo from "../explanations/WantLeaveBecauseSick";
+import * as WantLeaveToCareForSickRel from "../explanations/WantLeaveToCareForSickRelative";
 import { ReducedHoursExplanation } from "../explanations/WantLeaveBecauseReducedHours";
 import * as WantLeaveForDaycareInfo from "../explanations/WantLeaveForDaycare";
 import * as WantLeaveBecauseUnsafe from "../explanations/WantLeaveBecauseUnsafe";
@@ -39,11 +40,16 @@ export function pickQuestion(state, dispatch) {
   if (state.areYouCurrentlyWorking.answer === "yes") {
     switch (state.currentlyWorkingReasonForSeekingHelp.answer) {
       case "IamSick":
-      case "careForSick":
         return (
           pickNextSickLeaveAndFMLAQuestion(state, dispatch) ||
           // Pick the information to provide the user about
           pickSickLeaveAndFMLAInformation(state)
+        );
+      case "careForSick":
+        return (
+          pickNextSickLeaveAndFMLAQuestion(state, dispatch) ||
+          // Pick the information to provide the user about
+          pickSickLeaveAndFMLAWhenCaringForRelativeInformation(state)
         );
       case "childCare":
         return (
@@ -286,6 +292,42 @@ export const explanations = [
     slug: "fmla",
     component: <WantLeaveBecauseSickInfo.FMLAOnly />,
   },
+  {
+    slug: "sick-relative-fed-sick-only",
+    component: <WantLeaveToCareForSickRel.FedSickOnly />,
+  },
+  {
+    slug: "sick-relative-philly-paid-sick-and-fmla",
+    component: (
+      <WantLeaveToCareForSickRel.PhillySickandFMLA phillyLeaveIsPaid={true} />
+    ),
+  },
+  {
+    slug: "sick-relative-philly-unpaid-sick-and-fmla",
+    component: (
+      <WantLeaveToCareForSickRel.PhillySickandFMLA phillyLeaveIsPaid={false} />
+    ),
+  },
+  {
+    slug: "sick-relative-philly-paid-sick",
+    component: (
+      <WantLeaveToCareForSickRel.PhillySickOnly phillyLeaveIsPaid={true} />
+    ),
+  },
+  {
+    slug: "sick-relative-philly-unpaid-sick",
+    component: (
+      <WantLeaveToCareForSickRel.PhillySickOnly phillyLeaveIsPaid={false} />
+    ),
+  },
+  {
+    slug: "sick-relative-not-fed-sick-philly-sick-or-fmla",
+    component: <WantLeaveToCareForSickRel.NotFedSickPhillySickOrFMLA />,
+  },
+  {
+    slug: "sick-relative-fmla",
+    component: <WantLeaveToCareForSickRel.FMLAOnly />,
+  },
 ];
 
 /**
@@ -522,6 +564,55 @@ function pickProtectedLeaveInformation(state) {
     return redirectToSlug("leave-is-protected");
   }
   return redirectToSlug("leave-not-protected");
+}
+
+function pickSickLeaveAndFMLAWhenCaringForRelativeInformation(state) {
+  const isEligibleForFedSick = checkIfEligibleForFedSick(state);
+  const isEligibleForPhillySick = checkIfEligibleForPhillySick(state);
+  const isEligibleForFMLA = checkIfEligibleForFMLA(state);
+  const phillyLeaveIsPaid = state.employerHasTenEmployees.answer === "yes";
+
+  if (isEligibleForFedSick && isEligibleForPhillySick && isEligibleForFMLA) {
+    if (phillyLeaveIsPaid) {
+      return redirectToSlug("sick-relative-fed-sick-philly-paid-sick-and-fmla");
+    } else {
+      return redirectToSlug(
+        "sick-relative-fed-sick-philly-unpaid-sick-and-fmla"
+      );
+    }
+  }
+
+  if (isEligibleForFedSick && !isEligibleForPhillySick && !isEligibleForFMLA) {
+    return redirectToSlug("sick-relative-fed-sick-only");
+  }
+
+  if (!isEligibleForFedSick && isEligibleForPhillySick && isEligibleForFMLA) {
+    if (phillyLeaveIsPaid) {
+      return redirectToSlug("sick-relative-philly-paid-sick-and-fmla");
+    } else {
+      redirectToSlug("sick-relative-philly-unpaid-sick-and-fmla");
+    }
+  }
+  if (!isEligibleForFedSick && isEligibleForPhillySick && !isEligibleForFMLA) {
+    if (phillyLeaveIsPaid) {
+      return redirectToSlug("sick-relative-philly-paid-sick");
+    } else {
+      return redirectToSlug("sick-relative-philly-unpaid-sick");
+    }
+  }
+  if (!isEligibleForFedSick && !isEligibleForPhillySick && !isEligibleForFMLA) {
+    return redirectToSlug("sick-relative-not-fed-sick-philly-sick-or-fmla");
+  }
+  if (!isEligibleForFedSick && !isEligibleForPhillySick && isEligibleForFMLA) {
+    return redirectToSlug("sick-relative-fmla");
+  }
+
+  return (
+    <div>
+      Sorry, we could not find any eligible programs This might be a bug with
+      our site.
+    </div>
+  );
 }
 
 /**
