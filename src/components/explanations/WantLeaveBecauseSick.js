@@ -248,18 +248,9 @@ export const PhillySickandFMLA = (props) => {
         .  Complaint forms are available on their website, and may be emailed or
         mailed.  You can also call{" "}
         <ExternalLink href="tel:215-686-0802">215-686-0802</ExternalLink>.  If
-        you need further assistance, please contact CLS at{" "}
-        <ExternalLink href="tel:215-981-3700">215-981-3700</ExternalLink>.]
-      </p>
-      <p>
-        If you are still too sick to come back to work after taking your FFCRA
-        leave, you are likely eligible to take leave under the{" "}
-        <b>Family and Medical Leave Act (FMLA).</b> You will need to get a
-        medical certification form from your doctor to prove that you have a
-        serious health condition that prevents you from doing your job. You can
-        take up to 12 weeks of FMLA leave in a year. This leave is unpaid, but
-        your job is protected, and you get to keep your employer-provided health
-        insurance if you have it.
+        you need further assistance, please conen changed so she is not sure if
+        it will year. This leave is unpaid, but your job is protected, and you
+        get to keep your employer-provided health insurance if you have it.
       </p>
       <p>
         Another option would be to apply for unemployment compensation, which
