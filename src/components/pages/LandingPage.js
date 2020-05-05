@@ -4,16 +4,17 @@ import { INTERVIEW_SLUG as leaveBenefitsUrl } from "../interviews/LeaveBenefitsQ
 import { INTERVIEW_SLUG as ucBenefitsUrl } from "../interviews/UCandPUAQuestions";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
+
 export const LandingPage = () => {
   return (
     <div>
       <h2> (DEMO) Support for workers during the Covid-19 pandemic</h2>
-      <p>
+      <Box bgcolor="warning.main">
         <b>
           This site is in development still. The information here isn't
           complete, or even always accurate. Don't rely on it.
         </b>
-      </p>
+      </Box>
       <p>
         We are living through challenging times. Many of us have lost
         employment, or are concerned about staying employed. We worry about
@@ -23,24 +24,23 @@ export const LandingPage = () => {
       <p>
         For workers in Philadelphia, there are a variety of local, state, and
         federal programs that can help provide income and other benefits during
-        this emergency.
-      </p>
-      <p>
-        Navigating sick leave, family leave, and unemployment compensation is
-        confusing, even for experts.
+        this emergency. Navigating sick leave, family leave, and unemployment
+        compensation is confusing. Who has time to untangle all the different
+        eligibility rules and program benefits?
       </p>
       <p>
         The employment law experts at Community Legal Services of Philadelphia
-        have prepared this site to help you understand your rights as a worker
-        in Philadelphia.
+        do.
       </p>
       <p>
-        {" "}
-        We hope the information we present helps you and your family feel{" "}
-        <b> safe and stable </b> during the crisis.{" "}
+        We have prepared this site to help you understand your rights as a
+        worker in Philadelphia.
       </p>
       <p>
-        {" "}
+        We hope the information we present helps you and your family feel
+        <b> safe and stable </b> during the crisis.
+      </p>
+      <p>
         Answer the questions we ask at the links below, and learn about how to
         find the right services for your family.
       </p>
