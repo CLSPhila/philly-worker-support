@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { INTERVIEW_SLUG as leaveBenefitsUrl } from "../interviews/LeaveBenefitsQuestions";
 import { INTERVIEW_SLUG as ucBenefitsUrl } from "../interviews/UCandPUAQuestions";
-
+import Button from "@material-ui/core/Button";
+import Box from "@material-ui/core/Box";
 export const LandingPage = () => {
   return (
     <div>
@@ -51,6 +52,17 @@ export const LandingPage = () => {
           </Link>
         </b>
       </p>
+      <Box display="flex" justifyContent="center" m={1} p={1}>
+        <Box p={1}>
+          <Button
+            href={"/" + leaveBenefitsUrl}
+            variant="outlined"
+            color="primary"
+          >
+            Sick leave and FMLA
+          </Button>
+        </Box>
+      </Box>
       <p>
         <b>
           Have you lost your job or had your hours cut? Learn about{" "}
@@ -60,6 +72,13 @@ export const LandingPage = () => {
           </Link>
         </b>
       </p>
+      <Box display="flex" justifyContent="center" m={1} p={1}>
+        <Box p={1}>
+          <Button href={"/" + ucBenefitsUrl} variant="outlined" color="primary">
+            Unemployment and PUA
+          </Button>
+        </Box>
+      </Box>
       <p>
         This site is merely providing you with general information we hope is
         helpful. Using this site does not mean that we are your lawyers. If

@@ -1,6 +1,5 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import NotImplementedYet from "../extras/NotImplementedYet";
 import AreYouCurrentlyWorking from "../questions/AreYouCurrentlyWorking";
 import NotCurrentlyWorking from "../questions/NotCurrentlyWorking";
 import CurrentlyWorking from "../questions/CurrentlyWorking";
