@@ -8,7 +8,7 @@ export const ApplyForPUA = () => {
       <div>
         If you haven't already, click to learn about eligibility for sick leave
         benefits:
-        <Link to="/leave-benefits"> here. </Link>
+        <Link to="/questions/leave-benefits"> here. </Link>
       </div>
     </div>
   );
@@ -21,7 +21,7 @@ export const NotEligibleForPUA = () => {
       <div>
         If you haven't already, click to learn about eligibility for sick leave
         benefits:
-        <Link to="/leave-benefits"> here. </Link>
+        <Link to="/questions/leave-benefits"> here. </Link>
       </div>
     </div>
   );

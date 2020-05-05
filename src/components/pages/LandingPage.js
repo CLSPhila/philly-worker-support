@@ -47,7 +47,7 @@ export const LandingPage = () => {
       <p>
         <b>
           Are you still working and looking to take leave time? Learn about{" "}
-          <Link to={"/" + leaveBenefitsUrl}>
+          <Link to={"/questions/" + leaveBenefitsUrl}>
             your eligibility for sick leave and family leave.
           </Link>
         </b>
@@ -55,7 +55,7 @@ export const LandingPage = () => {
       <Box display="flex" justifyContent="center" m={1} p={1}>
         <Box p={1}>
           <Button
-            href={"/" + leaveBenefitsUrl}
+            href={"/questions/" + leaveBenefitsUrl}
             variant="outlined"
             color="primary"
           >
@@ -66,7 +66,7 @@ export const LandingPage = () => {
       <p>
         <b>
           Have you lost your job or had your hours cut? Learn about{" "}
-          <Link to={"/" + ucBenefitsUrl}>
+          <Link to={"/questions/" + ucBenefitsUrl}>
             your eligibility for Unemployment Compensation and Pandemic
             Unemployment Assistance.
           </Link>
@@ -74,7 +74,11 @@ export const LandingPage = () => {
       </p>
       <Box display="flex" justifyContent="center" m={1} p={1}>
         <Box p={1}>
-          <Button href={"/" + ucBenefitsUrl} variant="outlined" color="primary">
+          <Button
+            href={"/questions/" + ucBenefitsUrl}
+            variant="outlined"
+            color="primary"
+          >
             Unemployment and PUA
           </Button>
         </Box>

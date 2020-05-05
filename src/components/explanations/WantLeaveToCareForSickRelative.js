@@ -110,7 +110,7 @@ export const FedSickPhillySickFMLA = (props) => {
       <div>
         If you haven't already, click to learn about eligibility for
         unemployment compensation and Pandemic Unemployment Assistance (PUA):
-        <Link to="/uc-pua-benefits"> here. </Link>
+        <Link to="/questions/uc-pua-benefits"> here. </Link>
       </div>
     </div>
   );
@@ -212,7 +212,7 @@ export const FedSickOnly = (props) => {
       <div>
         If you haven't already, click to learn about eligibility for
         unemployment compensation and Pandemic Unemployment Assistance (PUA):
-        <Link to="/uc-pua-benefits"> here. </Link>
+        <Link to="/questions/uc-pua-benefits"> here. </Link>
       </div>
     </div>
   );
@@ -297,7 +297,7 @@ export const PhillySickandFMLA = (props) => {
       <div>
         If you haven't already, click to learn about eligibility for
         unemployment compensation and Pandemic Unemployment Assistance (PUA):
-        <Link to="/uc-pua-benefits"> here. </Link>
+        <Link to="/questions/uc-pua-benefits"> here. </Link>
       </div>
     </div>
   );
@@ -374,7 +374,7 @@ export const PhillySickOnly = (props) => {
       <div>
         If you haven't already, click to learn about eligibility for
         unemployment compensation and Pandemic Unemployment Assistance (PUA):
-        <Link to="/uc-pua-benefits"> here. </Link>
+        <Link to="/questions/uc-pua-benefits"> here. </Link>
       </div>
     </div>
   );
@@ -397,7 +397,7 @@ export const NotFedSickPhillySickOrFMLA = (props) => {
       </p>
       <div>
         If you haven't already, learn about{" "}
-        <Link to="/uc-pua-benefits">
+        <Link to="/questions/uc-pua-benefits">
           eligibility for unemployment compensation and Pandemic Unemployment
           Assistance (PUA){" "}
         </Link>
@@ -428,7 +428,7 @@ export const FMLAOnly = (props) => {
       <p>
         If you haven't already, click to learn about eligibility for
         unemployment compensation and Pandemic Unemployment Assistance (PUA):
-        <Link to="/uc-pua-benefits"> here. </Link>
+        <Link to="/questions/uc-pua-benefits"> here. </Link>
       </p>
     </div>
   );

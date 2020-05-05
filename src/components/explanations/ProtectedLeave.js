@@ -31,7 +31,7 @@ export const LeaveIsProtected = () => {
       </p>
       <p>
         If you haven't already, click to learn about{" "}
-        <Link to="/uc-pua-benefits">
+        <Link to="/questions/uc-pua-benefits">
           eligibility for unemployment compensation and Pandemic Unemployment
           Assistance (PUA).
         </Link>
@@ -47,7 +47,7 @@ export const LeaveIsNotProtected = () => {
       <p> There may be other programs that could help you.</p>
       <p>
         If you haven't already, click to learn about{" "}
-        <Link to="/uc-pua-benefits">
+        <Link to="/questions/uc-pua-benefits">
           eligibility for unemployment compensation and Pandemic Unemployment
           Assistance (PUA).
         </Link>

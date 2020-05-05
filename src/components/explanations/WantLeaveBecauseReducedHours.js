@@ -11,7 +11,7 @@ export const ReducedHoursExplanation = () => {
       <div>
         If you haven't already, click to learn about eligibility for
         unemployment compensation and Pandemic Unemployment Assistance (PUA):
-        <Link to="/uc-pua-benefits"> here. </Link>
+        <Link to="/questions/uc-pua-benefits"> here. </Link>
       </div>
     </div>
   );
