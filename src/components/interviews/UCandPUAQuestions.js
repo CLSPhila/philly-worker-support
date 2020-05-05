@@ -28,7 +28,7 @@ export const questions = [
 ];
 
 function redirectToSlug(slug) {
-  return <Redirect to={"/" + INTERVIEW_SLUG + "/" + slug} />;
+  return <Redirect to={"/questions/" + INTERVIEW_SLUG + "/" + slug} />;
 }
 
 export const explanations = [
