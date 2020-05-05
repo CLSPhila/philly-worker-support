@@ -19,7 +19,9 @@ import CSSBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 
 const theme = createMuiTheme({
-  fontSize: 18,
+  typography: {
+    fontSize: 18,
+  },
   palette: {
     primary: {
       main: "#454988",
