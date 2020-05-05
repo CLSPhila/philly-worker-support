@@ -111,7 +111,7 @@ export const NLRAStateOrderOSHA = (props) => {
 export const NonEmployeeAdvice = (props) => {
   return (
     <div>
-      <div>
+      <p>
         If you are an independent contractor instead of an employee, fewer
         workplace protection laws apply to you. Your best option to address
         unsafe conditions at work may be joining together with people you work
@@ -121,7 +121,7 @@ export const NonEmployeeAdvice = (props) => {
         <ExternalLink href="https://expressforms.pa.gov/apps/pa/doh/COVID-19-Complaint">
           PA Department of Health’s Covid-10 complaint site
         </ExternalLink>
-      </div>
+      </p>
       <p>
         If you haven't already, click to learn about{" "}
         <Link to="/questions/uc-pua-benefits">

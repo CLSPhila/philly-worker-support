@@ -107,11 +107,11 @@ export const FedSickPhillySickFMLA = (props) => {
         </ExternalLink>
       </p>
 
-      <div>
+      <p>
         If you haven't already, click to learn about eligibility for
         unemployment compensation and Pandemic Unemployment Assistance (PUA):
         <Link to="/questions/uc-pua-benefits"> here. </Link>
-      </div>
+      </p>
     </div>
   );
 };
@@ -209,11 +209,11 @@ export const FedSickOnly = (props) => {
         </ExternalLink>
       </p>
 
-      <div>
+      <p>
         If you haven't already, click to learn about eligibility for
         unemployment compensation and Pandemic Unemployment Assistance (PUA):
         <Link to="/questions/uc-pua-benefits"> here. </Link>
-      </div>
+      </p>
     </div>
   );
 };
@@ -294,11 +294,11 @@ export const PhillySickandFMLA = (props) => {
           flyer about medicaid and other assistance.
         </ExternalLink>
       </p>
-      <div>
+      <p>
         If you haven't already, click to learn about eligibility for
         unemployment compensation and Pandemic Unemployment Assistance (PUA):
         <Link to="/questions/uc-pua-benefits"> here. </Link>
-      </div>
+      </p>
     </div>
   );
 };
@@ -312,10 +312,10 @@ export const PhillySickOnly = (props) => {
 
   return (
     <div>
-      <div>
+      <p>
         You appear to be qualified for Philly sick leave, but not FMLA or
         Federal Sick Leave
-      </div>
+      </p>
 
       <p>
         You likely qualify for Philadelphia’s paid sick leave.{" "}
@@ -371,11 +371,11 @@ export const PhillySickOnly = (props) => {
         </ExternalLink>
       </p>
 
-      <div>
+      <p>
         If you haven't already, click to learn about eligibility for
         unemployment compensation and Pandemic Unemployment Assistance (PUA):
         <Link to="/questions/uc-pua-benefits"> here. </Link>
-      </div>
+      </p>
     </div>
   );
 };
@@ -387,21 +387,21 @@ export const PhillySickOnly = (props) => {
 export const NotFedSickPhillySickOrFMLA = (props) => {
   return (
     <div>
-      <div>
+      <p>
         You appear NOT to be qualified for federal sick leave, Philly paid sick
         leave, or FMLA.
-      </div>
+      </p>
       <p>
         You may be able to access Unemployment Compensation or Pandemic
         Unemployment Assistance (PUA)
       </p>
-      <div>
+      <p>
         If you haven't already, learn about{" "}
         <Link to="/questions/uc-pua-benefits">
           eligibility for unemployment compensation and Pandemic Unemployment
           Assistance (PUA){" "}
         </Link>
-      </div>
+      </p>
     </div>
   );
 };

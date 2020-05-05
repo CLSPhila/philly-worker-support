@@ -1,5 +1,5 @@
 import React from "react";
 
 export const ContactCLS = () => {
-  return <div>Contact CLS!</div>;
+  return <p>Contact CLS!</p>;
 };
