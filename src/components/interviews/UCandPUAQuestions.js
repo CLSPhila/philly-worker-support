@@ -8,7 +8,7 @@
  */
 import React from "react";
 import * as UCQuestions from "../questions/UCQuestions";
-import * as PUAEligibilityInfo from "../explanations/ApplyForPUA";
+import * as UCEligibilityInfo from "../explanations/ApplyForUCandPUA";
 import { Redirect } from "react-router-dom";
 export const INTERVIEW_SLUG = "uc-benefits";
 
@@ -33,12 +33,12 @@ function redirectToSlug(slug) {
 
 export const explanations = [
   {
-    slug: "apply-for-pua",
-    component: <PUAEligibilityInfo.ApplyForPUA />,
+    slug: "apply-for-uc",
+    component: <UCEligibilityInfo.ApplyForUC />,
   },
   {
-    slug: "pua-ineligible",
-    component: <PUAEligibilityInfo.NotEligibleForPUA />,
+    slug: "uc-ineligible",
+    component: <UCEligibilityInfo.NotEligibleForUC />,
   },
 ];
 
@@ -98,11 +98,11 @@ function pickNextUCQuestion(state, dispatch) {
 function pickUCInformation(state) {
   const { selfEmployed, earnedEnough, alreadyUsedBenefits } = state;
   if (
-    selfEmployed.answer === "yes" ||
-    earnedEnough.answer === "no" ||
-    alreadyUsedBenefits.answer === "yes"
+    selfEmployed.answer === "no" &&
+    earnedEnough.answer === "yes" &&
+    alreadyUsedBenefits.answer === "no"
   ) {
-    return redirectToSlug("apply-for-pua");
+    return redirectToSlug("apply-for-uc");
   }
-  return redirectToSlug("pua-ineligible");
+  return redirectToSlug("uc-ineligible");
 }
