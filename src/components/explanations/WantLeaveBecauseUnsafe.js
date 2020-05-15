@@ -13,76 +13,11 @@ export const NLRAStateOrderOSHA = (props) => {
   return (
     <div>
       <p>
-        You have a right to a safe and healthy workplace. This right can be hard
-        to enforce. The best option may be to get together with one or more
-        other coworkers and talk to your employer about your concerns. When you
-        approach your employer together about safety issues at work, the law
-        protects you from retaliation. That means it is illegal for your
-        employer to fire or discipline you for speaking up as a group.
-      </p>
-      <p>
-        The National Labor Relations Act protects your right to organize with
-        your co-workers and demand better work conditions, even if you are not
-        in a union. Ask as a group for your employer to make changes. You can
-        write a letter with your demands or create a petition. Your demands
-        could include, for example, improved safety on the job and better sick
-        leave policies. If your employer won’t make changes to keep you safe at
-        work, you and your co-workers can tell your employer that you will not
-        do any more work until dangerous conditions are fixed. If your employer
-        retaliates against you for making a group complaint, you can file an
-        unfair labor practices charge with the National Labor Relations Board
-        (NLRB). You were engaged in “concerted protected activity” that should
-        not have been penalized. The NLRB may step in and try to help resolve
-        the situation.
-      </p>
-      <p>
-        You are also protected under the Occupational Safety and Health Act. You
-        have the right to refuse to do unsafe work if it would create a real and
-        obvious danger to you and your co-workers. You are also protected from
-        retaliation under this Act for making a complaint about unsafe
-        conditions. The federal Occupational Health and Safety Administration
-        (OSHA) has issued OSHA Guidance on Preparing Workplaces for COVID-19
-        related to coronavirus for employers recommending that employers take
-        steps to prevent exposure to the virus. These steps may include
-        requiring social distancing, appropriate protective equipment, hygiene,
-        and cleaning supplies. You can file an OSHA complaint online or by
-        calling your local OSHA Area Office, but a complaint may not lead to
-        things getting fixed quickly.
-      </p>
-      <p>
-        The Pennsylvania Department of Health issued an order requiring worker
-        safety measures at life-sustaining businesses. The order requires, among
-        other things:
-      </p>
-      <ul>
-        <li>Providing masks for workers</li>
-        <li>
-          Providing hourly breaks for handwashing and access to handwashing
-          supplies
-        </li>
-        <li>Enforcing social distancing</li>
-        <li>Staggering start and stop times for workers</li>
-        <li>Conducting meetings and trainings virtually where possible</li>
-        <li>Setting up barriers or shields at registers</li>
-        <li>Cleaning high-touch surfaces</li>
-        <li>
-          Performing temperature checks of employees where there have been
-          probable or confirmed cases of COVID-19
-        </li>
-      </ul>
-      <p>
-        If your workplace is not following this order, you can{" "}
-        <ExternalLink href="https://expressforms.pa.gov/apps/pa/doh/COVID-19-Complaint">
-          file an online complaint
-        </ExternalLink>{" "}
-        with the PA Department of Health to report the unsafe conditions.
-      </p>
-      <p>
-        If you haven't already, click to learn about{" "}
-        <Link to="/questions/uc-pua-benefits">
-          eligibility for unemployment compensation and Pandemic Unemployment
-          Assistance (PUA).
-        </Link>
+        You have a right to a safe and healthy workplace.{" "}
+        <ExternalLink href="https://clsphila.org/wp-content/uploads/2020/04/Workers%E2%80%99-Health-and-Safety-During-the-COVID-19-Crisis.pdf">
+          Learn about your enforcing your rights to a safe workplace
+        </ExternalLink>
+        .
       </p>
       <p>
         Another option is to quit and file for Unemployment Compensation (UC)
@@ -126,8 +61,9 @@ export const NonEmployeeAdvice = (props) => {
         If you haven't already, click to learn about{" "}
         <Link to="/questions/uc-pua-benefits">
           eligibility for unemployment compensation and Pandemic Unemployment
-          Assistance (PUA).{" "}
+          Assistance (PUA)
         </Link>
+        .
       </p>
     </div>
   );

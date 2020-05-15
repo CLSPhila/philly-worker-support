@@ -38,22 +38,12 @@ export const FedSickPhillySickandFMLA = (props) => {
       <p>
         You likely qualify for paid sick leave under a new federal law called
         the Families First Coronavirus Response Act. You can receive your full
-        pay (up to $511 per day or $5,110 total) if you are unable to work
-        (including telework) because: 
+        pay.{" "}
+        <ExternalLink href="https://clsphila.org/employment/paid-sick-leave-philadelphia/">
+          Learn more about this new law.
+        </ExternalLink>
+         
       </p>
-      <ul>
-        <li>
-          You think you have coronavirus and need to get tested or seen by a
-          doctor
-        </li>
-        <li>A health care provider has told you to self-quarantine</li>
-        <li>
-          You are under a federal, state, or local quarantine or isolation order
-        </li>
-        <li>
-          You are complying with recommendations from a public health official
-        </li>
-      </ul>
       <p>
         Sick leave under the FFCRA is <em> in addition </em> to any sick leave
         you may have under other laws or your employer’s policies. Your employer
@@ -72,32 +62,9 @@ export const FedSickPhillySickandFMLA = (props) => {
         </b>{" "}
       </p>
       <p>
-        You have to accrue sick leave under the Philadelphia law. You earn 1
-        hour of sick time for every 40 hours of work, and you can earn up to 40
-        hours of sick leave in total. It is your employer’s responsibility to
-        keep track of how much sick time you have left. Your employer might give
-        you more leave than the Philadelphia law requires, so you should check
-        what their policy is.
-      </p>
-      <p>
-        If your employer terminates your employment, the city agency that
-        enforces the Philadelphia sick leave ordinance 
-        <em>
-          requires that your employer pay you any accrued but unused sick time
-          upon termination.
-        </em>
-          [If your employer denies you sick leave, if you are laid off and your
-        employer refuses to pay you for any accrued but unused sick leave upon
-        termination, or if you are retaliated against for requesting or using
-        sick leave, you should immediately file a complaint with the 
-        <ExternalLink href="https://www.phila.gov/services/working-jobs/paid-sick-leave/">
-          Philadelphia Mayor’s Office of Labor
+        <ExternalLink href="https://clsphila.org/employment/paid-sick-leave-philadelphia/">
+          Learn more about Philadelphia’s sick leave law.
         </ExternalLink>
-        .  Complaint forms are available on their website, and may be emailed or
-        mailed.  You can also call{" "}
-        <ExternalLink href="tel:215-686-0802">215-686-0802</ExternalLink>.  If
-        you need further assistance, please contact CLS at{" "}
-        <ExternalLink href="tel:215-981-3700">215-981-3700</ExternalLink>.]
       </p>
       <p>
         If you are still too sick to come back to work after taking your FFCRA
@@ -107,11 +74,24 @@ export const FedSickPhillySickandFMLA = (props) => {
         serious health condition that prevents you from doing your job. You can
         take up to 12 weeks of FMLA leave in a year. This leave is unpaid, but
         your job is protected, and you get to keep your employer-provided health
-        insurance if you have it. Another option would be to apply for
-        unemployment compensation, which would mean losing your
-        employer-provided health insurance but having a source of income. The
-        choice between these options might depend on how good your
-        employer-provided health insurance is.
+        insurance if you have it.
+      </p>
+      <p>
+        Learn more about the FMLA from{" "}
+        <ExternalLink href="https://clsphila.org/services/taking-leave-from-work/">
+          Community Legal Services
+        </ExternalLink>{" "}
+        and the{" "}
+        <ExternalLink href="https://www.dol.gov/sites/dolgov/files/WHD/legacy/files/employeeguide.pdf">
+          Department of Labor
+        </ExternalLink>
+        .
+      </p>
+      <p>
+        Another option would be to apply for unemployment compensation, which
+        would mean losing your employer-provided health insurance but having a
+        source of income. The choice between these options might depend on how
+        good your employer-provided health insurance is.
       </p>
       <p>
         If you lose health insurance from your job, you may be eligible to get
@@ -144,39 +124,18 @@ export const FedSickOnly = (props) => {
       </p>
       <p>
         You likely qualify for paid sick leave under a new federal law called
-        the Families First Coronavirus Response Act (FFCRA). You can receive
-        your full pay (up to $511 per day or $5,110 total) if you are unable to
-        work (including telework) because: 
-      </p>
-      <ul>
-        <li>
-          You think you have coronavirus and need to get tested or seen by a
-          doctor
-        </li>
-        <li>A health care provider has told you to self-quarantine</li>
-        <li>
-          You are under a federal, state, or local quarantine or isolation
-          order; or
-        </li>
-        <li>
-          You are complying with recommendations from a public health official
-        </li>
-      </ul>
-      <p>
-        Sick leave under the FFCRA is in addition to any sick leave you may have
-        under other laws or your employer’s policies. Your employer cannot
-        require you to use any other PTO before using paid sick time under the
-        FFCRA.
+        the Families First Coronavirus Response Act. You can receive your full
+        pay.{" "}
+        <ExternalLink href="https://clsphila.org/employment/paid-sick-leave-philadelphia/">
+          Learn more about this new law.
+        </ExternalLink>
+         
       </p>
       <p>
-        If you are still too sick to come back to work after taking your FFCRA
-        leave, you are likely eligible to take leave under the Family and
-        Medical Leave Act (FMLA). You will need to get a medical certification
-        form from your doctor to prove that you have a serious health condition
-        that prevents you from doing your job. You can take up to 12 weeks of
-        FMLA leave in a year. This leave is unpaid, but your job is protected,
-        and you get to keep your employer-provided health insurance if you have
-        it.{" "}
+        Sick leave under the FFCRA is <em> in addition </em> to any sick leave
+        you may have under other laws or your employer’s policies. Your employer
+        cannot require you to use any other PTO before using paid sick time
+        under the FFCRA.
       </p>
       <p>
         Another option would be to apply for unemployment compensation, which
@@ -226,34 +185,32 @@ export const PhillySickandFMLA = (props) => {
         </b>{" "}
       </p>
       <p>
-        You have to accrue sick leave under the Philadelphia law. You earn 1
-        hour of sick time for every 40 hours of work, and you can earn up to 40
-        hours of sick leave in total. It is your employer’s responsibility to
-        keep track of how much sick time you have left. Your employer might give
-        you more leave than the Philadelphia law requires, so you should check
-        what their policy is.
+        <ExternalLink href="https://clsphila.org/employment/paid-sick-leave-philadelphia/">
+          Learn more about Philadelphia’s sick leave law.
+        </ExternalLink>
       </p>
       <p>
-        If your employer terminates your employment, the city agency that
-        enforces the Philadelphia sick leave ordinance 
-        <em>
-          requires that your employer pay you any accrued but unused sick time
-          upon termination.
-        </em>
-          [If your employer denies you sick leave, if you are laid off and your
-        employer refuses to pay you for any accrued but unused sick leave upon
-        termination, or if you are retaliated against for requesting or using
-        sick leave, you should immediately file a complaint with the 
-        <ExternalLink href="https://www.phila.gov/services/working-jobs/paid-sick-leave/">
-          Philadelphia Mayor’s Office of Labor
-        </ExternalLink>
-        .  Complaint forms are available on their website, and may be emailed or
-        mailed.  You can also call{" "}
-        <ExternalLink href="tel:215-686-0802">215-686-0802</ExternalLink>.  If
-        you need further assistance, please conen changed so she is not sure if
-        it will year. This leave is unpaid, but your job is protected, and you
-        get to keep your employer-provided health insurance if you have it.
+        If you are still too sick to come back to work after taking your sick
+        leave, you are likely eligible to take leave under the Family and
+        Medical Leave Act (FMLA). You will need to get a medical certification
+        form from your doctor to prove that you have a serious health condition
+        that prevents you from doing your job. You can take up to 12 weeks of
+        FMLA leave in a year. This leave is unpaid, but your job is protected,
+        and you get to keep your employer-provided health insurance if you have
+        it.{" "}
       </p>
+      <p>
+        Learn more about the FMLA from{" "}
+        <ExternalLink href="https://clsphila.org/services/taking-leave-from-work/">
+          Community Legal Services
+        </ExternalLink>{" "}
+        and the{" "}
+        <ExternalLink href="https://www.dol.gov/sites/dolgov/files/WHD/legacy/files/employeeguide.pdf">
+          Department of Labor
+        </ExternalLink>
+        .
+      </p>
+
       <p>
         Another option would be to apply for unemployment compensation, which
         would mean losing your employer-provided health insurance but having a
@@ -302,34 +259,10 @@ export const PhillySickOnly = (props) => {
         </b>{" "}
       </p>
       <p>
-        You have to accrue sick leave under the Philadelphia law. You earn 1
-        hour of sick time for every 40 hours of work, and you can earn up to 40
-        hours of sick leave in total. It is your employer’s responsibility to
-        keep track of how much sick time you have left. Your employer might give
-        you more leave than the Philadelphia law requires, so you should check
-        what their policy is.
-      </p>
-      <p>
-        If your employer terminates your employment, the city agency that
-        enforces the Philadelphia sick leave ordinance 
-        <em>
-          requires that your employer pay you any accrued but unused sick time
-          upon termination.
-        </em>
-          [If your employer denies you sick leave, if you are laid off and your
-        employer refuses to pay you for any accrued but unused sick leave upon
-        termination, or if you are retaliated against for requesting or using
-        sick leave, you should immediately file a complaint with the 
-        <ExternalLink href="https://www.phila.gov/services/working-jobs/paid-sick-leave/">
-          Philadelphia Mayor’s Office of Labor
+        <ExternalLink href="https://clsphila.org/employment/paid-sick-leave-philadelphia/">
+          Learn more about Philadelphia’s sick leave law.
         </ExternalLink>
-        .  Complaint forms are available on their website, and may be emailed or
-        mailed.  You can also call{" "}
-        <ExternalLink href="tel:215-686-0802">215-686-0802</ExternalLink>.  If
-        you need further assistance, please contact CLS at{" "}
-        <ExternalLink href="tel:215-981-3700">215-981-3700</ExternalLink>.]
       </p>
-
       <p>
         If you lose health insurance from your job, you may be eligible to get
         free or low-cost health insurance through Medicaid or the Marketplace.
@@ -361,7 +294,8 @@ export const NotFedSickPhillySickOrFMLA = (props) => {
         leave, or FMLA.
       </p>
       <p>
-        If you haven't already, click to learn about
+        There might be other programs that could offer you support. If you
+        haven't already, click to learn about
         <Link to="/questions/uc-pua-benefits">
           {" "}
           eligibility for unemployment compensation and Pandemic Unemployment
@@ -390,6 +324,17 @@ export const FMLAOnly = (props) => {
         you from doing your job. You can take up to 12 weeks of FMLA leave in a
         year. This leave is unpaid, but your job is protected, and you get to
         keep your employer-provided health insurance if you have it.
+      </p>
+      <p>
+        Learn more about the FMLA from{" "}
+        <ExternalLink href="https://clsphila.org/services/taking-leave-from-work/">
+          Community Legal Services
+        </ExternalLink>{" "}
+        and the{" "}
+        <ExternalLink href="https://www.dol.gov/sites/dolgov/files/WHD/legacy/files/employeeguide.pdf">
+          Department of Labor
+        </ExternalLink>
+        .
       </p>
       <p>
         Another option would be to apply for unemployment compensation, which

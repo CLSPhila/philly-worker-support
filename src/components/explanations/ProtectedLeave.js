@@ -13,12 +13,14 @@ export const LeaveIsProtected = () => {
     <div>
       <p>
         Your employer may have violated the law when they fired you for taking
-        sick leave or for asking to take sick leave. It doesn't matter whether
-        you were asking for leave for yourself, or to take care of a sick
-        relateive. There are federal and local laws that protect some workers
-        against retaliation for taking/requesting sick leave. Call Community
-        Legal Services at 215-981-3700 to learn more about your rights and
-        discuss your options.
+        sick leave or for asking to take sick leave. There are federal and local
+        laws that protect some workers against retaliation for taking/requesting
+        sick leave. Learn more about{" "}
+        <ExternalLink href="https://clsphila.org/employment/paid-sick-leave-philadelphia/">
+          laws protecting your right to take sick leave
+        </ExternalLink>
+        . Call Community Legal Services at 215-981-3700 to learn more about your
+        rights and discuss your options.
       </p>
       <p>
         If you lose health insurance from your job, you may be eligible to get
