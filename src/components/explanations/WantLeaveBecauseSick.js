@@ -98,7 +98,7 @@ export const FedSickPhillySickandFMLA = (props) => {
         free or low-cost health insurance through Medicaid or the Marketplace.
         You will need to apply right away. For more information, please visit
         our{" "}
-        <ExternalLink href="https://clsphila.org/wp-content/uploads/2020/03/Benefit-flyer_final-1.pdf">
+        <ExternalLink href="https://clsphila.org/wp-content/uploads/2020/05/Health-insurance-for-people-not-working-final-4-29-2020_flip.pdf">
           flyer about medicaid and other assistance.
         </ExternalLink>
       </p>
@@ -148,7 +148,7 @@ export const FedSickOnly = (props) => {
         free or low-cost health insurance through Medicaid or the Marketplace.
         You will need to apply right away. For more information, please visit
         our{" "}
-        <ExternalLink href="https://clsphila.org/wp-content/uploads/2020/03/Benefit-flyer_final-1.pdf">
+        <ExternalLink href="https://clsphila.org/wp-content/uploads/2020/05/Health-insurance-for-people-not-working-final-4-29-2020_flip.pdf">
           flyer about medicaid and other assistance.
         </ExternalLink>
       </p>
@@ -222,7 +222,7 @@ export const PhillySickandFMLA = (props) => {
         free or low-cost health insurance through Medicaid or the Marketplace.
         You will need to apply right away. For more information, please visit
         our{" "}
-        <ExternalLink href="https://clsphila.org/wp-content/uploads/2020/03/Benefit-flyer_final-1.pdf">
+        <ExternalLink href="https://clsphila.org/wp-content/uploads/2020/05/Health-insurance-for-people-not-working-final-4-29-2020_flip.pdf">
           flyer about medicaid and other assistance.
         </ExternalLink>
       </p>
@@ -268,7 +268,7 @@ export const PhillySickOnly = (props) => {
         free or low-cost health insurance through Medicaid or the Marketplace.
         You will need to apply right away. For more information, please visit
         our{" "}
-        <ExternalLink href="https://clsphila.org/wp-content/uploads/2020/03/Benefit-flyer_final-1.pdf">
+        <ExternalLink href="https://clsphila.org/wp-content/uploads/2020/05/Health-insurance-for-people-not-working-final-4-29-2020_flip.pdf">
           flyer about medicaid and other assistance.
         </ExternalLink>
       </p>
@@ -347,7 +347,7 @@ export const FMLAOnly = (props) => {
         free or low-cost health insurance through Medicaid or the Marketplace.
         You will need to apply right away. For more information, please visit
         our{" "}
-        <ExternalLink href="https://clsphila.org/wp-content/uploads/2020/03/Benefit-flyer_final-1.pdf">
+        <ExternalLink href="https://clsphila.org/wp-content/uploads/2020/05/Health-insurance-for-people-not-working-final-4-29-2020_flip.pdf">
           flyer about medicaid and other assistance.
         </ExternalLink>
       </p>

@@ -12,9 +12,6 @@ import { Debugger } from "../extras/debugger";
 import NotImplementedYet from "../extras/NotImplementedYet";
 
 export const ExplanationPage = ({ match, location }) => {
-  console.log("Explaining:");
-  console.log(match);
-  console.log(location);
   const { params } = match;
 
   const { interviewSlug, explanationSlug } = params;
