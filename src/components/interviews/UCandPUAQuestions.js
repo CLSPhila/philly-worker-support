@@ -10,7 +10,7 @@ import React from "react";
 import * as UCQuestions from "../questions/UCQuestions";
 import * as UCEligibilityInfo from "../explanations/ApplyForUCandPUA";
 import { Redirect } from "react-router-dom";
-export const INTERVIEW_SLUG = "uc-benefits";
+export const INTERVIEW_SLUG = "uc-pua-benefits";
 
 export const questions = [
   {
@@ -27,8 +27,15 @@ export const questions = [
   },
 ];
 
-function redirectToSlug(slug) {
-  return <Redirect to={"/questions/" + INTERVIEW_SLUG + "/" + slug} />;
+function redirectToSlug(slug, state) {
+  return (
+    <Redirect
+      to={{
+        pathname: "/questions/" + INTERVIEW_SLUG + "/" + slug,
+        state: state,
+      }}
+    />
+  );
 }
 
 export const explanations = [
@@ -102,7 +109,7 @@ function pickUCInformation(state) {
     earnedEnough.answer === "yes" &&
     alreadyUsedBenefits.answer === "no"
   ) {
-    return redirectToSlug("apply-for-uc");
+    return redirectToSlug("apply-for-uc", state);
   }
-  return redirectToSlug("uc-ineligible");
+  return redirectToSlug("uc-ineligible", state);
 }

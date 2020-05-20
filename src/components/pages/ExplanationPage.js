@@ -7,6 +7,8 @@ import {
   INTERVIEW_SLUG as ucUrl,
   explanations as ucExplanations,
 } from "../interviews/UCandPUAQuestions";
+import { Debugger } from "../extras/debugger";
+
 import NotImplementedYet from "../extras/NotImplementedYet";
 
 export const ExplanationPage = ({ match, location }) => {
@@ -16,7 +18,12 @@ export const ExplanationPage = ({ match, location }) => {
   const { params } = match;
 
   const { interviewSlug, explanationSlug } = params;
-  return pickExplanation(interviewSlug, explanationSlug);
+  return (
+    <>
+      {pickExplanation(interviewSlug, explanationSlug)}
+      <Debugger state={location} />
+    </>
+  );
 };
 
 function componentOr404(explanations) {

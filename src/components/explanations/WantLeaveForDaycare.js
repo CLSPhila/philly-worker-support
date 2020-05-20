@@ -12,7 +12,6 @@ import { Link } from "react-router-dom";
 export const QualifyForFMLA = (props) => {
   return (
     <div>
-      <p>You appear to be qualified for FMLA.</p>);
       <p>
         You are likely eligible for paid leave to care for your child under a
         new federal law called the Families First Coronavirus Act (FFCRA). There
@@ -86,7 +85,7 @@ export const QualifyForFMLA = (props) => {
 export const NotQualifiedForFMLA = (props) => {
   return (
     <div>
-      <p>You appear not to be qualified for FMLA.</p>
+      <p>You appear not to be qualified for a childcare leave.</p>
       <p>
         Unemployment Compensation and Pandemic Unemployment Assistance might
         still be good options.

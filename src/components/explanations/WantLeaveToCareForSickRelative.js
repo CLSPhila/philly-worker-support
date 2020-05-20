@@ -134,8 +134,8 @@ export const FedSickOnly = (props) => {
       </p>
       <p>
         You likely qualify for partially paid sick leave under a new federal law
-        called the Families First Coronavirus Response Act. You can receive 2/3
-        of your normal pay 
+        called the Families First Coronavirus Response Act. You can take up to 2
+        weeks or 80 hours of leave at 2/3 of your normal rate.
       </p>
       <p>
         Learn more about{" "}
@@ -179,13 +179,13 @@ export const PhillySickandFMLA = (props) => {
     <div>
       <p>
         You appear to be qualified for Philly sick leave and FMLA, but not
-        Federal Sick leave
+        Federal sick leave.
       </p>
       <p>
         You likely qualify for Philadelphia’s paid sick leave.{" "}
         <b>
           {phillyLeaveIsPaid
-            ? "You said your employer has 10 or more employees, so this leave would be paid"
+            ? "You said your employer has 10 or more employees, so this leave would be paid."
             : phillyLeaveIsPaid === false
             ? "You said your employer has 9 or fewer employees, so this leave would be unpaid."
             : "If your employer has 10 or more employees, this leave must be paid.  If your employer has 9 or fewer employees, this leave may be unpaid."}
@@ -194,7 +194,7 @@ export const PhillySickandFMLA = (props) => {
       <p>
         Learn more about{" "}
         <ExternalLink href="https://clsphila.org/employment/paid-sick-leave-philadelphia/">
-          Philadelphia's Paid Sick Law{" "}
+          Philadelphia's Paid Sick Law.
         </ExternalLink>
       </p>
       <p>
@@ -221,11 +221,11 @@ export const PhillySickandFMLA = (props) => {
       <p>
         Another option would be to apply for unemployment compensation, which
         would mean losing your employer-provided health insurance but having a
-        source of income.
+        source of income.{" "}
         <b>
           Remember that everyone who gets unemployment compensation between now
           and July 31, 2020 gets an extra $600 per week.
-        </b>
+        </b>{" "}
         The choice between these options might depend on how good your
         employer-provided health insurance is.
       </p>
@@ -330,8 +330,8 @@ export const FMLAOnly = (props) => {
   return (
     <div>
       <p>
-        You appear to be qualified for FMLA, but not federal sick leave or
-        Philly paid sick leave.
+        You appear to be qualified for FMLA, but not Federal sick leave or
+        Philly sick leave.
       </p>
       <p>
         You are likely eligible to take leave under the Family and Medical Leave
@@ -355,11 +355,11 @@ export const FMLAOnly = (props) => {
       <p>
         Another option would be to quit and apply for unemployment compensation,
         which would mean losing your employer-provided health insurance but
-        having a source of income.
+        having a source of income.{" "}
         <b>
           Remember that everyone who gets unemployment compensation between now
           and July 31, 2020 gets an extra $600 per week.
-        </b>
+        </b>{" "}
         The choice between these options might depend on how good your
         employer-provided health insurance is.
       </p>

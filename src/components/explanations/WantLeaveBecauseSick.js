@@ -25,7 +25,7 @@ export const FedSickPhillySickandFMLA = (props) => {
       </p>
       <p>
         If we are correct about this, then to get the most support, you might
-        want to do take the following steps.
+        want to take the following steps.
       </p>
       <ol>
         <li> Take Families First Coronavirus Response Act leave (2 weeks) </li>
@@ -105,7 +105,7 @@ export const FedSickPhillySickandFMLA = (props) => {
       <p>
         If you haven't already, click to learn about eligibility for
         unemployment compensation and Pandemic Unemployment Assistance (PUA):
-        <Link to="/uc-pua-benefits"> here. </Link>
+        <Link to="/questions/uc-pua-benefits"> here. </Link>
       </p>
     </div>
   );
@@ -132,8 +132,8 @@ export const FedSickOnly = (props) => {
          
       </p>
       <p>
-        Sick leave under the FFCRA is <em> in addition </em> to any sick leave
-        you may have under other laws or your employer’s policies. Your employer
+        Sick leave under the FFCRA is <em>in addition</em> to any sick leave you
+        may have under other laws or your employer’s policies. Your employer
         cannot require you to use any other PTO before using paid sick time
         under the FFCRA.
       </p>
@@ -156,7 +156,7 @@ export const FedSickOnly = (props) => {
       <p>
         If you haven't already, click to learn about eligibility for
         unemployment compensation and Pandemic Unemployment Assistance (PUA):
-        <Link to="/uc-pua-benefits"> here. </Link>
+        <Link to="/questions/uc-pua-benefits"> here. </Link>
       </p>
     </div>
   );
@@ -172,7 +172,7 @@ export const PhillySickandFMLA = (props) => {
     <div>
       <p>
         You appear to be qualified for Philly sick leave and FMLA, but not
-        Federal Sick leave
+        Federal Sick leave.
       </p>
       <p>
         You likely qualify for Philadelphia’s paid sick leave.{" "}
@@ -230,7 +230,7 @@ export const PhillySickandFMLA = (props) => {
       <p>
         If you haven't already, click to learn about eligibility for
         unemployment compensation and Pandemic Unemployment Assistance (PUA):
-        <Link to="/uc-pua-benefits"> here. </Link>
+        <Link to="/questions/uc-pua-benefits"> here. </Link>
       </p>
     </div>
   );
@@ -246,13 +246,13 @@ export const PhillySickOnly = (props) => {
     <div>
       <p>
         You appear to be qualified for Philly sick leave, but not FMLA or
-        Federal Sick Leave
+        Federal Sick Leave.
       </p>
       <p>
         You likely qualify for Philadelphia’s paid sick leave.{" "}
         <b>
           {phillyLeaveIsPaid
-            ? "You said your employer has 10 or more employees, so this leave would be paid"
+            ? "You said your employer has 10 or more employees, so this leave would be paid."
             : phillyLeaveIsPaid === false
             ? "You said your employer has 9 or fewer employees, so this leave would be unpaid."
             : "If your employer has 10 or more employees, this leave must be paid.  If your employer has 9 or fewer employees, this leave may be unpaid."}
@@ -276,7 +276,7 @@ export const PhillySickOnly = (props) => {
       <p>
         If you haven't already, click to learn about eligibility for
         unemployment compensation and Pandemic Unemployment Assistance (PUA):
-        <Link to="/uc-pua-benefits"> here. </Link>
+        <Link to="/questions/uc-pua-benefits"> here. </Link>
       </p>
     </div>
   );
