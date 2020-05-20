@@ -19,6 +19,9 @@ export const NavDrawer = (props) => {
         <ListItem button component="a" href="/privacy">
           <ListItemText>Privacy Policy</ListItemText>
         </ListItem>
+        <ListItem button component="a" href="/feedback">
+          <ListItemText>Feedback</ListItemText>
+        </ListItem>
       </List>
     </Drawer>
   );

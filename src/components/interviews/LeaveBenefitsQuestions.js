@@ -56,7 +56,7 @@ export function pickQuestion(state, dispatch) {
           pickChildCareAndFMLAInformation(state)
         );
       case "reducedHours":
-        return redirectToSlug("reduced-hours");
+        return redirectToSlug("reduced-hours", state);
       case "unsafeWorkingConditions":
         return (
           pickNextEmployeeOrIndependentQuestion(state, dispatch) ||
@@ -85,14 +85,14 @@ export function pickQuestion(state, dispatch) {
           pickChildCareAndFMLAInformation(state)
         );
       case "workingconditions":
-        return redirectToSlug("workers-right-to-complain");
+        return redirectToSlug("workers-right-to-complain", state);
       case "workClosed":
         return (
           pickNextPhillySickQuestion(state, dispatch) ||
           pickPhillySickLeaveInformation(state)
         );
       case "other":
-        return redirectToSlug("other");
+        return redirectToSlug("other", state);
       default:
         return (
           <NotCurrentlyWorking
@@ -375,9 +375,9 @@ function pickEmployeeOrNonEmployeeInformation(state) {
     (state.haveBoss.answer === "yes" || state.trackHours.answer === "yes") &&
     state.ownBusiness.answer === "no"
   ) {
-    return redirectToSlug("nlra-osha");
+    return redirectToSlug("nlra-osha", state);
   } else {
-    return redirectToSlug("unsafe-nonemployee");
+    return redirectToSlug("unsafe-nonemployee", state);
   }
 }
 /**
@@ -546,7 +546,6 @@ function pickNextFMLAQuestion(state, dispatch) {
     );
   }
 
-  console.log("No more fed sick leave questions to ask.");
   return null;
 }
 
@@ -560,9 +559,9 @@ function pickProtectedLeaveInformation(state) {
     checkIfEligibleForFedSick(state) ||
     checkIfEligibleForPhillySick(state)
   ) {
-    return redirectToSlug("leave-is-protected");
+    return redirectToSlug("leave-is-protected", state);
   }
-  return redirectToSlug("leave-not-protected");
+  return redirectToSlug("leave-not-protected", state);
 }
 
 function pickSickLeaveAndFMLAWhenCaringForRelativeInformation(state) {
@@ -573,37 +572,44 @@ function pickSickLeaveAndFMLAWhenCaringForRelativeInformation(state) {
 
   if (isEligibleForFedSick && isEligibleForPhillySick && isEligibleForFMLA) {
     if (phillyLeaveIsPaid) {
-      return redirectToSlug("sick-relative-fed-sick-philly-paid-sick-and-fmla");
+      return redirectToSlug(
+        "sick-relative-fed-sick-philly-paid-sick-and-fmla",
+        state
+      );
     } else {
       return redirectToSlug(
-        "sick-relative-fed-sick-philly-unpaid-sick-and-fmla"
+        "sick-relative-fed-sick-philly-unpaid-sick-and-fmla",
+        state
       );
     }
   }
 
   if (isEligibleForFedSick && !isEligibleForPhillySick && !isEligibleForFMLA) {
-    return redirectToSlug("sick-relative-fed-sick-only");
+    return redirectToSlug("sick-relative-fed-sick-only", state);
   }
 
   if (!isEligibleForFedSick && isEligibleForPhillySick && isEligibleForFMLA) {
     if (phillyLeaveIsPaid) {
-      return redirectToSlug("sick-relative-philly-paid-sick-and-fmla");
+      return redirectToSlug("sick-relative-philly-paid-sick-and-fmla", state);
     } else {
-      redirectToSlug("sick-relative-philly-unpaid-sick-and-fmla");
+      redirectToSlug("sick-relative-philly-unpaid-sick-and-fmla", state);
     }
   }
   if (!isEligibleForFedSick && isEligibleForPhillySick && !isEligibleForFMLA) {
     if (phillyLeaveIsPaid) {
-      return redirectToSlug("sick-relative-philly-paid-sick");
+      return redirectToSlug("sick-relative-philly-paid-sick", state);
     } else {
-      return redirectToSlug("sick-relative-philly-unpaid-sick");
+      return redirectToSlug("sick-relative-philly-unpaid-sick", state);
     }
   }
   if (!isEligibleForFedSick && !isEligibleForPhillySick && !isEligibleForFMLA) {
-    return redirectToSlug("sick-relative-not-fed-sick-philly-sick-or-fmla");
+    return redirectToSlug(
+      "sick-relative-not-fed-sick-philly-sick-or-fmla",
+      state
+    );
   }
   if (!isEligibleForFedSick && !isEligibleForPhillySick && isEligibleForFMLA) {
-    return redirectToSlug("sick-relative-fmla");
+    return redirectToSlug("sick-relative-fmla", state);
   }
 
   return (
@@ -630,35 +636,35 @@ function pickSickLeaveAndFMLAInformation(state) {
 
   if (isEligibleForFedSick && isEligibleForPhillySick && isEligibleForFMLA) {
     if (phillyLeaveIsPaid) {
-      return redirectToSlug("fed-sick-philly-paid-sick-and-fmla");
+      return redirectToSlug("fed-sick-philly-paid-sick-and-fmla", state);
     } else {
-      return redirectToSlug("fed-sick-philly-unpaid-sick-and-fmla");
+      return redirectToSlug("fed-sick-philly-unpaid-sick-and-fmla", state);
     }
   }
 
   if (isEligibleForFedSick && !isEligibleForPhillySick && !isEligibleForFMLA) {
-    return redirectToSlug("fed-sick-only");
+    return redirectToSlug("fed-sick-only", state);
   }
 
   if (!isEligibleForFedSick && isEligibleForPhillySick && isEligibleForFMLA) {
     if (phillyLeaveIsPaid) {
-      return redirectToSlug("philly-paid-sick-and-fmla");
+      return redirectToSlug("philly-paid-sick-and-fmla", state);
     } else {
-      redirectToSlug("philly-unpaid-sick-and-fmla");
+      redirectToSlug("philly-unpaid-sick-and-fmla", state);
     }
   }
   if (!isEligibleForFedSick && isEligibleForPhillySick && !isEligibleForFMLA) {
     if (phillyLeaveIsPaid) {
-      return redirectToSlug("philly-paid-sick");
+      return redirectToSlug("philly-paid-sick", state);
     } else {
-      return redirectToSlug("philly-unpaid-sick");
+      return redirectToSlug("philly-unpaid-sick", state);
     }
   }
   if (!isEligibleForFedSick && !isEligibleForPhillySick && !isEligibleForFMLA) {
-    return redirectToSlug("not-fed-sick-philly-sick-or-fmla");
+    return redirectToSlug("not-fed-sick-philly-sick-or-fmla", state);
   }
   if (!isEligibleForFedSick && !isEligibleForPhillySick && isEligibleForFMLA) {
-    return redirectToSlug("fmla");
+    return redirectToSlug("fmla", state);
   }
 
   return (
@@ -756,9 +762,9 @@ function pickPhillySickLeaveInformation(state) {
   const isEligibleForPhillySick = checkIfEligibleForPhillySick(state);
 
   if (isEligibleForPhillySick) {
-    return redirectToSlug("eligible-philly-leave");
+    return redirectToSlug("eligible-philly-leave", state);
   }
-  return redirectToSlug("ineligible-philly-leave");
+  return redirectToSlug("ineligible-philly-leave", state);
 }
 
 /**
@@ -786,9 +792,9 @@ function pickChildCareAndFMLAInformation(state) {
     employedThirtyDays.answer === "yes" &&
     healthcareWorker.answer === "no"
   ) {
-    return redirectToSlug("fmla-for-childcare");
+    return redirectToSlug("fmla-for-childcare", state);
   }
-  return redirectToSlug("no-fmla-for-childcare");
+  return redirectToSlug("no-fmla-for-childcare", state);
 }
 
 /**
@@ -847,6 +853,13 @@ function checkIfEligibleForPhillySick(state) {
   return false;
 }
 
-function redirectToSlug(slug) {
-  return <Redirect to={"/questions/" + INTERVIEW_SLUG + "/" + slug} />;
+function redirectToSlug(slug, state) {
+  return (
+    <Redirect
+      to={{
+        pathname: "/questions/" + INTERVIEW_SLUG + "/" + slug,
+        state: state,
+      }}
+    />
+  );
 }

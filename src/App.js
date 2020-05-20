@@ -11,7 +11,7 @@ import { PageNotFound } from "./components/pages/PageNotFound";
 import { About } from "./components/pages/About";
 import { Referrals } from "./components/pages/Referrals";
 import { PrivacyPolicy } from "./components/pages/PrivacyPolicy";
-
+import { Feedback } from "./components/pages/Feedback";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { NavBar } from "./components/extras/NavBar";
 import { NavDrawer } from "./components/extras/NavDrawer";
@@ -62,6 +62,9 @@ function App() {
               </Route>
               <Route exact path={"/privacy"}>
                 <PrivacyPolicy></PrivacyPolicy>
+              </Route>
+              <Route exact path={"/feedback"}>
+                <Feedback />
               </Route>
               <Route
                 path="/questions/:interviewSlug/:explanationSlug"
