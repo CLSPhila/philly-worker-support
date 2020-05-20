@@ -36,8 +36,9 @@ export const INTERVIEW_SLUG = "leave-benefits";
  * @param {*} state
  */
 export function pickQuestion(state, dispatch) {
-  if (state.areYouCurrentlyWorking.answer === "yes") {
-    switch (state.currentlyWorkingReasonForSeekingHelp.answer) {
+  const { answers } = state;
+  if (answers.areYouCurrentlyWorking.answer === "yes") {
+    switch (answers.currentlyWorkingReasonForSeekingHelp.answer) {
       case "IamSick":
         return (
           pickNextSickLeaveAndFMLAQuestion(state, dispatch) ||
@@ -66,13 +67,13 @@ export function pickQuestion(state, dispatch) {
         return (
           <CurrentlyWorking
             dispatch={dispatch}
-            questionId={state.currentlyWorkingReasonForSeekingHelp.id}
+            questionId={answers.currentlyWorkingReasonForSeekingHelp.id}
           />
         );
     }
   }
-  if (state.areYouCurrentlyWorking.answer === "no") {
-    switch (state.notCurrentlyWorkingReasonForSeekingHelp.answer) {
+  if (answers.areYouCurrentlyWorking.answer === "no") {
+    switch (answers.notCurrentlyWorkingReasonForSeekingHelp.answer) {
       case "sickleave":
       case "sickcare":
         return (
@@ -97,7 +98,7 @@ export function pickQuestion(state, dispatch) {
         return (
           <NotCurrentlyWorking
             dispatch={dispatch}
-            questionId={state.notCurrentlyWorkingReasonForSeekingHelp.id}
+            questionId={answers.notCurrentlyWorkingReasonForSeekingHelp.id}
           />
         );
     }
@@ -335,29 +336,30 @@ export const explanations = [
  */
 function pickNextEmployeeOrIndependentQuestion(state, dispatch) {
   const props = { state, dispatch };
-  if (state.haveBoss.answer === null) {
+  const { answers } = state;
+  if (answers.haveBoss.answer === null) {
     return (
       <EmployeeOrICQuestions.HaveBoss
         {...props}
-        questionId={state.haveBoss.id}
+        questionId={answers.haveBoss.id}
       />
     );
   }
 
-  if (state.trackHours.answer === null) {
+  if (answers.trackHours.answer === null) {
     return (
       <EmployeeOrICQuestions.TrackHours
         {...props}
-        questionId={state.trackHours.id}
+        questionId={answers.trackHours.id}
       />
     );
   }
 
-  if (state.ownBusiness.answer === null) {
+  if (answers.ownBusiness.answer === null) {
     return (
       <EmployeeOrICQuestions.OwnBusiness
         {...props}
-        questionId={state.ownBusiness.id}
+        questionId={answers.ownBusiness.id}
       />
     );
   }
@@ -371,13 +373,15 @@ function pickNextEmployeeOrIndependentQuestion(state, dispatch) {
  * @param {} state
  */
 function pickEmployeeOrNonEmployeeInformation(state) {
+  const { answers } = state;
   if (
-    (state.haveBoss.answer === "yes" || state.trackHours.answer === "yes") &&
-    state.ownBusiness.answer === "no"
+    (answers.haveBoss.answer === "yes" ||
+      answers.trackHours.answer === "yes") &&
+    answers.ownBusiness.answer === "no"
   ) {
-    return redirectToSlug("nlra-osha", state);
+    return redirectToSlug("nlra-osha", answers);
   } else {
-    return redirectToSlug("unsafe-nonemployee", state);
+    return redirectToSlug("unsafe-nonemployee", answers);
   }
 }
 /**
@@ -396,45 +400,46 @@ function pickNextSickLeaveAndFMLAQuestion(state, dispatch) {
 
 function pickNextFedSickQuestion(state, dispatch) {
   const props = { state, dispatch };
+  const { answers } = state;
 
-  if (state.hasPublicEmployer.answer === null) {
+  if (answers.hasPublicEmployer.answer === null) {
     return (
       <FedSickLeaveQuestions.HasPublicEmployer
         {...props}
-        questionId={state.hasPublicEmployer.id}
+        questionId={answers.hasPublicEmployer.id}
       />
     );
   }
 
   if (
-    state.fedSickLeaveEmployerSize.answer === null &&
-    state.hasPublicEmployer.answer === "no"
+    answers.fedSickLeaveEmployerSize.answer === null &&
+    answers.hasPublicEmployer.answer === "no"
   ) {
     return (
       <FedSickLeaveQuestions.EmployerSize
         {...props}
-        questionId={state.fedSickLeaveEmployerSize.id}
+        questionId={answers.fedSickLeaveEmployerSize.id}
       />
     );
   }
 
-  if (state.haveCovid.answer === null) {
+  if (answers.haveCovid.answer === null) {
     return (
       <FedSickLeaveQuestions.HaveCovid
         {...props}
-        questionId={state.haveCovid.id}
+        questionId={answers.haveCovid.id}
       />
     );
   }
 
   if (
-    state.healthcareWorker.answer === null &&
-    state.fedSickLeaveEmployerSize.answer === "ltFiveHundred"
+    answers.healthcareWorker.answer === null &&
+    answers.fedSickLeaveEmployerSize.answer === "ltFiveHundred"
   ) {
     return (
       <FedSickLeaveQuestions.HeathcareWorker
         {...props}
-        questionId={state.healthcareWorker.id}
+        questionId={answers.healthcareWorker.id}
       />
     );
   }
@@ -443,50 +448,51 @@ function pickNextFedSickQuestion(state, dispatch) {
 
 function pickNextPhillySickQuestion(state, dispatch) {
   const props = { state, dispatch };
+  const { answers } = state;
 
-  if (state.workInPhilly.answer === null) {
+  if (answers.workInPhilly.answer === null) {
     return (
       <PhillySickLeaveQuestions.WorkInPhilly
         {...props}
-        questionId={state.workInPhilly.id}
+        questionId={answers.workInPhilly.id}
       />
     );
   }
 
   // No need to ask any followups if the person
   // does not work in philly.
-  if (state.workInPhilly.answer === "no") {
+  if (answers.workInPhilly.answer === "no") {
     return null;
   }
 
-  if (state.workingNinetyDays.answer === null) {
+  if (answers.workingNinetyDays.answer === null) {
     return (
       <PhillySickLeaveQuestions.WorkingNinetyDays
         {...props}
-        questionId={state.workingNinetyDays.id}
+        questionId={answers.workingNinetyDays.id}
       />
     );
   }
 
   // No need to ask followups if user hasn't worked long enough.
-  if (state.workingNinetyDays.answer === "no") {
+  if (answers.workingNinetyDays.answer === "no") {
     return null;
   }
 
-  if (state.isFulltimeEmployee.answer === null) {
+  if (answers.isFulltimeEmployee.answer === null) {
     return (
       <PhillySickLeaveQuestions.IsFullTimeEmployee
         {...props}
-        questionId={state.isFulltimeEmployee.id}
+        questionId={answers.isFulltimeEmployee.id}
       />
     );
   }
 
-  if (state.employerHasTenEmployees === null) {
+  if (answers.employerHasTenEmployees === null) {
     return (
       <PhillySickLeaveQuestions.EmployerHasTenEmployees
         {...props}
-        questionId={state.employerHasTenEmployees.id}
+        questionId={answers.employerHasTenEmployees.id}
       />
     );
   }
@@ -495,19 +501,20 @@ function pickNextPhillySickQuestion(state, dispatch) {
 
 function pickNextFMLAQuestion(state, dispatch) {
   const props = { state, dispatch };
+  const { answers } = state;
 
   // if any of these are no, we'll skip the rest by returning null.
 
-  if (state.twelveMonthsEmployed.answer === null) {
+  if (answers.twelveMonthsEmployed.answer === null) {
     return (
       <FMLAQuestions.TwelveMonthsEmployed
         {...props}
-        questionId={state.twelveMonthsEmployed.id}
+        questionId={answers.twelveMonthsEmployed.id}
       />
     );
   }
 
-  if (state.twelveMonthsEmployed.answer === "no") {
+  if (answers.twelveMonthsEmployed.answer === "no") {
     return null;
   }
 
@@ -684,72 +691,74 @@ function pickSickLeaveAndFMLAInformation(state) {
 function pickNextChildCareAndFMLAQuestion(state, dispatch) {
   const props = { state, dispatch };
 
-  if (state.hasPublicEmployer.answer === null) {
+  const { answers } = state;
+
+  if (answers.hasPublicEmployer.answer === null) {
     return (
       <FedSickLeaveQuestions.HasPublicEmployer
         {...props}
-        questionId={state.hasPublicEmployer.id}
+        questionId={answers.hasPublicEmployer.id}
       />
     );
   }
 
   if (
-    state.fedSickLeaveEmployerSize.answer === null &&
-    state.hasPublicEmployer.answer === "no"
+    answers.fedSickLeaveEmployerSize.answer === null &&
+    answers.hasPublicEmployer.answer === "no"
   ) {
     return (
       <FedSickLeaveQuestions.EmployerSize
         {...props}
-        questionId={state.fedSickLeaveEmployerSize.id}
+        questionId={answers.fedSickLeaveEmployerSize.id}
       />
     );
   }
 
-  if (state.daycareClosed.answer === null) {
+  if (answers.daycareClosed.answer === null) {
     return (
       <ChildCareFMLAQuestions.ChildCareDaycareClosed
         {...props}
-        questionId={state.daycareClosed.id}
+        questionId={answers.daycareClosed.id}
       />
     );
   }
 
   //skip the rest if No.
-  if (state.daycareClosed.answer === "no") {
+  if (answers.daycareClosed.answer === "no") {
     return null;
   }
 
-  if (state.anySuitableOtherChildcare.answer === null) {
+  if (answers.anySuitableOtherChildcare.answer === null) {
     return (
       <ChildCareFMLAQuestions.AnySuitableOtherChildcare
         {...props}
-        questionId={state.anySuitableOtherChildcare.id}
+        questionId={answers.anySuitableOtherChildcare.id}
       />
     );
   }
 
-  if (state.anySuitableOtherChildcare.answer === "yes") {
+  if (answers.anySuitableOtherChildcare.answer === "yes") {
     return null;
   }
 
-  if (state.employedThirtyDays.answer === null) {
+  if (answers.employedThirtyDays.answer === null) {
     return (
       <ChildCareFMLAQuestions.EmployedThirtyDays
         {...props}
-        questionId={state.employedThirtyDays.id}
+        questionId={answers.employedThirtyDays.id}
       />
     );
   }
 
-  if (state.employedThirtyDays.answer === "no") {
+  if (answers.employedThirtyDays.answer === "no") {
     return null;
   }
 
-  if (state.healthcareWorker.answer === null) {
+  if (answers.healthcareWorker.answer === null) {
     return (
       <FedSickLeaveQuestions.HeathcareWorker
         {...props}
-        questionId={state.healthcareWorker.id}
+        questionId={answers.healthcareWorker.id}
       />
     );
   }
@@ -773,6 +782,7 @@ function pickPhillySickLeaveInformation(state) {
  * @param {} state
  */
 function pickChildCareAndFMLAInformation(state) {
+  const { answers } = state;
   const {
     hasPublicEmployer,
     fedSickLeaveEmployerSize,
@@ -780,7 +790,7 @@ function pickChildCareAndFMLAInformation(state) {
     anySuitableOtherChildcare,
     employedThirtyDays,
     healthcareWorker,
-  } = state;
+  } = answers;
   console.log("picking childcare fmla eligibility");
   console.log(state);
   if (
@@ -802,12 +812,13 @@ function pickChildCareAndFMLAInformation(state) {
  * @param {} state
  */
 function checkIfEligibleForFedSick(state) {
+  const { answers } = state;
   const {
     hasPublicEmployer,
     fedSickLeaveEmployerSize,
     haveCovid,
     healthcareWorker,
-  } = state;
+  } = answers;
   if (
     (hasPublicEmployer.answer === "yes" ||
       (hasPublicEmployer.answer === "no" &&
@@ -822,12 +833,13 @@ function checkIfEligibleForFedSick(state) {
 }
 
 function checkIfEligibleForFMLA(state) {
+  const { answers } = state;
   const {
     twelveMonthsEmployed,
     workedEnoughHoursForFMLA,
     fiftyNearbyEmployees,
     sickPersonIsCloseRelative,
-  } = state;
+  } = answers;
   if (
     twelveMonthsEmployed.answer === "yes" &&
     workedEnoughHoursForFMLA.answer === "yes" &&
@@ -841,7 +853,8 @@ function checkIfEligibleForFMLA(state) {
 }
 
 function checkIfEligibleForPhillySick(state) {
-  const { workInPhilly, workingNinetyDays, isFulltimeEmployee } = state;
+  const { answers } = state;
+  const { workInPhilly, workingNinetyDays, isFulltimeEmployee } = answers;
 
   if (
     workInPhilly.answer === "yes" &&

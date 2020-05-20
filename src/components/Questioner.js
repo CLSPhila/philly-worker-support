@@ -24,20 +24,25 @@ const createQuestions = (questions) => {
     }),
     {}
   );
-  return initialState;
+  return { answers: initialState, interviewHistory: [] };
 };
 
 const questionReducer = (state, action) => {
   console.log("processing action: ");
   console.log(action);
+  const { answers, interviewHistory } = state;
+  console.log(interviewHistory);
   switch (action.type) {
     case "UPDATE_ANSWER":
       return {
-        ...state,
-        [action.payload.id]: {
-          ...state[action.payload.id],
-          answer: action.payload.answer,
+        answers: {
+          ...answers,
+          [action.payload.id]: {
+            ...answers[action.payload.id],
+            answer: action.payload.answer,
+          },
         },
+        interviewHistory: [...interviewHistory, action.payload.id],
       };
 
     default:
