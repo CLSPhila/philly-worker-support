@@ -23,7 +23,8 @@ export const Feedback = () => {
         We will not be able to respond to feedback, but we'll do our best to
         incorporate it into this site as it develops.
       </p>
-      <form name="contact" method="POST" data-netlify="true">
+      <form name="feedback" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="feedback" />
         <p>
           <label htmlFor="message">Message:</label>
         </p>
