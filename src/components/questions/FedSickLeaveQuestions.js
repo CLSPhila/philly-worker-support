@@ -44,11 +44,7 @@ export const EmployerSize = (props) => {
 
 export const HaveCovid = (props) => {
   return (
-    <MultipleChoice
-      {...props}
-      question="Do you meet one of these criteria?"
-      label="Do you either,"
-    >
+    <MultipleChoice {...props} question="Do you meet one of these criteria?">
       <FormControlLabel
         control={<Radio />}
         value="haveCovid"

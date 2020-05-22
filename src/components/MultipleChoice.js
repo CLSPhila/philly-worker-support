@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { updateAnswer } from "../actions";
+import { updateAnswer, goBack } from "../actions";
 import { makeStyles } from "@material-ui/core/styles";
 //import Select from "@material-ui/core/Select";
 //import MenuItem from "@material-ui/core/MenuItem";
@@ -7,8 +7,12 @@ import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme) => ({
+  fieldSet: {
+    width: "100%",
+  },
   questionTitle: {
     marginTop: 0,
   },
@@ -28,16 +32,20 @@ export default function (props) {
   };
 
   const handleSubmit = (e) => {
-    console.log("form submitting");
     e.preventDefault();
     dispatch(updateAnswer(questionId, answer));
+  };
+
+  const backButtonClickHandler = (e) => {
+    e.preventDefault();
+    dispatch(goBack());
   };
 
   return (
     <div>
       <h1 className={styles.questionTitle}> {question} </h1>
       <form id={questionId} onSubmit={handleSubmit}>
-        <FormControl component="fieldset">
+        <FormControl className={styles.fieldSet} component="fieldset">
           <FormLabel component="legend" htmlFor={questionId}>
             {label}
           </FormLabel>
@@ -49,13 +57,22 @@ export default function (props) {
           >
             {children}
           </RadioGroup>
-          <Button
-            variant="contained"
-            type="submit"
-            disabled={answer === initialAnswer ? true : false}
-          >
-            Next
-          </Button>
+          <Grid container spacing={2}>
+            <Grid item xs={3}>
+              <Button variant="contained" onClick={backButtonClickHandler}>
+                Previous
+              </Button>
+            </Grid>
+            <Grid item xs={3}>
+              <Button
+                variant="contained"
+                type="submit"
+                disabled={answer === initialAnswer ? true : false}
+              >
+                Next
+              </Button>
+            </Grid>
+          </Grid>
         </FormControl>
       </form>
     </div>

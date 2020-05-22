@@ -518,37 +518,37 @@ function pickNextFMLAQuestion(state, dispatch) {
     return null;
   }
 
-  if (state.workedEnoughHoursForFMLA.answer === null) {
+  if (answers.workedEnoughHoursForFMLA.answer === null) {
     return (
       <FMLAQuestions.WorkedEnoughHours
         {...props}
-        questionId={state.workedEnoughHoursForFMLA.id}
+        questionId={answers.workedEnoughHoursForFMLA.id}
       />
     );
   }
 
-  if (state.workedEnoughHoursForFMLA.answer === "no") {
+  if (answers.workedEnoughHoursForFMLA.answer === "no") {
     return null;
   }
 
-  if (state.fiftyNearbyEmployees.answer === null) {
+  if (answers.fiftyNearbyEmployees.answer === null) {
     return (
       <FMLAQuestions.FiftyNearbyEmployees
         {...props}
-        questionId={state.fiftyNearbyEmployees.id}
+        questionId={answers.fiftyNearbyEmployees.id}
       />
     );
   }
 
-  if (state.fiftyNearbyEmployees.answer === "no") {
+  if (answers.fiftyNearbyEmployees.answer === "no") {
     return null;
   }
 
-  if (state.sickPersonIsCloseRelative.answer === null) {
+  if (answers.sickPersonIsCloseRelative.answer === null) {
     return (
       <FMLAQuestions.SickPersonIsCloseRelative
         {...props}
-        questionId={state.sickPersonIsCloseRelative.id}
+        questionId={answers.sickPersonIsCloseRelative.id}
       />
     );
   }
@@ -639,7 +639,8 @@ function pickSickLeaveAndFMLAInformation(state) {
   const isEligibleForFedSick = checkIfEligibleForFedSick(state);
   const isEligibleForPhillySick = checkIfEligibleForPhillySick(state);
   const isEligibleForFMLA = checkIfEligibleForFMLA(state);
-  const phillyLeaveIsPaid = state.employerHasTenEmployees.answer === "yes";
+  const phillyLeaveIsPaid =
+    state.answers.employerHasTenEmployees.answer === "yes";
 
   if (isEligibleForFedSick && isEligibleForPhillySick && isEligibleForFMLA) {
     if (phillyLeaveIsPaid) {
