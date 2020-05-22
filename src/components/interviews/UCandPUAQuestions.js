@@ -54,12 +54,13 @@ export const pickQuestion = (state, dispatch) => {
 };
 
 function pickNextUCQuestion(state, dispatch) {
+  const { answers, interviewHistory } = state;
   const {
     understandsWorkAuthRequirement,
     selfEmployed,
     earnedEnough,
     alreadyUsedBenefits,
-  } = state;
+  } = answers;
 
   if (understandsWorkAuthRequirement.answer === null) {
     return (
@@ -103,7 +104,8 @@ function pickNextUCQuestion(state, dispatch) {
 }
 
 function pickUCInformation(state) {
-  const { selfEmployed, earnedEnough, alreadyUsedBenefits } = state;
+  const { answers } = state;
+  const { selfEmployed, earnedEnough, alreadyUsedBenefits } = answers;
   if (
     selfEmployed.answer === "no" &&
     earnedEnough.answer === "yes" &&
