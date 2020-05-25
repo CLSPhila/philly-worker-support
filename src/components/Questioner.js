@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
  * Machinery for running a guided interview.
  */
 
-const createQuestions = (questions) => {
+export const createQuestions = (questions) => {
   const initialState = questions.reduce(
     (qs, thisQ) => ({
       ...qs,
@@ -60,7 +60,7 @@ const questionReducer = (state, action) => {
           },
         },
         interviewHistory: [...interviewHistory].filter(
-          (item) => item != previousQuestionId
+          (item) => item !== previousQuestionId
         ),
       };
     }

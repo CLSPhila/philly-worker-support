@@ -42,13 +42,39 @@ export const EmployerSize = (props) => {
   );
 };
 
+export const RelativeHasCovid = (props) => {
+  return (
+    <MultipleChoice
+      {...props}
+      question="Does the person you are caring for meet one of these criteria?"
+    >
+      <FormControlLabel
+        control={<Radio />}
+        value="haveCovid"
+        label="The person thinks they have Covid-19, and I need need time off to help them get tested or see a
+        doctor."
+      />
+      <FormControlLabel
+        control={<Radio />}
+        value="selfQuarantine"
+        label="A doctor told them to self quarantine."
+      />
+      <FormControlLabel
+        control={<Radio />}
+        value="neither"
+        label="Neither of these."
+      />
+    </MultipleChoice>
+  );
+};
+
 export const HaveCovid = (props) => {
   return (
     <MultipleChoice {...props} question="Do you meet one of these criteria?">
       <FormControlLabel
         control={<Radio />}
         value="haveCovid"
-        label="I think I have covid-19, and I need need time off to get tested or see a
+        label="I think I have Covid-19, and I need need time off to get tested or see a
         doctor."
       />
       <FormControlLabel
