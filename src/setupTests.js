@@ -20,15 +20,15 @@ import "@testing-library/jest-dom/extend-expect";
  * @param {*} newAnswers
  */
 const updateAnswers = (answers, newAnswers) => {
-  console.log("---answers are---");
-  console.log(answers);
-  console.log("---trying to update answers with ---");
+  //console.log("---answers are---");
+  //console.log(answers);
+  //console.log("---trying to update answers with ---");
   var reshapedNewAnswers = {};
   for (const [questionId, newAnswer] of Object.entries(newAnswers)) {
     reshapedNewAnswers[questionId] = { id: questionId, answer: newAnswer };
   }
   const updatedAnswers = { ...answers, ...reshapedNewAnswers };
-  console.log(updatedAnswers);
+  //console.log(updatedAnswers);
   return updatedAnswers;
 };
 

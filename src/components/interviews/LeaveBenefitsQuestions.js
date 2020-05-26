@@ -133,8 +133,10 @@ export const questions = [
     component: FedSickLeaveQuestions.EmployerSize,
   },
   {
-    id: "haveCovid",
-    component: FedSickLeaveQuestions.HaveCovid,
+    id: "IHaveCovid",
+  },
+  {
+    id: "relativeHasCovid",
   },
   {
     id: "healthcareWorker",
@@ -413,11 +415,16 @@ function pickNextSickLeaveAndFMLAQuestionWhenCaringForRelative(
 ) {
   return (
     pickNextFedSickQuestionWhenCaringForSickRelative(state, dispatch) ||
-    pickNextPhillySickQuestion(state, dispatch) ||
-    pickNextFMLAQuestion(state, dispatch)
+    pickNextPhillySickQuestionWhenCaringForSickRelative(state, dispatch) ||
+    pickNextFMLAQuestionWhenCaringForSickRelative(state, dispatch)
   );
 }
 
+/**
+ * Pick the next quesiton about federal sick leave, if the user is sick themselves.
+ * @param {*} state
+ * @param {*} dispatch
+ */
 function pickNextFedSickQuestion(state, dispatch) {
   const props = { state, dispatch };
   const { answers } = state;
@@ -443,11 +450,11 @@ function pickNextFedSickQuestion(state, dispatch) {
     );
   }
 
-  if (answers.haveCovid.answer === null) {
+  if (answers.IHaveCovid.answer === null) {
     return (
-      <FedSickLeaveQuestions.HaveCovid
+      <FedSickLeaveQuestions.IHaveCovid
         {...props}
-        questionId={answers.haveCovid.id}
+        questionId={answers.IHaveCovid.id}
       />
     );
   }
@@ -491,11 +498,11 @@ function pickNextFedSickQuestionWhenCaringForSickRelative(state, dispatch) {
     );
   }
 
-  if (answers.haveCovid.answer === null) {
+  if (answers.relativeHasCovid.answer === null) {
     return (
       <FedSickLeaveQuestions.RelativeHasCovid
         {...props}
-        questionId={answers.haveCovid.id}
+        questionId={answers.relativeHasCovid.id}
       />
     );
   }
@@ -514,6 +521,11 @@ function pickNextFedSickQuestionWhenCaringForSickRelative(state, dispatch) {
   return null;
 }
 
+/**
+ * Pick the next question about eligibility for philadelphia sick leave, if the person is sick themselves.
+ * @param {} state
+ * @param {*} dispatch
+ */
 function pickNextPhillySickQuestion(state, dispatch) {
   const props = { state, dispatch };
   const { answers } = state;
@@ -567,7 +579,133 @@ function pickNextPhillySickQuestion(state, dispatch) {
   return null;
 }
 
+/**
+ * Pick the next question about eligibility for philadelphia sick leave, if the person is caring for someonesick.
+ * @param {} state
+ * @param {*} dispatch
+ */
+function pickNextPhillySickQuestionWhenCaringForSickRelative(state, dispatch) {
+  const props = { state, dispatch };
+  const { answers } = state;
+
+  if (answers.workInPhilly.answer === null) {
+    return (
+      <PhillySickLeaveQuestions.WorkInPhilly
+        {...props}
+        questionId={answers.workInPhilly.id}
+      />
+    );
+  }
+
+  // No need to ask any followups if the person
+  // does not work in philly.
+  if (answers.workInPhilly.answer === "no") {
+    return null;
+  }
+
+  if (answers.workingNinetyDays.answer === null) {
+    return (
+      <PhillySickLeaveQuestions.WorkingNinetyDays
+        {...props}
+        questionId={answers.workingNinetyDays.id}
+      />
+    );
+  }
+
+  // No need to ask followups if user hasn't worked long enough.
+  if (answers.workingNinetyDays.answer === "no") {
+    return null;
+  }
+
+  if (answers.isFulltimeEmployee.answer === null) {
+    return (
+      <PhillySickLeaveQuestions.IsFullTimeEmployee
+        {...props}
+        questionId={answers.isFulltimeEmployee.id}
+      />
+    );
+  }
+
+  if (answers.employerHasTenEmployees === null) {
+    return (
+      <PhillySickLeaveQuestions.EmployerHasTenEmployees
+        {...props}
+        questionId={answers.employerHasTenEmployees.id}
+      />
+    );
+  }
+
+  if (answers.sickPersonIsCloseRelative.answer === null) {
+    return (
+      <FMLAQuestions.SickPersonIsCloseRelative
+        {...props}
+        questionId={answers.sickPersonIsCloseRelative.id}
+      />
+    );
+  }
+
+  return null;
+}
+
+/**
+ * Pick the next FMLA eligibility question, when the user is seeking leave for their own health.
+ * @param {} state
+ * @param {*} dispatch
+ */
 function pickNextFMLAQuestion(state, dispatch) {
+  const props = { state, dispatch };
+  const { answers } = state;
+
+  // if any of these are no, we'll skip the rest by returning null.
+
+  if (answers.twelveMonthsEmployed.answer === null) {
+    return (
+      <FMLAQuestions.TwelveMonthsEmployed
+        {...props}
+        questionId={answers.twelveMonthsEmployed.id}
+      />
+    );
+  }
+
+  if (answers.twelveMonthsEmployed.answer === "no") {
+    return null;
+  }
+
+  if (answers.workedEnoughHoursForFMLA.answer === null) {
+    return (
+      <FMLAQuestions.WorkedEnoughHours
+        {...props}
+        questionId={answers.workedEnoughHoursForFMLA.id}
+      />
+    );
+  }
+
+  if (answers.workedEnoughHoursForFMLA.answer === "no") {
+    return null;
+  }
+
+  if (answers.fiftyNearbyEmployees.answer === null) {
+    return (
+      <FMLAQuestions.FiftyNearbyEmployees
+        {...props}
+        questionId={answers.fiftyNearbyEmployees.id}
+      />
+    );
+  }
+
+  if (answers.fiftyNearbyEmployees.answer === "no") {
+    return null;
+  }
+
+  return null;
+}
+
+/**
+ * Pick the next question related to FMLA leave, when the user is seeking leave to care for someone else.
+ * @param {*} state
+ * @param {*} dispatch
+ */
+function pickNextFMLAQuestionWhenCaringForSickRelative(state, dispatch) {
   const props = { state, dispatch };
   const { answers } = state;
 
@@ -640,7 +778,9 @@ function pickProtectedLeaveInformation(state) {
 }
 
 function pickSickLeaveAndFMLAWhenCaringForRelativeInformation(state) {
-  const isEligibleForFedSick = checkIfEligibleForFedSick(state);
+  const isEligibleForFedSick = checkIfEligibleForFedSickWhenCaringForSickRelative(
+    state
+  );
   const isEligibleForPhillySick = checkIfEligibleForPhillySick(state);
   const isEligibleForFMLA = checkIfEligibleForFMLA(state);
   const phillyLeaveIsPaid =
@@ -876,9 +1016,8 @@ function pickChildCareAndFMLAInformation(state) {
   }
   return redirectToSlug("no-fmla-for-childcare", state);
 }
-
 /**
- * Determine if the user is eligible for federal sick leave.
+ * Determine if the user is eligible for federal sick leave, when user is caring for themselves.
  * @param {} state
  */
 function checkIfEligibleForFedSick(state) {
@@ -886,16 +1025,44 @@ function checkIfEligibleForFedSick(state) {
   const {
     hasPublicEmployer,
     fedSickLeaveEmployerSize,
-    haveCovid,
+    IHaveCovid,
+    relativeHasCovid,
     healthcareWorker,
   } = answers;
   if (
     (hasPublicEmployer.answer === "yes" ||
       (hasPublicEmployer.answer === "no" &&
         fedSickLeaveEmployerSize.answer === "ltFiveHundred")) &&
-    (haveCovid.answer === "haveCovid" ||
-      haveCovid.answer === "selfQuarantine") &&
+    (IHaveCovid.answer === "haveCovid" ||
+      IHaveCovid.answer === "selfQuarantine") &&
     healthcareWorker.answer === "no"
+  ) {
+    return true;
+  }
+  return false;
+}
+/**
+ * Determine if the user is eligible for federal sick leave, when user is caring for a sick relative.
+ * @param {} state
+ */
+function checkIfEligibleForFedSickWhenCaringForSickRelative(state) {
+  const { answers } = state;
+  const {
+    hasPublicEmployer,
+    fedSickLeaveEmployerSize,
+    IHaveCovid,
+    relativeHasCovid,
+    healthcareWorker,
+  } = answers;
+  if (
+    ((hasPublicEmployer.answer === "yes" ||
+      (hasPublicEmployer.answer === "no" &&
+        fedSickLeaveEmployerSize.answer === "ltFiveHundred")) &&
+      (IHaveCovid.answer === "haveCovid" ||
+        IHaveCovid.answer === "selfQuarantine")) ||
+    ((relativeHasCovid.answer === "haveCovid" ||
+      relativeHasCovid.answer === "selfQuarantine") &&
+      healthcareWorker.answer === "no")
   ) {
     return true;
   }

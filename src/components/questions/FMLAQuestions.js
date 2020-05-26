@@ -64,8 +64,7 @@ export const SickPersonIsCloseRelative = (props) => {
   return (
     <MultipleChoice
       {...props}
-      question="If you are taking a leave to care for someone else who is sick, is that person your son, daughter, spouse, or parent?"
-      label="If you are taking a leave to care for someone else who is sick, is that person your son, daughter, spouse, or parent?"
+      question="Is the person you need to care for your son, daughter, spouse, or parent?"
     >
       <FormControlLabel
         control={<Radio />}
@@ -77,12 +76,6 @@ export const SickPersonIsCloseRelative = (props) => {
         control={<Radio />}
         value="no"
         label="No, they are not."
-      />
-
-      <FormControlLabel
-        control={<Radio />}
-        value="notapplicable"
-        label="I'm not taking leave to care for someone else."
       />
     </MultipleChoice>
   );
