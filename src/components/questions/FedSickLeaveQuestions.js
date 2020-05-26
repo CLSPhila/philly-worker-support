@@ -5,18 +5,33 @@ import React from "react";
 import MultipleChoice from "../MultipleChoice";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
+import Box from "@material-ui/core/Box";
+import { HelpBox } from "../extras/HelpBox";
+import Typography from "@material-ui/core/Typography";
 
 export const HasPublicEmployer = (props) => {
   return (
-    <MultipleChoice
-      {...props}
-      question="Do you work for a public employer?"
-      label="Do you work for a public employer?"
-    >
-      <FormControlLabel control={<Radio />} value="yes" label="Yes, I do." />
+    <Box>
+      <MultipleChoice
+        {...props}
+        question="Do you work for a public employer?"
+        label="Do you work for a public employer?"
+      >
+        <FormControlLabel control={<Radio />} value="yes" label="Yes, I do." />
 
-      <FormControlLabel control={<Radio />} value="no" label="No, I do not." />
-    </MultipleChoice>
+        <FormControlLabel
+          control={<Radio />}
+          value="no"
+          label="No, I do not."
+        />
+      </MultipleChoice>
+      <HelpBox>
+        <Typography variant="body2">
+          Working for a public employer means you work for federal, state, or
+          local government, including government agencies.
+        </Typography>
+      </HelpBox>
+    </Box>
   );
 };
 

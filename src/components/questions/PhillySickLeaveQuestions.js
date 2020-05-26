@@ -11,8 +11,7 @@ export const WorkInPhilly = (props) => {
   return (
     <MultipleChoice
       {...props}
-      question="Does your job require you to work at least 40 hours per year in Philadelphia"
-      label="Does your job require you to work at least 40 hours per year in Philadelphia?"
+      question="Does your job involve working in Philadelphia for at least 40 hours each year?"
     >
       <FormControlLabel control={<Radio />} value="yes" label="Yes, it does." />
 

@@ -16,6 +16,10 @@ const useStyles = makeStyles((theme) => ({
   questionTitle: {
     marginTop: 0,
   },
+  navButton: {
+    maxWidth: "100%",
+    flexBasis: "5%",
+  },
 }));
 
 export default function (props) {
@@ -58,7 +62,7 @@ export default function (props) {
             {children}
           </RadioGroup>
           <Grid container spacing={2}>
-            <Grid item xs={3}>
+            <Grid item xs={3} className={styles.navButton}>
               <Button variant="contained" onClick={backButtonClickHandler}>
                 Previous
               </Button>
