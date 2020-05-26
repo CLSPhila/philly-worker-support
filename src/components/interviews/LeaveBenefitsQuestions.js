@@ -47,7 +47,10 @@ export function pickQuestion(state, dispatch) {
         );
       case "careForSick":
         return (
-          pickNextSickLeaveAndFMLAQuestion(state, dispatch) ||
+          pickNextSickLeaveAndFMLAQuestionWhenCaringForRelative(
+            state,
+            dispatch
+          ) ||
           // Pick the information to provide the user about
           pickSickLeaveAndFMLAWhenCaringForRelativeInformation(state)
         );
@@ -385,7 +388,7 @@ function pickEmployeeOrNonEmployeeInformation(state) {
   }
 }
 /**
- * Determine the next Sick Leave / FMLA question to ask.
+ * Determine the next Sick Leave / FMLA question to ask, when the user is sick.
  *
  * If we don't need any of those questions, return null.
  * @param {*} state
@@ -393,6 +396,23 @@ function pickEmployeeOrNonEmployeeInformation(state) {
 function pickNextSickLeaveAndFMLAQuestion(state, dispatch) {
   return (
     pickNextFedSickQuestion(state, dispatch) ||
+    pickNextPhillySickQuestion(state, dispatch) ||
+    pickNextFMLAQuestion(state, dispatch)
+  );
+}
+
+/**
+ * Determine the next Sick Leave / FMLA question to ask, when the user is caring for someone sick.
+ *
+ * If we don't need any of those questions, return null.
+ * @param {*} state
+ */
+function pickNextSickLeaveAndFMLAQuestionWhenCaringForRelative(
+  state,
+  dispatch
+) {
+  return (
+    pickNextFedSickQuestionWhenCaringForSickRelative(state, dispatch) ||
     pickNextPhillySickQuestion(state, dispatch) ||
     pickNextFMLAQuestion(state, dispatch)
   );
@@ -426,6 +446,54 @@ function pickNextFedSickQuestion(state, dispatch) {
   if (answers.haveCovid.answer === null) {
     return (
       <FedSickLeaveQuestions.HaveCovid
+        {...props}
+        questionId={answers.haveCovid.id}
+      />
+    );
+  }
+
+  if (
+    answers.healthcareWorker.answer === null &&
+    answers.fedSickLeaveEmployerSize.answer === "ltFiveHundred"
+  ) {
+    return (
+      <FedSickLeaveQuestions.HeathcareWorker
+        {...props}
+        questionId={answers.healthcareWorker.id}
+      />
+    );
+  }
+  return null;
+}
+
+function pickNextFedSickQuestionWhenCaringForSickRelative(state, dispatch) {
+  const props = { state, dispatch };
+  const { answers } = state;
+
+  if (answers.hasPublicEmployer.answer === null) {
+    return (
+      <FedSickLeaveQuestions.HasPublicEmployer
+        {...props}
+        questionId={answers.hasPublicEmployer.id}
+      />
+    );
+  }
+
+  if (
+    answers.fedSickLeaveEmployerSize.answer === null &&
+    answers.hasPublicEmployer.answer === "no"
+  ) {
+    return (
+      <FedSickLeaveQuestions.EmployerSize
+        {...props}
+        questionId={answers.fedSickLeaveEmployerSize.id}
+      />
+    );
+  }
+
+  if (answers.haveCovid.answer === null) {
+    return (
+      <FedSickLeaveQuestions.RelativeHasCovid
         {...props}
         questionId={answers.haveCovid.id}
       />
@@ -575,7 +643,8 @@ function pickSickLeaveAndFMLAWhenCaringForRelativeInformation(state) {
   const isEligibleForFedSick = checkIfEligibleForFedSick(state);
   const isEligibleForPhillySick = checkIfEligibleForPhillySick(state);
   const isEligibleForFMLA = checkIfEligibleForFMLA(state);
-  const phillyLeaveIsPaid = state.employerHasTenEmployees.answer === "yes";
+  const phillyLeaveIsPaid =
+    state.answers.employerHasTenEmployees.answer === "yes";
 
   if (isEligibleForFedSick && isEligibleForPhillySick && isEligibleForFMLA) {
     if (phillyLeaveIsPaid) {
