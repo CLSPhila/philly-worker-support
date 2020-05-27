@@ -19,7 +19,7 @@ import * as WantLeaveForDaycareInfo from "../explanations/WantLeaveForDaycare";
 import * as WantLeaveBecauseUnsafe from "../explanations/WantLeaveBecauseUnsafe";
 import * as ProtectedLeaveInfo from "../explanations/ProtectedLeave";
 import { WorkersRightToComplain } from "../explanations/WorkersCanComplain";
-import { NoOtherHelp } from "../explanations/NoOtherHelp";
+import { OtherHelp } from "../explanations/OtherHelp";
 import * as WantLeaveBecauseWorkClosed from "../explanations/WantLeaveBecauseWorkClosed";
 
 /**
@@ -211,7 +211,7 @@ export const explanations = [
   },
   {
     slug: "other",
-    component: <NoOtherHelp />,
+    component: <OtherHelp />,
   },
   {
     slug: "nlra-osha",
@@ -311,6 +311,22 @@ export const explanations = [
     slug: "sick-relative-philly-unpaid-sick-and-fmla",
     component: (
       <WantLeaveToCareForSickRel.PhillySickandFMLA phillyLeaveIsPaid={false} />
+    ),
+  },
+  {
+    slug: "sick-relative-fed-sick-philly-paid-sick-and-fmla",
+    component: (
+      <WantLeaveToCareForSickRel.FedSickPhillySickFMLA
+        phillyLeaveIsPaid={true}
+      />
+    ),
+  },
+  {
+    slug: "sick-relative-fed-sick-philly-unpaid-sick-and-fmla",
+    component: (
+      <WantLeaveToCareForSickRel.FedSickPhillySickFMLA
+        phillyLeaveIsPaid={false}
+      />
     ),
   },
   {
@@ -626,7 +642,7 @@ function pickNextPhillySickQuestionWhenCaringForSickRelative(state, dispatch) {
     );
   }
 
-  if (answers.employerHasTenEmployees === null) {
+  if (answers.employerHasTenEmployees.answer === null) {
     return (
       <PhillySickLeaveQuestions.EmployerHasTenEmployees
         {...props}
@@ -828,12 +844,29 @@ function pickSickLeaveAndFMLAWhenCaringForRelativeInformation(state) {
     return redirectToSlug("sick-relative-fmla", state);
   }
 
-  return (
-    <div>
-      Sorry, we could not find any eligible programs This might be a bug with
-      our site.
-    </div>
-  );
+  return redirectToSlug("other", {
+    ...state,
+    isEligibleForFMLA,
+    isEligibleForFedSick,
+    isEligibleForPhillySick,
+  });
+  // return (
+  //   <div>
+  //     <p> Here's your results.</p>
+  //     <p>
+  //       {" "}
+  //       You are {!isEligibleForFedSick ? "not" : ""} elegible for Federal Sick
+  //       Leave.{" "}
+  //     </p>
+  //     .
+  //     <p>
+  //       {" "}
+  //       You are {!isEligibleForPhillySick ? "not" : ""} elegible for Philly Sick
+  //       Leave.{" "}
+  //     </p>
+  //     .<p> You are {!isEligibleForFMLA ? "not" : ""} elegible for FMLA. </p>.
+  //   </div>
+  // );
 }
 
 /**
@@ -883,13 +916,29 @@ function pickSickLeaveAndFMLAInformation(state) {
   if (!isEligibleForFedSick && !isEligibleForPhillySick && isEligibleForFMLA) {
     return redirectToSlug("fmla", state);
   }
-
-  return (
-    <div>
-      Sorry, we could not find any eligible programs This might be a bug with
-      our site.
-    </div>
-  );
+  return redirectToSlug("other", {
+    ...state,
+    isEligibleForFMLA,
+    isEligibleForFedSick,
+    isEligibleForPhillySick,
+  });
+  // return (
+  //   <div>
+  //     <p> Here's your results.</p>
+  //     <p>
+  //       {" "}
+  //       You are {isEligibleForFedSick ? "not" : ""} elegible for Federal Sick
+  //       Leave.{" "}
+  //     </p>
+  //     .
+  //     <p>
+  //       {" "}
+  //       You are {isEligibleForPhillySick ? "not" : ""} elegible for Philly Sick
+  //       Leave.{" "}
+  //     </p>
+  //     .<p> You are {isEligibleForFMLA ? "not" : ""} elegible for FMLA. </p>.
+  //   </div>
+  // );
 }
 
 /**
@@ -1026,7 +1075,6 @@ function checkIfEligibleForFedSick(state) {
     hasPublicEmployer,
     fedSickLeaveEmployerSize,
     IHaveCovid,
-    relativeHasCovid,
     healthcareWorker,
   } = answers;
   if (
@@ -1050,19 +1098,16 @@ function checkIfEligibleForFedSickWhenCaringForSickRelative(state) {
   const {
     hasPublicEmployer,
     fedSickLeaveEmployerSize,
-    IHaveCovid,
     relativeHasCovid,
     healthcareWorker,
   } = answers;
   if (
-    ((hasPublicEmployer.answer === "yes" ||
+    (hasPublicEmployer.answer === "yes" ||
       (hasPublicEmployer.answer === "no" &&
         fedSickLeaveEmployerSize.answer === "ltFiveHundred")) &&
-      (IHaveCovid.answer === "haveCovid" ||
-        IHaveCovid.answer === "selfQuarantine")) ||
-    ((relativeHasCovid.answer === "haveCovid" ||
+    (relativeHasCovid.answer === "haveCovid" ||
       relativeHasCovid.answer === "selfQuarantine") &&
-      healthcareWorker.answer === "no")
+    healthcareWorker.answer === "no"
   ) {
     return true;
   }
@@ -1076,12 +1121,14 @@ function checkIfEligibleForFMLA(state) {
     workedEnoughHoursForFMLA,
     fiftyNearbyEmployees,
     sickPersonIsCloseRelative,
+    currentlyWorkingReasonForSeekingHelp,
   } = answers;
   if (
     twelveMonthsEmployed.answer === "yes" &&
     workedEnoughHoursForFMLA.answer === "yes" &&
     fiftyNearbyEmployees.answer === "yes" &&
-    sickPersonIsCloseRelative.answer === "yes"
+    (sickPersonIsCloseRelative.answer === "yes" ||
+      currentlyWorkingReasonForSeekingHelp.answer === "IamSick")
   ) {
     return true;
   } else {
@@ -1090,13 +1137,16 @@ function checkIfEligibleForFMLA(state) {
 }
 
 function checkIfEligibleForPhillySick(state) {
+  console.log("checking if eligible for philly sick");
+  console.log(state);
   const { answers } = state;
   const { workInPhilly, workingNinetyDays, isFulltimeEmployee } = answers;
+  console.log(isFulltimeEmployee);
 
   if (
     workInPhilly.answer === "yes" &&
     workingNinetyDays.answer === "yes" &&
-    isFulltimeEmployee.answer === "no"
+    isFulltimeEmployee.answer === "yes"
   ) {
     return true;
   }
@@ -1104,6 +1154,7 @@ function checkIfEligibleForPhillySick(state) {
 }
 
 function redirectToSlug(slug, state) {
+  console.log("redirecting to: /questions/" + INTERVIEW_SLUG + "/" + slug);
   return (
     <Redirect
       to={{

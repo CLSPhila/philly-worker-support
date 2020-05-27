@@ -49,9 +49,13 @@ export const IsFullTimeEmployee = (props) => {
       question="Is your job in any of these categories?"
       label="Is your job one of: gig workers, independent contractors, union members, state or federal government worker, and seasonal workers?"
     >
-      <FormControlLabel control={<Radio />} value="yes" label="Yes, it is." />
+      <FormControlLabel control={<Radio />} value="no" label="Yes, it is." />
 
-      <FormControlLabel control={<Radio />} value="no" label="No, it is not." />
+      <FormControlLabel
+        control={<Radio />}
+        value="yes"
+        label="No, it is not."
+      />
     </MultipleChoice>
   );
 };

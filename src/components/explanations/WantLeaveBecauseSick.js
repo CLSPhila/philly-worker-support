@@ -55,9 +55,7 @@ export const FedSickPhillySickandFMLA = (props) => {
         this sick leave after you take FFCRA leave first.
         <b>
           {phillyLeaveIsPaid
-            ? "You said your employer has 10 or more employees, so this leave would be paid"
-            : phillyLeaveIsPaid === false
-            ? "You said your employer has 9 or fewer employees, so this leave would be unpaid."
+            ? "You said your employer has 10 or more employees, so this leave would be paid."
             : "If your employer has 10 or more employees, this leave must be paid.  If your employer has 9 or fewer employees, this leave may be unpaid."}
         </b>{" "}
       </p>
@@ -178,9 +176,7 @@ export const PhillySickandFMLA = (props) => {
         You likely qualify for Philadelphia’s paid sick leave.{" "}
         <b>
           {phillyLeaveIsPaid
-            ? "You said your employer has 10 or more employees, so this leave would be paid"
-            : phillyLeaveIsPaid === false
-            ? "You said your employer has 9 or fewer employees, so this leave would be unpaid."
+            ? "You said your employer has 10 or more employees, so this leave would be paid."
             : "If your employer has 10 or more employees, this leave must be paid.  If your employer has 9 or fewer employees, this leave may be unpaid."}
         </b>{" "}
       </p>
@@ -253,8 +249,6 @@ export const PhillySickOnly = (props) => {
         <b>
           {phillyLeaveIsPaid
             ? "You said your employer has 10 or more employees, so this leave would be paid."
-            : phillyLeaveIsPaid === false
-            ? "You said your employer has 9 or fewer employees, so this leave would be unpaid."
             : "If your employer has 10 or more employees, this leave must be paid.  If your employer has 9 or fewer employees, this leave may be unpaid."}
         </b>{" "}
       </p>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Router } from "react-router-dom";
 import { render } from "@testing-library/react";
 import * as interview from "./LeaveBenefitsQuestions";
 import { Questioner, createQuestions } from "../Questioner";
@@ -42,6 +43,7 @@ describe("pickQuestion returns the appropriate component given a certain intervi
       relativeHasCovid: "haveCovid",
       workInPhilly: "yes",
       workingNinetyDays: "yes",
+      employerHasTenEmployees: "yes",
     });
 
     const { getByText } = render(
@@ -60,11 +62,36 @@ describe("pickQuestion returns the appropriate component given a certain intervi
       relativeHasCovid: null,
       workInPhilly: "yes",
       workingNinetyDays: "yes",
+      employerHasTenEmployees: "yes",
     });
 
     const { queryAllByText } = render(
       interview.pickQuestion(modifiedState, dummyDispatch)
     );
     expect(queryAllByText(/the person you need to care for/i)).toHaveLength(0);
+  });
+});
+
+describe("Pick the right endpoint information", () => {
+  const initialState = createQuestions(interview.questions);
+  const dummyDispatch = () => {};
+
+  test("Eligible for FMLA", () => {
+    const modifiedState = updateState(initialState, {
+      areYouCurrentlyWorking: "yes",
+      currentlyWorkingReasonForSeekingHelp: "IamSick",
+      hasPublicEmployer: "yes",
+      IHaveCovid: "haveCovid",
+      workInPhilly: "yes",
+      workingNinetyDays: "yes",
+      isFulltimeEmployee: "yes",
+      twelveMonthsEmployed: "yes",
+      workedEnoughHoursForFMLA: "yes",
+      fiftyNearbyEmployees: "yes",
+    });
+
+    expect(
+      interview.pickQuestion(modifiedState, dummyDispatch).props.to.pathname
+    ).toMatch("/questions/leave-benefits/philly-unpaid-sick-and-fmla");
   });
 });

@@ -12,42 +12,45 @@ import { Debugger } from "../extras/debugger";
 import NotImplementedYet from "../extras/NotImplementedYet";
 
 export const ExplanationPage = ({ match, location }) => {
-  const { params } = match;
+  console.log("Do we render the explanation page?");
 
+  const { params } = match;
+  const { state = {} } = location;
+  console.log(state);
   const { interviewSlug, explanationSlug } = params;
   return (
     <>
-      {pickExplanation(interviewSlug, explanationSlug)}
-      <Debugger state={location} />
+      {pickExplanation(interviewSlug, explanationSlug, state)}
+      <Debugger state={state} match={match} />
     </>
   );
 };
 
-function componentOr404(explanations) {
+function componentOr404(explanations, state) {
   if (explanations.length === 0) {
     return <NotImplementedYet />;
   } else {
-    return explanations[0].component;
+    return React.cloneElement(explanations[0].component, state);
   }
 }
 
-function pickExplanation(interviewSlug, explanationSlug) {
+function pickExplanation(interviewSlug, explanationSlug, state) {
   switch (interviewSlug) {
     case benefitsUrl: {
       let explanations = benefitsExplanations.filter(
         (e) => e.slug === explanationSlug
       );
-      return componentOr404(explanations);
+      return componentOr404(explanations, state);
     }
     case ucUrl: {
       let explanations = ucExplanations.filter(
         (e) => e.slug === explanationSlug
       );
-      return componentOr404(explanations);
+      return componentOr404(explanations, state);
     }
     default: {
       let explanations = [];
-      return componentOr404(explanations);
+      return componentOr404(explanations, state);
     }
   }
 }

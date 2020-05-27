@@ -13,7 +13,8 @@ import ExternalLink from "@material-ui/core/Link";
  */
 export const FedSickPhillySickFMLA = (props) => {
   const { phillyLeaveIsPaid } = props;
-
+  console.log("phillyLeaveIsPaid");
+  console.log(phillyLeaveIsPaid);
   return (
     <div>
       <p>
@@ -50,8 +51,6 @@ export const FedSickPhillySickFMLA = (props) => {
         <b>
           {phillyLeaveIsPaid
             ? "You said your employer has 10 or more employees, so this leave would be paid"
-            : phillyLeaveIsPaid === false
-            ? "You said your employer has 9 or fewer employees, so this leave would be unpaid."
             : "If your employer has 10 or more employees, this leave must be paid.  If your employer has 9 or fewer employees, this leave may be unpaid."}
         </b>{" "}
       </p>
@@ -186,8 +185,6 @@ export const PhillySickandFMLA = (props) => {
         <b>
           {phillyLeaveIsPaid
             ? "You said your employer has 10 or more employees, so this leave would be paid."
-            : phillyLeaveIsPaid === false
-            ? "You said your employer has 9 or fewer employees, so this leave would be unpaid."
             : "If your employer has 10 or more employees, this leave must be paid.  If your employer has 9 or fewer employees, this leave may be unpaid."}
         </b>{" "}
       </p>
@@ -266,8 +263,6 @@ export const PhillySickOnly = (props) => {
         <b>
           {phillyLeaveIsPaid
             ? "You said your employer has 10 or more employees, so this leave would be paid"
-            : phillyLeaveIsPaid === false
-            ? "You said your employer has 9 or fewer employees, so this leave would be unpaid."
             : "If your employer has 10 or more employees, this leave must be paid.  If your employer has 9 or fewer employees, this leave may be unpaid."}
         </b>{" "}
       </p>
