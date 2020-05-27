@@ -36,6 +36,7 @@ export const INTERVIEW_SLUG = "leave-benefits";
  * @param {*} state
  */
 export function pickQuestion(state, dispatch) {
+  console.log("picking question");
   const { answers } = state;
   if (answers.areYouCurrentlyWorking.answer === "yes") {
     switch (answers.currentlyWorkingReasonForSeekingHelp.answer) {
@@ -900,7 +901,7 @@ function pickSickLeaveAndFMLAInformation(state) {
     if (phillyLeaveIsPaid) {
       return redirectToSlug("philly-paid-sick-and-fmla", state);
     } else {
-      redirectToSlug("philly-unpaid-sick-and-fmla", state);
+      return redirectToSlug("philly-unpaid-sick-and-fmla", state);
     }
   }
   if (!isEligibleForFedSick && isEligibleForPhillySick && !isEligibleForFMLA) {
@@ -1085,8 +1086,10 @@ function checkIfEligibleForFedSick(state) {
       IHaveCovid.answer === "selfQuarantine") &&
     healthcareWorker.answer === "no"
   ) {
+    console.log("eligible for fed sick (user is sick)");
     return true;
   }
+  console.log("not eligible for fed sick (user is sick)");
   return false;
 }
 /**
@@ -1109,8 +1112,10 @@ function checkIfEligibleForFedSickWhenCaringForSickRelative(state) {
       relativeHasCovid.answer === "selfQuarantine") &&
     healthcareWorker.answer === "no"
   ) {
+    console.log("Eligible for Fed Sick (when caring for sick relative)");
     return true;
   }
+  console.log("Not eligibile for Fed. sick (when caring for sick relative");
   return false;
 }
 
@@ -1130,26 +1135,27 @@ function checkIfEligibleForFMLA(state) {
     (sickPersonIsCloseRelative.answer === "yes" ||
       currentlyWorkingReasonForSeekingHelp.answer === "IamSick")
   ) {
+    console.log("eligible for FMLA");
     return true;
   } else {
+    console.log("not eligible for fmla");
     return false;
   }
 }
 
 function checkIfEligibleForPhillySick(state) {
-  console.log("checking if eligible for philly sick");
-  console.log(state);
   const { answers } = state;
   const { workInPhilly, workingNinetyDays, isFulltimeEmployee } = answers;
-  console.log(isFulltimeEmployee);
 
   if (
     workInPhilly.answer === "yes" &&
     workingNinetyDays.answer === "yes" &&
     isFulltimeEmployee.answer === "yes"
   ) {
+    console.log("eligible for philly sick");
     return true;
   }
+  console.log("not eligible for philly sick");
   return false;
 }
 

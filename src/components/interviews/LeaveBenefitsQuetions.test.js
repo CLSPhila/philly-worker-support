@@ -89,7 +89,7 @@ describe("Pick the right endpoint information", () => {
       workedEnoughHoursForFMLA: "yes",
       fiftyNearbyEmployees: "yes",
     });
-
+    console.log("fmla endpoint test");
     expect(
       interview.pickQuestion(modifiedState, dummyDispatch).props.to.pathname
     ).toMatch("/questions/leave-benefits/philly-unpaid-sick-and-fmla");
