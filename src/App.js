@@ -46,7 +46,7 @@ function App() {
         <Router>
           <NavBar toggleDrawer={toggleDrawer} />
           <NavDrawer isOpen={isOpen} setOpen={setOpen} />
-          <Container>
+          <Container maxWidth="md">
             <Switch>
               <Route exact path={"/questions/" + leaveBenefitsUrl}>
                 <LeaveBenefitsInterview />
