@@ -2,19 +2,29 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { INTERVIEW_SLUG as leaveBenefitsUrl } from "../interviews/LeaveBenefitsQuestions";
 import { INTERVIEW_SLUG as ucBenefitsUrl } from "../interviews/UCandPUAQuestions";
+import { DemoWarning } from "../extras/DemoWarning";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
+import { makeStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+import { InterviewCard } from "../extras/InterviewCard";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    " & > p": {
+      marginTop: theme.spacing(1.3),
+      fontSize: "1.3rem",
+      lineHeight: "2rem",
+    },
+  },
+}));
 
 export const LandingPage = () => {
+  const styles = useStyles();
   return (
-    <div>
-      <h2> (DEMO) Support for workers during the Covid-19 pandemic</h2>
-      <Box bgcolor="warning.main">
-        <b>
-          This site is in development still. The information here isn't
-          complete, or even always accurate. Don't rely on it.
-        </b>
-      </Box>
+    <div className={styles.root}>
+      <h2> (DEMO) Supporting workers during the Covid-19 pandemic</h2>
+      <DemoWarning />
       <p>
         We are living through challenging times. Many of us have lost
         employment, or are concerned about staying employed. We worry about
@@ -44,45 +54,22 @@ export const LandingPage = () => {
         Answer the questions we ask at the links below, and learn about how to
         find the right services for your family.
       </p>
-      <p>
-        <b>
-          Are you still working and looking to take leave time? Learn about{" "}
-          <Link to={"/questions/" + leaveBenefitsUrl}>
-            your eligibility for sick leave and family leave.
-          </Link>
-        </b>
-      </p>
-      <Box display="flex" justifyContent="center" m={1} p={1}>
-        <Box p={1}>
-          <Button
-            href={"/questions/" + leaveBenefitsUrl}
-            variant="outlined"
-            color="primary"
-          >
-            Sick leave and FMLA
-          </Button>
-        </Box>
-      </Box>
-      <p>
-        <b>
-          Have you lost your job or had your hours cut? Learn about{" "}
-          <Link to={"/questions/" + ucBenefitsUrl}>
-            your eligibility for Unemployment Compensation and Pandemic
-            Unemployment Assistance.
-          </Link>
-        </b>
-      </p>
-      <Box display="flex" justifyContent="center" m={1} p={1}>
-        <Box p={1}>
-          <Button
-            href={"/questions/" + ucBenefitsUrl}
-            variant="outlined"
-            color="primary"
-          >
-            Unemployment and PUA
-          </Button>
-        </Box>
-      </Box>
+      <Grid container spacing={1}>
+        <Grid item xs={12} xm={6} xl={6}>
+          <InterviewCard
+            interviewTitle="Sick Leave Eligibility"
+            description="Eligibility for Federal and Philadelphia Sick leave, as well as FMLA"
+            url={"/questions/" + leaveBenefitsUrl}
+          />
+        </Grid>
+        <Grid item xs={12} xm={6} xl={6}>
+          <InterviewCard
+            interviewTitle="Unemployment and Pandemic Benefit Eligibility"
+            description="Eligibility for Unemployment Compensation and Pandemic Unemployment Assistance"
+            url={"/questions/" + ucBenefitsUrl}
+          />
+        </Grid>
+      </Grid>
       <p>
         This site is merely providing you with general information we hope is
         helpful. Using this site does not mean that we are your lawyers. If
