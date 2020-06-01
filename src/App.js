@@ -17,7 +17,7 @@ import { NavBar } from "./components/extras/NavBar";
 import { NavDrawer } from "./components/extras/NavDrawer";
 import CSSBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
-
+import { DemoWarning } from "./components/extras/DemoWarning";
 const theme = createMuiTheme({
   typography: {
     fontSize: 18,
@@ -46,6 +46,7 @@ function App() {
         <Router>
           <NavBar toggleDrawer={toggleDrawer} />
           <NavDrawer isOpen={isOpen} setOpen={setOpen} />
+          <DemoWarning />
           <Container maxWidth="md">
             <Switch>
               <Route exact path={"/questions/" + leaveBenefitsUrl}>

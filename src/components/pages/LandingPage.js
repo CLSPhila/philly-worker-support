@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import { INTERVIEW_SLUG as leaveBenefitsUrl } from "../interviews/LeaveBenefitsQuestions";
 import { INTERVIEW_SLUG as ucBenefitsUrl } from "../interviews/UCandPUAQuestions";
 import { DemoWarning } from "../extras/DemoWarning";
-import Button from "@material-ui/core/Button";
-import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import { InterviewCard } from "../extras/InterviewCard";
@@ -24,7 +23,6 @@ export const LandingPage = () => {
   return (
     <div className={styles.root}>
       <h2> (DEMO) Supporting workers during the Covid-19 pandemic</h2>
-      <DemoWarning />
       <p>
         We are living through challenging times. Many of us have lost
         employment, or are concerned about staying employed. We worry about
@@ -50,10 +48,10 @@ export const LandingPage = () => {
         We hope the information we present helps you and your family feel
         <b> safe and stable </b> during the crisis.
       </p>
-      <p>
-        Answer the questions we ask at the links below, and learn about how to
-        find the right services for your family.
-      </p>
+      <Typography variant="h5">
+        Learn about how to find the right services for your family by trying the
+        quizzes below.
+      </Typography>
       <Grid container spacing={1}>
         <Grid item xs={12} xm={6} xl={6}>
           <InterviewCard

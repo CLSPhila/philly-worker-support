@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   details: {
     flex: "auto 1",
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     justifyContent: "space-between",
     flexWrap: "wrap",
   },
