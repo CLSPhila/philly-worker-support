@@ -478,7 +478,8 @@ function pickNextFedSickQuestion(state, dispatch) {
 
   if (
     answers.healthcareWorker.answer === null &&
-    answers.fedSickLeaveEmployerSize.answer === "ltFiveHundred"
+    (answers.hasPublicEmployer.answer === "yes" ||
+      answers.fedSickLeaveEmployerSize.answer === "ltFiveHundred")
   ) {
     return (
       <FedSickLeaveQuestions.HeathcareWorker
@@ -526,7 +527,8 @@ function pickNextFedSickQuestionWhenCaringForSickRelative(state, dispatch) {
 
   if (
     answers.healthcareWorker.answer === null &&
-    answers.fedSickLeaveEmployerSize.answer === "ltFiveHundred"
+    (answers.fedSickLeaveEmployerSize.answer === "ltFiveHundred" ||
+      answers.hasPublicEmployer.answer === "yes")
   ) {
     return (
       <FedSickLeaveQuestions.HeathcareWorker
@@ -1070,7 +1072,7 @@ function pickChildCareAndFMLAInformation(state) {
  * Determine if the user is eligible for federal sick leave, when user is caring for themselves.
  * @param {} state
  */
-function checkIfEligibleForFedSick(state) {
+export function checkIfEligibleForFedSick(state) {
   const { answers } = state;
   const {
     hasPublicEmployer,
@@ -1086,17 +1088,15 @@ function checkIfEligibleForFedSick(state) {
       IHaveCovid.answer === "selfQuarantine") &&
     healthcareWorker.answer === "no"
   ) {
-    console.log("eligible for fed sick (user is sick)");
     return true;
   }
-  console.log("not eligible for fed sick (user is sick)");
   return false;
 }
 /**
  * Determine if the user is eligible for federal sick leave, when user is caring for a sick relative.
  * @param {} state
  */
-function checkIfEligibleForFedSickWhenCaringForSickRelative(state) {
+export function checkIfEligibleForFedSickWhenCaringForSickRelative(state) {
   const { answers } = state;
   const {
     hasPublicEmployer,

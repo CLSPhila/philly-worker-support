@@ -14,8 +14,8 @@ export const HasPublicEmployer = (props) => {
     <Box>
       <MultipleChoice
         {...props}
-        question="Do you work for a public employer?"
-        label="Do you work for a public employer?"
+        question="Do you work for a qualifying public employer?"
+        label="Do you work for a public employer that is covered by Federal Sick Leave laws?"
       >
         <FormControlLabel control={<Radio />} value="yes" label="Yes, I do." />
 
@@ -28,7 +28,8 @@ export const HasPublicEmployer = (props) => {
       <HelpBox>
         <Typography variant="body2">
           Working for a public employer means you work for federal, state, or
-          local government, including government agencies.
+          local government, including government agencies. Unfortunately there
+          are some public employers that aren't covered by the sick leave laws.
         </Typography>
       </HelpBox>
     </Box>

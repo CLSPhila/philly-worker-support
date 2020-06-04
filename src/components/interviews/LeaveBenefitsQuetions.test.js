@@ -89,9 +89,46 @@ describe("Pick the right endpoint information", () => {
       workedEnoughHoursForFMLA: "yes",
       fiftyNearbyEmployees: "yes",
     });
-    console.log("fmla endpoint test");
     expect(
       interview.pickQuestion(modifiedState, dummyDispatch).props.to.pathname
     ).toMatch("/questions/leave-benefits/philly-unpaid-sick-and-fmla");
+  });
+});
+
+describe("checkEligibility functions explain whether a user is eligible for a service", () => {
+  test("eligible for federal sick leave if public employer", () => {
+    const miniState = {
+      answers: {
+        hasPublicEmployer: { answer: "yes" },
+        IHaveCovid: { answer: "haveCovid" },
+        healthcareWorker: { answer: "no" },
+      },
+    };
+    expect(interview.checkIfEligibleForFedSick(miniState)).toBe(true);
+  });
+
+  test("eligible for federal sick leave if private employer with less than 500 employees", () => {
+    const miniState = {
+      answers: {
+        hasPublicEmployer: { answer: "no" },
+        IHaveCovid: { answer: "selfQuarantine" },
+        fedSickLeaveEmployerSize: { answer: "ltFiveHundred" },
+        healthcareWorker: { answer: "no" },
+      },
+    };
+
+    expect(interview.checkIfEligibleForFedSick(miniState)).toBe(true);
+  });
+  test("NOT eligible for federal sick leave if private employer with more than 500 employees", () => {
+    const miniState = {
+      answers: {
+        hasPublicEmployer: { answer: "no" },
+        IHaveCovid: { answer: "selfQuarantine" },
+        fedSickLeaveEmployerSize: { answer: "gtFiveHundred" },
+        healthcareWorker: { answer: "no" },
+      },
+    };
+
+    expect(interview.checkIfEligibleForFedSick(miniState)).toBe(false);
   });
 });
