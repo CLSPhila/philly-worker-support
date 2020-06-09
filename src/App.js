@@ -20,7 +20,7 @@ import Container from "@material-ui/core/Container";
 import { DemoWarning } from "./components/extras/DemoWarning";
 const theme = createMuiTheme({
   typography: {
-    fontSize: 18,
+    fontSize: "1.4rem",
   },
   palette: {
     primary: {

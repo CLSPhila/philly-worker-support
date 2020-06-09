@@ -22,7 +22,7 @@ export const LandingPage = () => {
   const styles = useStyles();
   return (
     <div className={styles.root}>
-      <h2> (DEMO) Supporting workers during the Covid-19 pandemic</h2>
+      <h1> (DEMO) Supporting workers during the Covid-19 pandemic</h1>
       <p>
         We are living through challenging times. Many of us have lost
         employment, or are concerned about staying employed. We worry about
