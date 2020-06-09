@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
     padding: theme.spacing(1),
+    fontSize: "2rem",
   },
   title: {
     flexGrow: 1,
@@ -43,8 +44,13 @@ export const NavBar = (props) => {
               <img alt="Community Services of Philadelphia" src="/logo70.png" />
             </Link>
           </IconButton>
-          <Link component={RouterLink} to="/" className={classes.title}>
-            <Typography variant="h6" className={classes.title}>
+          <Link
+            component={RouterLink}
+            to="/"
+            className={classes.title}
+            underline="none"
+          >
+            <Typography variant="h4" className={classes.title}>
               (DEMO) Working in Philly during a Pandemic
             </Typography>
           </Link>
