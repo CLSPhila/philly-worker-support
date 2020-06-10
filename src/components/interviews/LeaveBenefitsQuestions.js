@@ -38,7 +38,6 @@ export const INTERVIEW_SLUG = "leave-benefits";
  * @param {*} state
  */
 export function pickQuestion(state, dispatch) {
-  console.log("picking question");
   const { answers } = state;
 
   switch (answers.areYouAGigWorker.answer) {
@@ -132,6 +131,7 @@ export function pickQuestion(state, dispatch) {
   // Default
 }
 // TODO Don't need to identify the components in the questions list.
+import { render } from "@testing-library/react";
 export const questions = [
   {
     // N.B. this is different from "fullTimeEmployee". gigWorker is specifically about non-employee folks.

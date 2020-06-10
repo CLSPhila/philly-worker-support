@@ -3,6 +3,12 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom/extend-expect";
+import React from "react";
+import { Router } from "react-router-dom";
+import { render } from "@testing-library/react";
+
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { createMemoryHistory } from "history";
 /**
  * Test helper to quickly set modified answers to an interview's answers.
  *
@@ -43,3 +49,29 @@ global.updateState = (state, newAnswers = null, newHistory = null) => {
     interviewHistory: updatedHistory,
   };
 };
+
+const theme = createMuiTheme({});
+
+// test utils file
+function renderWithRouter(
+  ui,
+  {
+    route = "/",
+    history = createMemoryHistory({ initialEntries: [route] }),
+  } = {}
+) {
+  const Wrapper = ({ children }) => (
+    <ThemeProvider theme={theme}>
+      <Router history={history}>{children}</Router>
+    </ThemeProvider>
+  );
+  return {
+    ...render(ui, { wrapper: Wrapper }),
+    // adding `history` to the returned utilities to allow us
+    // to reference it in our tests (just try to avoid using
+    // this to test implementation details).
+    history,
+  };
+}
+
+global.renderWithRouter = renderWithRouter;
