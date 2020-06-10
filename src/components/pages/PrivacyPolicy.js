@@ -7,10 +7,10 @@ import Link from "@material-ui/core/Link";
 const useStyles = makeStyles((theme) => ({
   title: {
     textAlign: "center",
-    paddingTop: "2rem",
+    paddingTop: theme.spacing(2),
   },
   content: {
-    padding: "1rem",
+    padding: theme.spacing(1),
   },
 }));
 

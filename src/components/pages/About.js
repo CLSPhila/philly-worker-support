@@ -27,40 +27,25 @@ export const About = () => {
           </Link>
         </Typography>
         <Typography variant="body2">
-          Community Legal Services is a 501(c)(3) nonprofit.
-        </Typography>
-        <Typography variant="body2">
-          We provide{" "}
+          Community Legal Services is a 501(c)(3) nonprofit. We provide{" "}
           <Link href="https://clsphila.org/services/">free legal services</Link>{" "}
           to low-income residents of Philadelphia. We also advocate for{" "}
           <Link href="https://clsphila.org/news/">policy reforms</Link> to
           protect Philadelphians' rights to health, housing, and income.
         </Typography>
         <Typography variant="body2">
-          If you are a resident of Philadelphia looking for legal services, here
-          are a few ways to find help.
+          We were inspired to create this interactive guide for workers in
+          Philadelphia by{" "}
+          <Link href="https://familyvaluesatwork.org/rights">
+            {" "}
+            Family Values @ Work
+          </Link>
         </Typography>
-        <ul>
-          <li>
-            <Typography variant="body2">
-              Give us a call at{" "}
-              <Link href="tel:215-981-3789">215-981-3789</Link>
-            </Typography>
-          </li>
-          <li>
-            <Typography variant="body2">
-              Visit our <Link href="https://clsphila.org">website</Link>
-            </Typography>
-          </li>
-          <li>
-            <Typography variant="body2">
-              Visit the Philadelphia Bar Association's{" "}
-              <Link href="https://lris.philadelphiabar.org/">
-                Laywer Referral Service
-              </Link>{" "}
-            </Typography>
-          </li>
-        </ul>
+        <Typography variant="body2">
+          If you are a resident of Philadelphia looking for legal services,
+          visit our <Link href="/referrals">Find Legal Help</Link> page for
+          resources.
+        </Typography>
       </Box>
     </Paper>
   );

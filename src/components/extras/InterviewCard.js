@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexWrap: "wrap",
+    fontSize: "1rem",
   },
   details: {
     flex: "auto 1",
@@ -36,8 +37,8 @@ export const InterviewCard = (props) => {
     <Card className={styles.root}>
       <div className={styles.details}>
         <CardContent className={styles.content}>
-          <Typography component="h6">{interviewTitle}</Typography>
-          <Typography variant="body1" color="textSecondary">
+          <Typography component="h5">{interviewTitle}</Typography>
+          <Typography variant="body2" color="textSecondary">
             {description}
           </Typography>
         </CardContent>

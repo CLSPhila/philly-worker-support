@@ -8,7 +8,7 @@ import Radio from "@material-ui/core/Radio";
 import Box from "@material-ui/core/Box";
 import { HelpBox } from "../extras/HelpBox";
 import Typography from "@material-ui/core/Typography";
-
+import ExternalLink from "@material-ui/core/Link";
 export const HasPublicEmployer = (props) => {
   return (
     <Box>
@@ -30,6 +30,19 @@ export const HasPublicEmployer = (props) => {
           Working for a public employer means you work for federal, state, or
           local government, including government agencies. Unfortunately there
           are some public employers that aren't covered by the sick leave laws.
+        </Typography>
+        <Typography variant="body2">
+          Public employees can learn more about their eligibility in questions
+          52-54 of the Department of Labor’s{" "}
+          <ExternalLink href="https://www.dol.gov/agencies/whd/pandemic/ffcra-questions#52">
+            Families First Coronavirus Response Act {"Q&A"}
+          </ExternalLink>
+          . Federal employees can read more specific information about their
+          eligibility from the{" "}
+          <ExternalLink href="https://www.opm.gov/policy-data-oversight/covid-19/opm-fact-sheet-federal-employee-coverage-under-the-leave-provisions-of-the-families-first-coronavirus-response-act-ffcra.pdf">
+            Office of Personnel Management’s Fact Sheet
+          </ExternalLink>
+          .{" "}
         </Typography>
       </HelpBox>
     </Box>
@@ -124,6 +137,12 @@ export const HeathcareWorker = (props) => {
         />
       </MultipleChoice>
       <HelpBox>
+        <Typography variant="body2">
+          The definition of healthcare worker in the federal sick leave law is
+          very broad. It includes not just doctors, nurses, and medical
+          assistants, but many people whose work keeps hospitals, research
+          facilities, and doctor’s offices running.
+        </Typography>
         <Typography variant="body2">
           A healthcare worker is anyone employed at any doctor’s office,
           hospital, health care center, clinic, post-secondary educational

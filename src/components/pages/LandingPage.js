@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { INTERVIEW_SLUG as leaveBenefitsUrl } from "../interviews/LeaveBenefitsQuestions";
 import { INTERVIEW_SLUG as ucBenefitsUrl } from "../interviews/UCandPUAQuestions";
-import { DemoWarning } from "../extras/DemoWarning";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import { InterviewCard } from "../extras/InterviewCard";
+import ExternalLink from "@material-ui/core/Link";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,25 +24,29 @@ export const LandingPage = () => {
     <div className={styles.root}>
       <h1> (DEMO) Supporting workers during the Covid-19 pandemic</h1>
       <p>
-        We are living through challenging times. Many of us have lost
-        employment, or are concerned about staying employed. We worry about
-        getting sick. We have loved ones we need to care for.
+        COVID-19 has created challenges and struggles for so many of us. Many of
+        us have lost our jobs or are worried we won’t be able to stay employed.
+        We worry about getting sick. We have loved ones we need to care for.
+        It’s scary and uncertain.
       </p>
-
+      <p> But you are not alone!</p>
       <p>
-        For workers in Philadelphia, there are a variety of local, state, and
-        federal programs that can help provide income and other benefits during
-        this emergency. Navigating sick leave, family leave, and unemployment
-        compensation is confusing. Who has time to untangle all the different
-        eligibility rules and program benefits?
+        For workers in Philadelphia, there are programs that can help you get
+        income, health insurance, and other ways to support yourself and your
+        family.
+      </p>
+      <p>
+        But the rules for these programs are complicated. If you need sick
+        leave, family leave, or unemployment, you may not know how to get help,
+        even if you qualify.
       </p>
       <p>
         The employment law experts at Community Legal Services of Philadelphia
-        do.
+        are free lawyers that fight for workers’ rights.
       </p>
       <p>
-        We have prepared this site to help you understand your rights as a
-        worker in Philadelphia.
+        To help you figure out what help you qualify for and what your rights
+        are, we have created quizzes so you can know what applies to you.
       </p>
       <p>
         We hope the information we present helps you and your family feel
@@ -72,7 +76,8 @@ export const LandingPage = () => {
         This site is merely providing you with general information we hope is
         helpful. Using this site does not mean that we are your lawyers. If
         you'd like to speak with a lawyer to get personal advice about your own
-        situation, visit our lawyer referrals page.
+        situation, visit our{" "}
+        <ExternalLink href="/referrals">Find Legal Help</ExternalLink> page.
       </p>
     </div>
   );
