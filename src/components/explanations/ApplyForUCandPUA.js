@@ -8,6 +8,7 @@ import ExternalLink from "@material-ui/core/Link";
 export const ApplyForUC = () => {
   return (
     <div>
+      <h1>Unemployment Compensation</h1>
       <p>You are likely eligible to apply for Unemployment Compensation.</p>
       <p>
         You can{" "}
@@ -55,6 +56,7 @@ export const ApplyForUC = () => {
 export const NotEligibleForUC = () => {
   return (
     <div>
+      <h1>Unemployment Compensation</h1>
       <p>It looks like you are not eligible for Unemployment Compensation.</p>
       <p>
         You can{" "}

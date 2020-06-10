@@ -1,10 +1,11 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
+
+// Questions
 import AreYouCurrentlyWorking from "../questions/AreYouCurrentlyWorking";
 import NotCurrentlyWorking from "../questions/NotCurrentlyWorking";
 import CurrentlyWorking from "../questions/CurrentlyWorking";
-
-// Questions
+import { AreYouAGigWorker } from "../questions/GigWorker";
 import * as FedSickLeaveQuestions from "../questions/FedSickLeaveQuestions";
 import * as PhillySickLeaveQuestions from "../questions/PhillySickLeaveQuestions";
 import * as FMLAQuestions from "../questions/FMLAQuestions";
@@ -21,6 +22,7 @@ import * as ProtectedLeaveInfo from "../explanations/ProtectedLeave";
 import { WorkersRightToComplain } from "../explanations/WorkersCanComplain";
 import { OtherHelp } from "../explanations/OtherHelp";
 import * as WantLeaveBecauseWorkClosed from "../explanations/WantLeaveBecauseWorkClosed";
+import { GigWorkersExplanation } from "../explanations/GigWorkersExplanation";
 
 /**
  * In this module, define a list of the questions to be asked
@@ -38,81 +40,103 @@ export const INTERVIEW_SLUG = "leave-benefits";
 export function pickQuestion(state, dispatch) {
   console.log("picking question");
   const { answers } = state;
-  if (answers.areYouCurrentlyWorking.answer === "yes") {
-    switch (answers.currentlyWorkingReasonForSeekingHelp.answer) {
-      case "IamSick":
-        return (
-          pickNextSickLeaveAndFMLAQuestion(state, dispatch) ||
-          // Pick the information to provide the user about
-          pickSickLeaveAndFMLAInformation(state)
-        );
-      case "careForSick":
-        return (
-          pickNextSickLeaveAndFMLAQuestionWhenCaringForRelative(
-            state,
-            dispatch
-          ) ||
-          // Pick the information to provide the user about
-          pickSickLeaveAndFMLAWhenCaringForRelativeInformation(state)
-        );
-      case "childCare":
-        return (
-          pickNextChildCareAndFMLAQuestion(state, dispatch) ||
-          pickChildCareAndFMLAInformation(state)
-        );
-      case "reducedHours":
-        return redirectToSlug("reduced-hours", state);
-      case "unsafeWorkingConditions":
-        return (
-          pickNextEmployeeOrIndependentQuestion(state, dispatch) ||
-          pickEmployeeOrNonEmployeeInformation(state)
-        );
-      default:
-        return (
-          <CurrentlyWorking
-            dispatch={dispatch}
-            questionId={answers.currentlyWorkingReasonForSeekingHelp.id}
-          />
-        );
-    }
+
+  switch (answers.areYouAGigWorker.answer) {
+    case null:
+      return (
+        <AreYouAGigWorker questionId={"areYouAGigWorker"} dispatch={dispatch} />
+      );
+    case "yes":
+      return redirectToSlug("gig-workers", state);
+    default:
+      break;
   }
-  if (answers.areYouCurrentlyWorking.answer === "no") {
-    switch (answers.notCurrentlyWorkingReasonForSeekingHelp.answer) {
-      case "sickleave":
-      case "sickcare":
-        return (
-          pickNextSickLeaveAndFMLAQuestion(state, dispatch) ||
-          pickProtectedLeaveInformation(state)
-        );
-      case "childcare":
-        return (
-          pickNextChildCareAndFMLAQuestion(state, dispatch) ||
-          pickChildCareAndFMLAInformation(state)
-        );
-      case "workingconditions":
-        return redirectToSlug("workers-right-to-complain", state);
-      case "workClosed":
-        return (
-          pickNextPhillySickQuestion(state, dispatch) ||
-          pickPhillySickLeaveInformation(state)
-        );
-      case "other":
-        return redirectToSlug("other", state);
-      default:
-        return (
-          <NotCurrentlyWorking
-            dispatch={dispatch}
-            questionId={answers.notCurrentlyWorkingReasonForSeekingHelp.id}
-          />
-        );
-    }
+
+  switch (answers.areYouCurrentlyWorking.answer) {
+    case "yes":
+      switch (answers.currentlyWorkingReasonForSeekingHelp.answer) {
+        case "IamSick":
+          return (
+            pickNextSickLeaveAndFMLAQuestion(state, dispatch) ||
+            // Pick the information to provide the user about
+            pickSickLeaveAndFMLAInformation(state)
+          );
+        case "careForSick":
+          return (
+            pickNextSickLeaveAndFMLAQuestionWhenCaringForRelative(
+              state,
+              dispatch
+            ) ||
+            // Pick the information to provide the user about
+            pickSickLeaveAndFMLAWhenCaringForRelativeInformation(state)
+          );
+        case "childCare":
+          return (
+            pickNextChildCareAndFMLAQuestion(state, dispatch) ||
+            pickChildCareAndFMLAInformation(state)
+          );
+        case "reducedHours":
+          return redirectToSlug("reduced-hours", state);
+        case "unsafeWorkingConditions":
+          return (
+            pickNextEmployeeOrIndependentQuestion(state, dispatch) ||
+            pickEmployeeOrNonEmployeeInformation(state)
+          );
+        default:
+          return (
+            <CurrentlyWorking
+              dispatch={dispatch}
+              questionId={answers.currentlyWorkingReasonForSeekingHelp.id}
+            />
+          );
+      }
+    case "no":
+      switch (answers.notCurrentlyWorkingReasonForSeekingHelp.answer) {
+        case "sickleave":
+        case "sickcare":
+          return (
+            pickNextSickLeaveAndFMLAQuestion(state, dispatch) ||
+            pickProtectedLeaveInformation(state)
+          );
+        case "childcare":
+          return (
+            pickNextChildCareAndFMLAQuestion(state, dispatch) ||
+            pickChildCareAndFMLAInformation(state)
+          );
+        case "workingconditions":
+          return redirectToSlug("workers-right-to-complain", state);
+        case "workClosed":
+          return (
+            pickNextPhillySickQuestion(state, dispatch) ||
+            pickPhillySickLeaveInformation(state)
+          );
+        case "other":
+          return redirectToSlug("other", state);
+        default:
+          return (
+            <NotCurrentlyWorking
+              dispatch={dispatch}
+              questionId={answers.notCurrentlyWorkingReasonForSeekingHelp.id}
+            />
+          );
+      }
+    default:
+      return (
+        <AreYouCurrentlyWorking
+          questionId="areYouCurrentlyWorking"
+          dispatch={dispatch}
+        />
+      );
   }
 
   // Default
-  return <AreYouCurrentlyWorking dispatch={dispatch} />;
 }
 // TODO Don't need to identify the components in the questions list.
 export const questions = [
+  {
+    // N.B. this is different from "fullTimeEmployee". gigWorker is specifically about non-employee folks.
+    id: "areYouAGigWorker",
+  },
   {
     id: "areYouCurrentlyWorking",
     component: AreYouCurrentlyWorking,
@@ -202,6 +226,10 @@ export const questions = [
 ];
 
 export const explanations = [
+  {
+    slug: "gig-workers",
+    component: <GigWorkersExplanation />,
+  },
   {
     slug: "reduced-hours",
     component: <ReducedHoursExplanation />,

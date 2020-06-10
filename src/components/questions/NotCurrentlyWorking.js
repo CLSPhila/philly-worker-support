@@ -7,7 +7,7 @@ export default function (props) {
   return (
     <MultipleChoice
       {...props}
-      question="i am not currently working, and i'm looking for help because:"
+      question="I am not currently working, and i'm looking for help because:"
       label=""
     >
       <FormControlLabel

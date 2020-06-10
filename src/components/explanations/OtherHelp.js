@@ -7,7 +7,12 @@ export const OtherHelp = (props) => {
   const { isEligiblePhillySick, isEligibleFedSick, isEligibleFMLA } = state;
   return (
     <div>
-      <p> Here's your results.</p>
+      <h1>Your Eligibility.</h1>
+      {isEligibleFMLA || isEligibleFedSick || isEligiblePhillySick ? (
+        <p> Here are your results.</p>
+      ) : (
+        <></>
+      )}
       {isEligibleFedSick ? (
         <p>You are likely eligible for Federal Sick leave.</p>
       ) : (
@@ -19,10 +24,6 @@ export const OtherHelp = (props) => {
         <></>
       )}
       {isEligibleFMLA ? <p>You are likely eligible for FMLA.</p> : <></>}
-
-      <p>
-        Unfortunately we don't have any other information for you at the moment.
-      </p>
       <p>
         You might wish to reach out to a legal services organization or a
         private lawyer, to get advice specific to your situation.

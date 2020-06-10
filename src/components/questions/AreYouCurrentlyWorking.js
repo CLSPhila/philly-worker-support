@@ -2,6 +2,9 @@ import React from "react";
 import { updateAnswer } from "../../actions";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import MultipleChoice from "../MultipleChoice";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Radio from "@material-ui/core/Radio";
 
 const useStyles = makeStyles((theme) => ({
   questionTitle: {
@@ -20,17 +23,14 @@ export default function (props) {
   };
 
   return (
-    <div>
-      <h1 className={styles.questionTitle}> Welcome. </h1>
-      <h2> Are you currently working? </h2>
-      <form>
-        <Button color="primary" onClick={handleClick("yes")}>
-          Yes, I am currently working.
-        </Button>
-        <Button color="primary" onClick={handleClick("no")}>
-          No, I am not currently working.
-        </Button>
-      </form>
-    </div>
+    <MultipleChoice
+      {...props}
+      question="Current employment status"
+      label="Are you currently working?"
+    >
+      <FormControlLabel value="yes" control={<Radio />} label="Yes, I am." />
+
+      <FormControlLabel value="no" control={<Radio />} label="No, I am not." />
+    </MultipleChoice>
   );
 }
