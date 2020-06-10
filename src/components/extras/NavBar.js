@@ -51,7 +51,7 @@ export const NavBar = (props) => {
             underline="none"
           >
             <Typography variant="h4" className={classes.title}>
-              (DEMO) Working in Philly during a Pandemic
+              (DEMO) Benefits for Philly Workers duing the Pandemic
             </Typography>
           </Link>
           <IconButton

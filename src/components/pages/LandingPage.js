@@ -22,7 +22,8 @@ export const LandingPage = () => {
   const styles = useStyles();
   return (
     <div className={styles.root}>
-      <h1> (DEMO) Supporting workers during the Covid-19 pandemic</h1>
+      <h1> What help do you qualify for?</h1>
+      <h1> Take our quiz!</h1>
       <p>
         COVID-19 has created challenges and struggles for so many of us. Many of
         us have lost our jobs or are worried we won’t be able to stay employed.
