@@ -54,7 +54,7 @@ export const pickQuestion = (state, dispatch) => {
 };
 
 function pickNextUCQuestion(state, dispatch) {
-  const { answers, interviewHistory } = state;
+  const { answers } = state;
   const {
     understandsWorkAuthRequirement,
     selfEmployed,

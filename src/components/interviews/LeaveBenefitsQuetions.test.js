@@ -153,14 +153,8 @@ describe("checkEligibility functions explain whether a user is eligible for a se
       twelveMonthsEmployed: "no",
     });
 
-    const { debug, queryAllByText } = renderWithRouter(
-      interview.pickQuestion(modifiedState, dummyDispatch)
-    );
-    //console.log("component returned from eligibl-fr-philly-leave-only");
-    //console.log(debug());
-
-    expect(
-      queryAllByText(/likely eligible for philadelphia sick leave/i)
-    ).toHaveLength(1);
+    expect(interview.checkIfEligibleForFedSick(modifiedState)).toBe(true);
+    expect(interview.checkIfEligibleForPhillySick(modifiedState)).toBe(true);
+    expect(interview.checkIfEligibleForFMLA(modifiedState)).toBe(false);
   });
 });

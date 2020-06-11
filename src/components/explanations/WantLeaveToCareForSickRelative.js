@@ -123,8 +123,6 @@ export const FedSickPhillySickFMLA = (props) => {
  * @param {*} props
  */
 export const FedSickOnly = (props) => {
-  const { phillyLeaveIsPaid } = props;
-
   return (
     <div>
       <p>

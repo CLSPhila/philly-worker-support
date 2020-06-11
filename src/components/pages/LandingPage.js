@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { INTERVIEW_SLUG as leaveBenefitsUrl } from "../interviews/LeaveBenefitsQuestions";
 import { INTERVIEW_SLUG as ucBenefitsUrl } from "../interviews/UCandPUAQuestions";
 import Typography from "@material-ui/core/Typography";

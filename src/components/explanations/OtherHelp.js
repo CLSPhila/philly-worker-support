@@ -3,27 +3,32 @@ import { Link } from "react-router-dom";
 import { ContactCLS } from "../extras/ContactCLS";
 
 export const OtherHelp = (props) => {
-  const { state = {} } = props;
-  const { isEligiblePhillySick, isEligibleFedSick, isEligibleFMLA } = state;
+  console.log("otherhelp");
+  console.log(props);
+  const {
+    isEligibleForPhillySick,
+    isEligibleForFedSick,
+    isEligibleForFMLA,
+  } = props;
   return (
     <div>
       <h1>Your Eligibility.</h1>
-      {isEligibleFMLA || isEligibleFedSick || isEligiblePhillySick ? (
+      {isEligibleForFMLA || isEligibleForFedSick || isEligibleForPhillySick ? (
         <p> Here are your results.</p>
       ) : (
         <></>
       )}
-      {isEligibleFedSick ? (
+      {isEligibleForFedSick ? (
         <p>You are likely eligible for Federal Sick leave.</p>
       ) : (
         <></>
       )}
-      {isEligiblePhillySick ? (
-        <p> Your are likely eligible for Philadelphia Sick Leave.</p>
+      {isEligibleForPhillySick ? (
+        <p> You are likely eligible for Philadelphia Sick Leave.</p>
       ) : (
         <></>
       )}
-      {isEligibleFMLA ? <p>You are likely eligible for FMLA.</p> : <></>}
+      {isEligibleForFMLA ? <p>You are likely eligible for FMLA.</p> : <></>}
       <p>
         You might wish to reach out to a legal services organization or a
         private lawyer, to get advice specific to your situation.
