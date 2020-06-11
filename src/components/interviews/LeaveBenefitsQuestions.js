@@ -358,6 +358,23 @@ export const explanations = [
     ),
   },
   {
+    slug: "sick-relative-fed-sick-philly-paid-sick",
+    component: (
+      <WantLeaveToCareForSickRel.FedSickPhillySickNotFMLA
+        phillyLeaveIsPaid={true}
+      />
+    ),
+  },
+  {
+    slug: "sick-relative-fed-sick-philly-unpaid-sick",
+    component: (
+      <WantLeaveToCareForSickRel.FedSickPhillySickNotFMLA
+        phillyLeaveIsPaid={false}
+      />
+    ),
+  },
+
+  {
     slug: "sick-relative-fed-sick-philly-paid-sick-and-fmla",
     component: (
       <WantLeaveToCareForSickRel.FedSickPhillySickFMLA
@@ -890,6 +907,13 @@ function pickSickLeaveAndFMLAWhenCaringForRelativeInformation(state) {
     return redirectToSlug("sick-relative-fmla", state);
   }
 
+  if (isEligibleForFedSick && isEligibleForPhillySick && !isEligibleForFMLA) {
+    if (phillyLeaveIsPaid) {
+      return redirectToSlug("sick-relative-fed-sick-philly-paid-sick", state);
+    } else {
+      return redirectToSlug("sick-relative-fed-sick-philly-unpaid-sick", state);
+    }
+  }
   return redirectToSlug("other", {
     ...state,
     isEligibleForFMLA,
