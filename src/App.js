@@ -18,6 +18,14 @@ import { NavDrawer } from "./components/extras/NavDrawer";
 import CSSBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import { DemoWarning } from "./components/extras/DemoWarning";
+import { Programs } from "./components/pages/programs";
+import { FFCRAChildcare } from "./components/pages/programs/FFCRAChildcare";
+import { FFCRASickLeave } from "./components/pages/programs/FFCRASickLeave";
+import { PhillySickLeave } from "./components/pages/programs/PhillySickLeave";
+import { FMLA } from "./components/pages/programs/FMLA";
+import { UC } from "./components/pages/programs/UC";
+import { PUA } from "./components/pages/programs/PUA";
+
 const theme = createMuiTheme({
   typography: {
     body2: "1rem",
@@ -66,6 +74,27 @@ function App() {
               </Route>
               <Route exact path={"/feedback"}>
                 <Feedback />
+              </Route>
+              <Route exact path={"/programs"}>
+                <Programs />
+              </Route>
+              <Route exact path={"/programs/ffcra-sick-leave"}>
+                <FFCRASickLeave />
+              </Route>
+              <Route exact path={"/programs/ffcra-childcare"}>
+                <FFCRAChildcare />
+              </Route>
+              <Route exact path={"/programs/philly-sick-leave"}>
+                <PhillySickLeave />
+              </Route>
+              <Route exact path={"/programs/fmla"}>
+                <FMLA />
+              </Route>
+              <Route exact path={"/programs/uc"}>
+                <UC />
+              </Route>
+              <Route exact path={"/programs/pua"}>
+                <PUA />
               </Route>
               <Route
                 path="/questions/:interviewSlug/:explanationSlug"

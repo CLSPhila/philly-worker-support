@@ -31,9 +31,10 @@ export const LandingPage = () => {
       </p>
       <p> But you are not alone!</p>
       <p>
-        For workers in Philadelphia, there are programs that can help you get
-        income, health insurance, and other ways to support yourself and your
-        family.
+        For workers in Philadelphia, there are{" "}
+        <ExternalLink href="/programs">several programs</ExternalLink> that can
+        help you get income, health insurance, and other means to support
+        yourself and your family.
       </p>
       <p>
         But the rules for these programs are complicated. If you need sick
