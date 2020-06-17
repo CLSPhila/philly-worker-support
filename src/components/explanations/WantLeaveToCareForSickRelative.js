@@ -30,7 +30,7 @@ export const FedSickPhillySickFMLA = (props) => {
       <p>
         You likely qualify for partially paid sick leave under a new federal law
         called the Families First Coronavirus Response Act. You can receive 2/3
-        of your normal pay 
+        of your normal pay. 
       </p>
       <p>
         Learn more about{" "}
@@ -363,8 +363,7 @@ export const FMLAOnly = (props) => {
   );
 };
 
-export const FedSickPhillySickNotFMLA = (props) => {
-  const { phillyLeaveIsPaid } = props;
+export const FedSickPhillyUnpaidSickNotFMLA = (props) => {
   return (
     <div>
       <h1>Sick Leave Eligibility</h1>
@@ -377,13 +376,15 @@ export const FedSickPhillySickNotFMLA = (props) => {
         want to take the following steps.
       </p>
       <ul>
-        <li>Take Families First Coronavirus Response Act leave (2 weeks)</li>
+        <li>
+          Take Families First Coronavirus Response Act (FFCRA) leave (2 weeks)
+        </li>
         <li>Take Philadelphia Sick Leave (up to 40 hours)</li>
       </ul>
       <p>
         You likely qualify for partially paid sick leave under a new federal law
         called the Families First Coronavirus Response Act. You can receive 2/3
-        of your normal pay 
+        of your normal pay. 
       </p>
       <p>
         <ExternalLink href="https://clsphila.org/employment/paid-sick-leave-philadelphia/">
@@ -392,27 +393,84 @@ export const FedSickPhillySickNotFMLA = (props) => {
          
       </p>
       <p>
-        Sick leave under the FFCRA is <em> in addition </em> to any sick leave
-        you may have under other laws or your employer’s policies. Your employer
+        Sick leave under the FFCRA is <em>in addition</em> to any sick leave you
+        may have under other laws or your employer’s policies. Your employer
         cannot require you to use any other PTO before using paid sick time
         under the FFCRA.
       </p>
       <p>
         You likely also qualify for Philadelphia’s paid sick leave. You can use
-        this sick leave after you take FFCRA leave first.
-        <b>
-          {phillyLeaveIsPaid
-            ? "You said your employer has 10 or more employees, so this leave would be paid."
-            : "If your employer has 10 or more employees, this leave must be paid.  If your employer has 9 or fewer employees, this leave may be unpaid."}
-        </b>{" "}
+        this sick leave after you take FFCRA leave first. Philly sick leave is
+        unpaid if your employer has 9 or fewer employees, while FFCRA would be
+        paid at 2/3 your normal rate if you are taking care of someone else. So
+        you may want to take your FFCRA leave first.
       </p>
-
-      <p>You can use this sick leave after you take FFCRA leave first. </p>
       <p>
-        If your employer has 10 or more employees, you might want to take this
-        leave first, before you take leave under the FFCRA. Philly paid leave is
-        paid at your full rate, while FFCRA would be paid at only 2/3 your
-        normal rate if you are taking care of someone else.
+        <ExternalLink href="https://clsphila.org/employment/paid-sick-leave-philadelphia/">
+          Learn more about Philadelphia’s sick leave law.
+        </ExternalLink>
+      </p>
+      <p>
+        If you lose health insurance from your job, you may be eligible to get
+        free or low-cost health insurance through Medicaid or the Marketplace.
+        You will need to apply right away. For more information, please visit
+        our{" "}
+        <ExternalLink href="https://clsphila.org/wp-content/uploads/2020/05/Health-insurance-for-people-not-working-final-4-29-2020_flip.pdf">
+          flyer about medicaid and other assistance.
+        </ExternalLink>
+      </p>
+      <p>
+        If you haven't already, click to learn about eligibility for
+        unemployment compensation and Pandemic Unemployment Assistance (PUA):
+        <Link to="/questions/uc-pua-benefits"> here. </Link>
+      </p>
+      <p></p>
+    </div>
+  );
+};
+
+export const FedSickPhillyPaidSickNotFMLA = (props) => {
+  return (
+    <div>
+      <h1>Sick Leave Eligibility</h1>
+      <p>
+        It appears you are eligible for Federal Sick Leave and Philadelphia Sick
+        Leave, but not FMLA.
+      </p>
+      <p>
+        If we are correct about this, then to get the most support, you might
+        want to take the following steps.
+      </p>
+      <ul>
+        <li>Take Philadelphia Sick Leave (up to 40 hours)</li>
+        <li>
+          Take Families First Coronavirus Response Act (FFCRA) leave (2 weeks)
+        </li>
+      </ul>
+      <p>
+        You likely qualify for partially paid sick leave under a new federal law
+        called the Families First Coronavirus Response Act. You can receive 2/3
+        of your normal pay. 
+      </p>
+      <p>
+        <ExternalLink href="https://clsphila.org/employment/paid-sick-leave-philadelphia/">
+          Learn more about this new law.
+        </ExternalLink>
+         
+      </p>
+      <p>
+        Sick leave under the FFCRA is <em>in addition</em> to any sick leave you
+        may have under other laws or your employer’s policies. Your employer
+        cannot require you to use any other PTO before using paid sick time
+        under the FFCRA.
+      </p>
+      <p>
+        You likely also qualify for Philadelphia’s paid sick leave. You can use
+        this sick leave after you take FFCRA leave first. You might want to take
+        this leave first, before you take any leave under FFCRA. Philly sick
+        leave is paid at your full rate if your employer has 10 or more
+        employees, while FFCRA would be paid only at 2/3 your normal rate if you
+        are taking care of someone else.
       </p>
       <p>
         <ExternalLink href="https://clsphila.org/employment/paid-sick-leave-philadelphia/">

@@ -360,7 +360,7 @@ export const explanations = [
   {
     slug: "sick-relative-fed-sick-philly-paid-sick",
     component: (
-      <WantLeaveToCareForSickRel.FedSickPhillySickNotFMLA
+      <WantLeaveToCareForSickRel.FedSickPhillyPaidSickNotFMLA
         phillyLeaveIsPaid={true}
       />
     ),
@@ -368,7 +368,7 @@ export const explanations = [
   {
     slug: "sick-relative-fed-sick-philly-unpaid-sick",
     component: (
-      <WantLeaveToCareForSickRel.FedSickPhillySickNotFMLA
+      <WantLeaveToCareForSickRel.FedSickPhillyUnpaidSickNotFMLA
         phillyLeaveIsPaid={false}
       />
     ),
