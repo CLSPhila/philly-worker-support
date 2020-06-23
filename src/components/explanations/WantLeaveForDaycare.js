@@ -68,7 +68,7 @@ export const QualifyForFMLA = (props) => {
         </ExternalLink>
       </p>
       <p>
-        If you haven't already, click to learn about{" "}
+        If you haven't already, click to try the quiz about{" "}
         <Link to="/questions/uc-pua-benefits">
           eligibility for unemployment compensation and Pandemic Unemployment
           Assistance (PUA).
@@ -91,7 +91,7 @@ export const NotQualifiedForFMLA = (props) => {
         still be good options.
       </p>
       <p>
-        If you haven't already, click to learn about{" "}
+        If you haven't already, click to try the quiz about{" "}
         <Link to="/questions/uc-pua-benefits">
           eligibility for unemployment compensation and Pandemic Unemployment
           Assistance (PUA).{" "}

@@ -13,7 +13,7 @@ export const GigWorkersExplanation = (props) => {
         under the leave laws this quiz asks about. These laws only apply to
         employees. You can find out more about rights for gig workers and
         independent contractors during Covid-19 from{" "}
-        <ExternalLink href="https://clsphila.org/wp-content/uploads/2020/04/Gig-Workers%E2%80%99-Contractors%E2%80%99-Rights-and-COVID-19.pdf">
+        <ExternalLink href="https://clsphila.org/employment/gig-workers-contractors-rights-covid-19/">
           this flyer
         </ExternalLink>
         .

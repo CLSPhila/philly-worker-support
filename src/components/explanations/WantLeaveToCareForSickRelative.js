@@ -108,7 +108,7 @@ export const FedSickPhillySickFMLA = (props) => {
       </p>
 
       <p>
-        If you haven't already, click to learn about eligibility for
+        If you haven't already, click to try the quiz about eligibility for
         unemployment compensation and Pandemic Unemployment Assistance (PUA):
         <Link to="/questions/uc-pua-benefits"> here. </Link>
       </p>
@@ -155,7 +155,7 @@ export const FedSickOnly = (props) => {
       </p>
 
       <p>
-        If you haven't already, click to learn about eligibility for
+        If you haven't already, click to try the quiz about eligibility for
         unemployment compensation and Pandemic Unemployment Assistance (PUA):
         <Link to="/questions/uc-pua-benefits"> here. </Link>
       </p>
@@ -232,7 +232,7 @@ export const PhillySickandFMLA = (props) => {
         </ExternalLink>
       </p>
       <p>
-        If you haven't already, click to learn about eligibility for
+        If you haven't already, click to try the quiz about eligibility for
         unemployment compensation and Pandemic Unemployment Assistance (PUA):
         <Link to="/questions/uc-pua-benefits"> here. </Link>
       </p>
@@ -279,7 +279,7 @@ export const PhillySickOnly = (props) => {
       </p>
 
       <p>
-        If you haven't already, click to learn about eligibility for
+        If you haven't already, click to try the quiz about eligibility for
         unemployment compensation and Pandemic Unemployment Assistance (PUA):
         <Link to="/questions/uc-pua-benefits"> here. </Link>
       </p>
@@ -355,7 +355,7 @@ export const FMLAOnly = (props) => {
         employer-provided health insurance is.
       </p>
       <p>
-        If you haven't already, click to learn about eligibility for
+        If you haven't already, click to try the quiz about eligibility for
         unemployment compensation and Pandemic Unemployment Assistance (PUA):
         <Link to="/questions/uc-pua-benefits"> here. </Link>
       </p>
@@ -420,7 +420,7 @@ export const FedSickPhillyUnpaidSickNotFMLA = (props) => {
         </ExternalLink>
       </p>
       <p>
-        If you haven't already, click to learn about eligibility for
+        If you haven't already, click to try the quiz about eligibility for
         unemployment compensation and Pandemic Unemployment Assistance (PUA):
         <Link to="/questions/uc-pua-benefits"> here. </Link>
       </p>
@@ -487,7 +487,7 @@ export const FedSickPhillyPaidSickNotFMLA = (props) => {
         </ExternalLink>
       </p>
       <p>
-        If you haven't already, click to learn about eligibility for
+        If you haven't already, click to try the quiz about eligibility for
         unemployment compensation and Pandemic Unemployment Assistance (PUA):
         <Link to="/questions/uc-pua-benefits"> here. </Link>
       </p>

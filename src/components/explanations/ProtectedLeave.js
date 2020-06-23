@@ -32,7 +32,7 @@ export const LeaveIsProtected = () => {
         </ExternalLink>
       </p>
       <p>
-        If you haven't already, click to learn about{" "}
+        If you haven't already, click to try the quiz about{" "}
         <Link to="/questions/uc-pua-benefits">
           eligibility for unemployment compensation and Pandemic Unemployment
           Assistance (PUA).
@@ -48,7 +48,7 @@ export const LeaveIsNotProtected = () => {
       <p>Unfortunately, it looks like your leave is not protected.</p>
       <p> There may be other programs that could help you.</p>
       <p>
-        If you haven't already, click to learn about{" "}
+        If you haven't already, click to try the quiz about{" "}
         <Link to="/questions/uc-pua-benefits">
           eligibility for unemployment compensation and Pandemic Unemployment
           Assistance (PUA).

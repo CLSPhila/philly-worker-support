@@ -9,7 +9,7 @@ export const ReducedHoursExplanation = () => {
         working!
       </p>
       <p>
-        If you haven't already, click to learn about eligibility for
+        If you haven't already, click to try the quiz about eligibility for
         unemployment compensation and Pandemic Unemployment Assistance (PUA):
         <Link to="/questions/uc-pua-benefits"> here. </Link>
       </p>

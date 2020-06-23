@@ -100,8 +100,8 @@ export const NotEligibleForUC = () => {
         .
       </p>{" "}
       <p>
-        If you haven't already, click to learn about eligibility for sick leave
-        benefits:
+        If you haven't already, click to try the quiz about eligibility for sick
+        leave benefits:
         <Link to="/questions/leave-benefits"> here. </Link>
       </p>
     </div>
