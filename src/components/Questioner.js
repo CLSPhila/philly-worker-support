@@ -2,7 +2,6 @@ import React, { useReducer } from "react";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
-import { Debugger } from "./extras/debugger";
 import { UPDATE_ANSWER, GO_BACK } from "../actions";
 
 const useStyles = makeStyles((theme) => ({
@@ -80,7 +79,6 @@ function Questioner({ questions, pickQuestion }) {
   return (
     <Box>
       <Paper className={styles.root}>{pickQuestion(state, dispatch)}</Paper>
-      <Debugger state={state} />
     </Box>
   );
 }
