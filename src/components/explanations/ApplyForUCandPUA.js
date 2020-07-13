@@ -57,7 +57,9 @@ export const NotEligibleForUC = () => {
   return (
     <div>
       <h1>Unemployment Compensation</h1>
-      <p>It looks like you are not eligible for Unemployment Compensation.</p>
+      <p>
+        It looks like you are likely not eligible for Unemployment Compensation.
+      </p>
       <p>
         You can{" "}
         <ExternalLink href="https://www.uc.pa.gov/unemployment-benefits/file/Pages/Filing-for-PUA.aspx">

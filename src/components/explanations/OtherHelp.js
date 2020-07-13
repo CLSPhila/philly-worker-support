@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ExternalLink from "@material-ui/core/Link";
 import { ContactCLS } from "../extras/ContactCLS";
 
 export const OtherHelp = (props) => {
@@ -19,16 +20,42 @@ export const OtherHelp = (props) => {
         <></>
       )}
       {isEligibleForFedSick ? (
-        <p>You are likely eligible for Federal Sick leave.</p>
+        <p>
+          You may be eligible for{" "}
+          <ExternalLink href="/programs/ffcra-sick-leave">
+            {" "}
+            Federal Sick leave
+          </ExternalLink>{" "}
+          (or{" "}
+          <ExternalLink href="/programs/ffcra-childcare">
+            child-care related sick leave
+          </ExternalLink>
+          ).
+        </p>
       ) : (
         <></>
       )}
       {isEligibleForPhillySick ? (
-        <p> You are likely eligible for Philadelphia Sick Leave.</p>
+        <p>
+          {" "}
+          You may be eligible for{" "}
+          <ExternalLink href="/programs/philly-sick-leave">
+            Philadelphia Sick Leave.
+          </ExternalLink>
+        </p>
       ) : (
         <></>
       )}
-      {isEligibleForFMLA ? <p>You are likely eligible for FMLA.</p> : <></>}
+      {isEligibleForFMLA ? (
+        <p>
+          You may be eligible for{" "}
+          <ExternalLink href="/programs/fmla">
+            Family Medical Leave.
+          </ExternalLink>
+        </p>
+      ) : (
+        <></>
+      )}
       <p>
         You might wish to reach out to a legal services organization or a
         private lawyer, to get advice specific to your situation.

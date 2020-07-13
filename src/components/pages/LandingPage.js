@@ -42,7 +42,10 @@ export const LandingPage = () => {
         even if you qualify.
       </p>
       <p>
-        The employment law experts at Community Legal Services of Philadelphia
+        The employment law experts at{" "}
+        <ExternalLink href="https://clsphila.org">
+          Community Legal Services of Philadelphia
+        </ExternalLink>{" "}
         are free lawyers that fight for workers’ rights.
       </p>
       <p>
