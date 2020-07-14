@@ -82,6 +82,11 @@ export const NotEligibleForUC = () => {
         unemployment benefits.
       </p>
       <p>
+        To be eligible for PUA, you must have lost work for a reason related to
+        Covid-19. This includes if your workplace shut down or had less business
+        due to the pandemic.
+      </p>
+      <p>
         Weekly PUA benefits range from $195 to $572.{" "}
         <b>
           Between now and July 31, 2020, everyone who receives any amount of
