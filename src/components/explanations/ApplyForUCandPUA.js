@@ -13,7 +13,7 @@ export const ApplyForUC = () => {
       <p>
         You can{" "}
         <ExternalLink href="https://www.uc.pa.gov/Pages/default.aspx">
-          apply
+          apply here
         </ExternalLink>{" "}
         for unemployment compensation. The program provides up to 39 weeks of
         benefits.{" "}
@@ -22,6 +22,17 @@ export const ApplyForUC = () => {
           unemployment compensation will automatically receive an additional
           $600 payment every week.
         </b>
+      </p>
+      <p>
+        However, financial eligibility for unemployment compensation is{" "}
+        <ExternalLink href="https://www.uc.pa.gov/unemployment-benefits/Am-I-Eligible/financial-eligibility/Pages/Financial-eligibility.aspx">
+          complicated
+        </ExternalLink>
+        . If you are found financially ineligible for unemployment compensation
+        and lost work for reasons related to Covid-19, you can apply for{" "}
+        <ExternalLink href="/programs/pua">
+          Pandemic Unemployment Assistance.
+        </ExternalLink>
       </p>
       <p>
         To learn more about unemployment compensation, how to apply, and how to
@@ -69,6 +80,11 @@ export const NotEligibleForUC = () => {
         Assistance (PUA). PUA covers people who are not eligible for traditional
         unemployment compensation and provides up to 39 weeks of temporary
         unemployment benefits.
+      </p>
+      <p>
+        To be eligible for PUA, you must have lost work for a reason related to
+        Covid-19. This includes if your workplace shut down or had less business
+        due to the pandemic.
       </p>
       <p>
         Weekly PUA benefits range from $195 to $572.{" "}

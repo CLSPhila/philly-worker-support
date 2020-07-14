@@ -46,7 +46,22 @@ export const UC = () => {
         <p>
           To qualify, you need to have enough work and earnings history. You
           will have to have made at least $116/week for at least 18 weeks in
-          2019.{" "}
+          your <b>base year</b>.{" "}
+        </p>
+        <p>
+          The Office of Unemployment Compensation calculates your{" "}
+          <b>base year</b> with{" "}
+          <Link href="https://uc.pa.gov/unemployment-benefits/Am-I-Eligible/financial-eligibility/Pages/Financial-eligibility.aspx">
+            this chart.
+          </Link>{" "}
+        </p>
+        <p>
+          Read{" "}
+          <Link href="https://uc.pa.gov/unemployment-benefits/Am-I-Eligible/financial-eligibility/Pages/Financial-eligibility.aspx">
+            {" "}
+            this guide{" "}
+          </Link>{" "}
+          to determine the <b> base year </b> for your income.
         </p>
         <p>
           You have to be “able and available” to work to collect unemployment.

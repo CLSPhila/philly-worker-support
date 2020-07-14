@@ -58,6 +58,11 @@ export const PUA = () => {
           lot of glitches, so you may need to be very persistent to apply.{" "}
         </p>
         <p>
+          To be eligible for PUA, you must have lost work for a reason related
+          to Covid-19. This includes if your workplace shut down or had less
+          business due to the pandemic.
+        </p>
+        <p>
           To learn about Pandemic Unemployment Assistance, how to apply, and to
           get help, reach out to{" "}
           <Link href="https://philalegal.org/">
