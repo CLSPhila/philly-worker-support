@@ -29,7 +29,7 @@ export const PUA = () => {
           $572 per week
         </p>
         <p>
-          Until July 31, 2020, everyone receiving any amount of Pandemic
+          Until July 25, 2020, everyone receiving any amount of Pandemic
           Unemployment Assistance will also get an extra $600 per week in
           Pandemic Unemployment Compensation.
         </p>

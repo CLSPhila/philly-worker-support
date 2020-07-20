@@ -52,7 +52,7 @@ export const QualifyForFMLA = (props) => {
         provide a higher amount of income.{" "}
         <b>
           Rembember. everyone receiving unemployment compensation between now
-          and July 31, 2020 will automatically receive an additional $600 per
+          and July 25, 2020 will automatically receive an additional $600 per
           week.
         </b>{" "}
         The choice between these options might depend on how good your

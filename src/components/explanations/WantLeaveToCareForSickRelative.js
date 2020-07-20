@@ -92,7 +92,7 @@ export const FedSickPhillySickFMLA = (props) => {
         having a source of income.
         <b>
           Remember that everyone who gets unemployment compensation between now
-          and July 31, 2020 gets an extra $600 per week.
+          and July 25, 2020 gets an extra $600 per week.
         </b>
         The choice between these options might depend on how good your
         employer-provided health insurance is.
@@ -217,7 +217,7 @@ export const PhillySickandFMLA = (props) => {
         source of income.{" "}
         <b>
           Remember that everyone who gets unemployment compensation between now
-          and July 31, 2020 gets an extra $600 per week.
+          and July 25, 2020 gets an extra $600 per week.
         </b>{" "}
         The choice between these options might depend on how good your
         employer-provided health insurance is.
@@ -349,7 +349,7 @@ export const FMLAOnly = (props) => {
         having a source of income.{" "}
         <b>
           Remember that everyone who gets unemployment compensation between now
-          and July 31, 2020 gets an extra $600 per week.
+          and July 25, 2020 gets an extra $600 per week.
         </b>{" "}
         The choice between these options might depend on how good your
         employer-provided health insurance is.

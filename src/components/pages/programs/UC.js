@@ -29,7 +29,7 @@ export const UC = () => {
           work or had their hours reduced.{" "}
         </p>
         <p>
-          Until July 31, 2020, everyone receiving any amount of unemployment
+          Until July 25, 2020, everyone receiving any amount of unemployment
           compensation will also get an extra $600 per week in Pandemic
           Unemployment Compensation.
         </p>
