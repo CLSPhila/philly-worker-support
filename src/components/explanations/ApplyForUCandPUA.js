@@ -18,7 +18,7 @@ export const ApplyForUC = () => {
         for unemployment compensation. The program provides up to 39 weeks of
         benefits.{" "}
         <b>
-          Between now and July 31, 2020, everyone who receives any amount of
+          Between now and July 25, 2020, everyone who receives any amount of
           unemployment compensation will automatically receive an additional
           $600 payment every week.
         </b>
@@ -89,7 +89,7 @@ export const NotEligibleForUC = () => {
       <p>
         Weekly PUA benefits range from $195 to $572.{" "}
         <b>
-          Between now and July 31, 2020, everyone who receives any amount of
+          Between now and July 25, 2020, everyone who receives any amount of
           unemployment compensation will automatically receive an additional
           $600 payment every week.
         </b>
