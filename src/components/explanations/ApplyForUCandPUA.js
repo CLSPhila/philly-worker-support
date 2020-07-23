@@ -17,11 +17,6 @@ export const ApplyForUC = () => {
         </ExternalLink>{" "}
         for unemployment compensation. The program provides up to 39 weeks of
         benefits.{" "}
-        <b>
-          Between now and July 25, 2020, everyone who receives any amount of
-          unemployment compensation will automatically receive an additional
-          $600 payment every week.
-        </b>
       </p>
       <p>
         However, financial eligibility for unemployment compensation is{" "}
@@ -86,14 +81,7 @@ export const NotEligibleForUC = () => {
         Covid-19. This includes if your workplace shut down or had less business
         due to the pandemic.
       </p>
-      <p>
-        Weekly PUA benefits range from $195 to $572.{" "}
-        <b>
-          Between now and July 25, 2020, everyone who receives any amount of
-          unemployment compensation will automatically receive an additional
-          $600 payment every week.
-        </b>
-      </p>
+      <p>Weekly PUA benefits range from $195 to $572. </p>
       <p>
         To learn more about PUA, how to apply, and how to get help, visit{" "}
         <ExternalLink href="https://philalegal.org">

@@ -50,13 +50,10 @@ export const QualifyForFMLA = (props) => {
         Another option would be to apply for unemployment compensation, which
         would mean losing your employer-provided health insurance but might
         provide a higher amount of income.{" "}
-        <b>
-          Rembember. everyone receiving unemployment compensation between now
-          and July 25, 2020 will automatically receive an additional $600 per
-          week.
-        </b>{" "}
-        The choice between these options might depend on how good your
-        employer-provided health insurance is.
+      </p>{" "}
+      <p>
+        You might get more money by taking leave under the FFCRA, though, since
+        unemployment compensation will not be equal to 2/3 of your salary.
       </p>
       <p>
         If you lose health insurance from your job, you may be eligible to get
