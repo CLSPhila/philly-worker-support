@@ -28,11 +28,6 @@ export const UC = () => {
           Up to 39 weeks of partial income replacement for people who have lost
           work or had their hours reduced.{" "}
         </p>
-        <p>
-          Until July 25, 2020, everyone receiving any amount of unemployment
-          compensation will also get an extra $600 per week in Pandemic
-          Unemployment Compensation.
-        </p>
         <h2>What special issues should I keep in mind?</h2>
         <p>
           You should apply as soon as you lose work or have your hours reduced.
