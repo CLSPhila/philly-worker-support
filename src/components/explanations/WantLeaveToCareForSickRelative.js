@@ -90,10 +90,8 @@ export const FedSickPhillySickFMLA = (props) => {
         Another option would be to quit and apply for unemployment compensation,
         which would mean losing your employer-provided health insurance but
         having a source of income.
-        <b>
-          Remember that everyone who gets unemployment compensation between now
-          and July 25, 2020 gets an extra $600 per week.
-        </b>
+      </p>
+      <p>
         The choice between these options might depend on how good your
         employer-provided health insurance is.
       </p>
