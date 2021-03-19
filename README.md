@@ -1,8 +1,10 @@
+# INACTIVE
+
 # Informing Philly's workers of their rights during the pandemic
 
-This site aims to be a resource for Philly workers to help them understand the rules around eligibility for various programs, including Unemployment Compensation, paid sick leave, and more.
+This site **was** a resource for Philly workers to help them understand the rules around eligibility for various programs, including Unemployment Compensation, paid sick leave, and more.
 
-**The site is still in an experimental stage.**
+This site did its job for a while, and then we moved on. The site no longer runs, and this code is not maintained.
 
 ## Deployment
 
